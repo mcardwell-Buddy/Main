@@ -29,11 +29,7 @@ from backend.buddys_discovery import discover_unknowns
 from backend.success_tracker import success_tracker
 from backend.gohighlevel_client import initialize_ghl
 from backend import gohighlevel_tools
-from backend import mployer_tools
 from backend.screenshot_capture import capture_screenshot_as_base64, capture_page_state, capture_clickable_elements, capture_full_context
-from backend.buddys_vision_core import BuddysVisionCore
-from backend.buddys_arms import BuddysArms
-from backend.buddys_vision import BuddysVision
 from backend.buddy_core import handle_user_message, list_conversation_sessions, get_conversation_session, update_conversation_session, delete_conversation_session
 
 try:
@@ -69,15 +65,24 @@ from backend.mission_approval_service import approve_mission
 from backend import tools
 from backend import additional_tools
 from backend import extended_tools
-from backend import web_tools
 
 # Initialize tool registrations
 tools.register_foundational_tools(tool_registry)
 additional_tools.register_additional_tools(tool_registry)
 extended_tools.register_extended_tools(tool_registry)
 gohighlevel_tools.register_gohighlevel_tools(tool_registry)
-mployer_tools.register_mployer_tools(tool_registry)
-web_tools.register_web_tools(tool_registry)  # PHASE 5: Vision & Arms Integration
+
+try:
+    from backend import mployer_tools
+    mployer_tools.register_mployer_tools(tool_registry)
+except Exception as e:
+    logging.warning(f"Mployer tools unavailable: {e}")
+
+try:
+    from backend import web_tools
+    web_tools.register_web_tools(tool_registry)  # PHASE 5: Vision & Arms Integration
+except Exception as e:
+    logging.warning(f"Web tools unavailable: {e}")
 
 app = FastAPI(title="Buddy API", version="1.0.0")
 
@@ -2174,6 +2179,13 @@ async def vision_inspect(request: dict):
     """Inspect page structure using Buddy's vision system"""
     try:
         from backend import mployer_tools
+        try:
+            from backend.buddys_vision_core import BuddysVisionCore
+        except Exception as e:
+            return JSONResponse(
+                status_code=500,
+                content={"success": False, "error": f"Vision core unavailable: {e}"}
+            )
         
         if not mployer_tools._mployer_scraper or not mployer_tools._mployer_scraper.driver:
             return JSONResponse(
@@ -2245,6 +2257,13 @@ async def vision_interact(request: dict):
     """Execute interaction using Buddy's arms and capture result"""
     try:
         from backend import mployer_tools
+        try:
+            from backend.buddys_arms import BuddysArms
+        except Exception as e:
+            return JSONResponse(
+                status_code=500,
+                content={"success": False, "error": f"Vision arms unavailable: {e}"}
+            )
         
         if not mployer_tools._mployer_scraper or not mployer_tools._mployer_scraper.driver:
             return JSONResponse(
@@ -2320,6 +2339,13 @@ async def vision_analyze(request: dict):
     """Analyze current page and return insights"""
     try:
         from backend import mployer_tools
+        try:
+            from backend.buddys_vision import BuddysVision
+        except Exception as e:
+            return JSONResponse(
+                status_code=500,
+                content={"success": False, "error": f"Vision analyzer unavailable: {e}"}
+            )
         
         if not mployer_tools._mployer_scraper or not mployer_tools._mployer_scraper.driver:
             return JSONResponse(
