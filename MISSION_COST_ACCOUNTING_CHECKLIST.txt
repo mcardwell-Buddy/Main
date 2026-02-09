@@ -1,0 +1,192 @@
+MISSION COST ACCOUNTING - COMPLETION CHECKLIST
+==============================================
+
+Core Implementation
+-------------------
+✅ backend/mission/mission_cost_accountant.py created (274 lines)
+   - MissionCostReport dataclass
+   - MissionCostAccountant class
+   - Reads signals to compute costs
+   - Signal emission logic
+
+✅ backend/agents/web_navigator_agent.py modified
+   - Import MissionCostAccountant
+   - _compute_mission_costs() method added (47 lines)
+   - Integrated into mission completion flow
+   - Runs AFTER ambiguity evaluation
+
+✅ backend/whiteboard/mission_whiteboard.py modified
+   - _cost_summary() helper added
+   - cost_summary field added to whiteboard
+   - Displays all cost metrics
+
+Validation & Testing
+--------------------
+✅ test_mission_cost_accounting.py created (489 lines)
+   - 6 comprehensive unit tests
+   - All cost computation scenarios covered
+   - Signal format validated
+   - ALL TESTS PASSING ✅
+
+✅ test_cost_integration.py created (125 lines)
+   - Integration test with real mission data
+   - Verified on 3 completed missions
+   - Whiteboard integration checked
+
+Constraints Compliance
+----------------------
+✅ NO Selenium changes - Purely signal analysis
+✅ NO behavior changes - Runs after completion only
+✅ NO new retries or autonomy - Read-only instrumentation
+✅ Read-only only - Never modifies execution
+
+Cost Metrics Tracked
+--------------------
+✅ total_duration_sec - Mission duration from start to end
+✅ pages_visited - Unique pages encountered
+✅ selectors_attempted - Total selector operations
+✅ selectors_failed - Failed operations
+✅ retries_total - Sum of retry attempts
+
+Cost Units Computed
+-------------------
+✅ time_cost = total_duration_sec
+✅ page_cost = pages_visited
+✅ failure_cost = selectors_failed
+
+Signal Implementation
+---------------------
+✅ signal_type: mission_cost_report
+✅ signal_layer: mission
+✅ signal_source: mission_cost_accountant
+✅ mission_id: required
+✅ cost_units: nested object with 3 metrics
+✅ Emitted only when valid report exists
+
+Whiteboard Integration
+----------------------
+✅ cost_summary section added
+✅ Displays time, pages, failures
+✅ Shows retries count
+✅ Includes timestamp
+✅ Null when no data available
+
+Test Results
+------------
+✅ Test 1: Cost Computation - PASSED
+   - Duration: 60.0s (expected)
+   - Pages: 3 (expected)
+   - Attempts: 5 (expected)
+   - Failures: 2 (expected)
+   - Retries: 3 (expected)
+
+✅ Test 2: Signal Emission - PASSED
+   - Signal structure valid
+   - All required fields present
+   - cost_units properly nested
+
+✅ Test 3: Zero Activity - PASSED
+   - Handles empty missions
+   - Returns valid report with zeros
+
+✅ Test 4: High Failure Rate - PASSED
+   - 80% failure rate tracked
+   - 60 total retries computed
+   - Failure cost = 20
+
+✅ Test 5: Missing File - PASSED
+   - Returns None gracefully
+   - No signal emission for None
+
+✅ Test 6: Whiteboard Format - PASSED
+   - All fields present
+   - Matches schema
+
+Real Mission Data
+-----------------
+✅ Mission 0035d374-2f36-499f-afba-10a2fd3d47e9
+   - Duration: 12.6s
+   - Pages: 1
+   - Failures: 3/5 (60% failure rate)
+   - Cost units computed correctly
+
+✅ Mission 4e863edb-a475-4753-9d0b-d056301dff64
+   - Duration: 6.2s
+   - Zero selector activity
+   - Cost units computed correctly
+
+✅ Mission b09f1fe6-9ef4-47b1-b2f5-781f09b3d5a0
+   - Duration: 5.0s
+   - Zero selector activity
+   - Cost units computed correctly
+
+Integration Points
+------------------
+✅ web_navigator_agent.py - Mission completion flow
+✅ mission_whiteboard.py - Display layer
+✅ learning_signals.jsonl - Signal storage
+
+Code Quality
+------------
+✅ Type hints throughout
+✅ Docstrings for all classes/methods
+✅ Dataclasses for structured data
+✅ Error handling for missing files
+✅ Clean separation of concerns
+✅ Follows Buddy patterns
+
+Files Summary
+-------------
+Created:
+- backend/mission/mission_cost_accountant.py (274 lines)
+- test_mission_cost_accounting.py (489 lines)
+- test_cost_integration.py (125 lines)
+- README_MISSION_COST_ACCOUNTING.md (documentation)
+- THIS_CHECKLIST.txt
+
+Modified:
+- backend/agents/web_navigator_agent.py (+47 lines)
+- backend/whiteboard/mission_whiteboard.py (+35 lines)
+
+Total New Code: 888 lines
+
+Usage Examples
+--------------
+✅ Compute costs for any mission:
+   accountant = MissionCostAccountant()
+   report = accountant.compute_costs(mission_id)
+
+✅ Check whiteboard:
+   whiteboard = get_mission_whiteboard(mission_id)
+   cost = whiteboard.get("cost_summary")
+
+✅ Query signal:
+   signal = report.to_signal()
+   # Emit to learning_signals.jsonl
+
+Key Features
+------------
+✅ Deterministic cost computation
+✅ No external dependencies
+✅ Graceful failure handling
+✅ Observable via signals
+✅ Displayed in whiteboard
+✅ Zero performance impact
+✅ Non-blocking operation
+
+FINAL STATUS
+============
+✅ MISSION COST ACCOUNTING IS COMPLETE
+✅ ALL TESTS PASSING (6/6)
+✅ ALL CONSTRAINTS MET
+✅ READY FOR PRODUCTION USE
+
+Next Steps:
+-----------
+1. ✅ Implementation complete
+2. ✅ Validation passing
+3. 🔄 Monitor cost signals on next mission
+4. 📊 Use cost data for optimization
+
+Date: February 7, 2026
+Status: COMPLETE ✅

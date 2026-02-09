@@ -1,0 +1,2 @@
+{"heuristic_id": "h_low_risk_priority", "category": "task_sequencing", "rule": "Prioritize LOW risk tasks as foundation for wave", "applicability": "universal", "confidence": 0.95, "supporting_evidence": 4, "recommended_weight": 1.5}
+{"heuristic_id": "h_high_confidence_selection", "category": "risk_assessment", "rule": "Prioritize tasks with confidence >= 0.75", "applicability": "universal", "confidence": 0.95, "supporting_evidence": 4, "recommended_weight": 1.4}

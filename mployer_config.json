@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "schedule": "daily",
+  "run_time": "08:00",
+  "job_title": "Human Resources",
+  "location": "Baltimore, Maryland",
+  "company_size_min": 10,
+  "company_size_max": 500,
+  "exclude_keywords": [
+    "government",
+    "union",
+    "federal",
+    "military"
+  ],
+  "max_contacts": 50,
+  "workflow_id": null,
+  "last_run": "2026-02-04T21:20:22.873378",
+  "next_run": null
+}

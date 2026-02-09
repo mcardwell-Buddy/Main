@@ -1,0 +1,1 @@
+{"agent_id": "agent_2", "wave": 2, "parameters": {"speed_multiplier": 1.0, "retry_threshold": 3, "confidence_weight": 1.0, "max_parallel_tasks": 4}, "dry_run": true, "timestamp": "2026-02-06T01:00:27.437907+00:00"}

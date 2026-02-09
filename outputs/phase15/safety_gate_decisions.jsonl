@@ -1,0 +1,12 @@
+{"task_id": "wave1_task1", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave1_task2", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave1_exploration", "risk_level": "MEDIUM", "confidence": 0.758, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave1_consolidation", "risk_level": "LOW", "confidence": 0.958, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave2_task1", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave2_task2", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave2_exploration", "risk_level": "MEDIUM", "confidence": 0.758, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave2_consolidation", "risk_level": "LOW", "confidence": 0.958, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave3_task1", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave3_task2", "risk_level": "LOW", "confidence": 0.9079999999999999, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave3_exploration", "risk_level": "MEDIUM", "confidence": 0.758, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}
+{"task_id": "wave3_consolidation", "risk_level": "LOW", "confidence": 0.958, "approval": "approved", "reason": "Dry-run mode: no safety constraints"}

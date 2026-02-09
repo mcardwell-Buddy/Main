@@ -1,0 +1,32 @@
+{
+  "success_rate": {
+    "value": 1.0,
+    "target": 0.9,
+    "status": "pass"
+  },
+  "throughput": {
+    "value": 100.0,
+    "target": 35.0,
+    "status": "pass"
+  },
+  "agent_utilization": {
+    "value": 0.8333333333333334,
+    "target": 0.7,
+    "status": "pass"
+  },
+  "confidence_trajectory": {
+    "value": 0.9600000000000002,
+    "target": 0.95,
+    "status": "pass"
+  },
+  "schedule_adherence": {
+    "value": 1.0,
+    "target": 0.95,
+    "status": "pass"
+  },
+  "optimization_efficiency": {
+    "value": 0.92,
+    "target": 0.9,
+    "status": "pass"
+  }
+}

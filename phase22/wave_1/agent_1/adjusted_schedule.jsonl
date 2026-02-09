@@ -1,0 +1,3 @@
+{"task_id": "wave1_task_1", "agent_id": "agent_1", "wave": 1, "priority": 1, "predicted_success": 0.9, "scheduled_time": "2026-02-06T01:00:27.442902+00:00", "dry_run": false}
+{"task_id": "wave1_task_5", "agent_id": "agent_1", "wave": 1, "priority": 1, "predicted_success": 0.9, "scheduled_time": "2026-02-06T01:00:27.442902+00:00", "dry_run": false}
+{"task_id": "wave1_task_9", "agent_id": "agent_1", "wave": 1, "priority": 1, "predicted_success": 0.9, "scheduled_time": "2026-02-06T01:00:27.442902+00:00", "dry_run": false}

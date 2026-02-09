@@ -1,0 +1,5 @@
+{"metric_name": "schedule_accuracy", "value": 0.9791666666666666, "unit": "ratio", "target_value": 0.9, "threshold_min": 0.85, "threshold_max": 1.0, "status": "normal", "timestamp": "2026-02-06T00:06:08.155823+00:00"}
+{"metric_name": "throughput_efficiency", "value": 0.9875, "unit": "ratio", "target_value": 0.95, "threshold_min": 0.85, "threshold_max": 1.0, "status": "normal", "timestamp": "2026-02-06T00:06:08.155823+00:00"}
+{"metric_name": "agent_utilization", "value": 1.0, "unit": "ratio", "target_value": 0.8, "threshold_min": 0.6, "threshold_max": 1.0, "status": "normal", "timestamp": "2026-02-06T00:06:08.155823+00:00"}
+{"metric_name": "confidence_trajectory", "value": 0.95, "unit": "ratio", "target_value": 1.0, "threshold_min": 0.9, "threshold_max": 1.1, "status": "normal", "timestamp": "2026-02-06T00:06:08.155823+00:00"}
+{"metric_name": "schedule_adherence", "value": 0.7, "unit": "ratio", "target_value": 0.9, "threshold_min": 0.85, "threshold_max": 1.0, "status": "critical", "timestamp": "2026-02-06T00:06:08.155823+00:00"}

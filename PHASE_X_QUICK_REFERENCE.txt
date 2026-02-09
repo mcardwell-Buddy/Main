@@ -1,0 +1,117 @@
+"""
+PHASE X: EXECUTION WIRING - QUICK REFERENCE
+============================================
+
+THE WIRING (One Diagram):
+
+    User Chat (UI)
+         |
+         v
+    POST /chat/integrated
+         |
+         v
+    ChatSessionHandler
+         |
+         v
+    InteractionOrchestrator
+         |
+         v
+    MissionProposalEmitter
+         |
+         +---> missions.jsonl (mission_created)
+         |
+         v
+    execution_queue.enqueue(mission)  ← NEW WIRE
+         |
+         v
+    ResponseEnvelope returned immediately
+         |
+         v
+    [Background Executor Loop]
+         |
+         +---> execute_goal()
+         |
+         +---> missions.jsonl (status: active)
+         |
+         +---> missions.jsonl (status: completed + result)
+         |
+         +---> learning_signals.jsonl (mission_executed)
+         |
+         v
+    Whiteboard reads status updates
+         |
+         v
+    UI shows completion
+
+
+FILES ADDED (2):
+  1. backend/execution/__init__.py
+  2. backend/execution/mission_executor.py
+
+FILES MODIFIED (2):
+  1. backend/interaction_orchestrator.py (lines ~445-478)
+  2. backend/main.py (added startup/shutdown handlers)
+
+KEY COMPONENTS:
+
+  1. ExecutionQueue
+     - Queue: missions waiting for execution
+     - Prevents duplicates while queued
+     - Global singleton: execution_queue
+
+  2. MissionExecutor
+     - Process: dequeue → execute_goal() → write results
+     - Async: non-blocking, runs in background
+     - Global singleton: executor
+
+  3. Integration Points:
+     - Orchestrator: enqueues after mission proposal
+     - Main: starts/stops executor on app lifecycle
+     - Whiteboard: reads existing JSONL (no changes)
+
+DEPLOYMENT:
+
+  No configuration needed. System works out of the box:
+  - Executor starts automatically on app startup
+  - Executor stops gracefully on app shutdown
+  - Missions processed in FIFO order
+  - Results written to missions.jsonl
+  - Whiteboard automatically shows updates
+
+LOGGING:
+
+  [EXECUTOR] Queued mission: <mission_id>
+  [EXECUTOR] Starting execution of mission <mission_id>
+  [EXECUTOR] Mission <mission_id> completed
+  [EXECUTOR] Wrote mission update: <mission_id> → <status>
+
+TESTING:
+
+  python -c "
+  from backend.execution import execution_queue, executor
+  print(f'Queue size: {execution_queue.size()}')
+  print(f'Executor running: {executor.running}')
+  "
+
+CONSTRAINTS MET:
+
+  ✓ No new intelligence (uses existing execute_goal)
+  ✓ No reasoning changes (passes through untouched)
+  ✓ No schema redesigns (uses existing records)
+  ✓ No deleted endpoints (all still work)
+  ✓ Minimal async (one task for executor loop)
+  ✓ No other system changes (isolation principle)
+
+BEHAVIOR:
+
+  Before: /chat/integrated → executes inline → blocks → returns result
+  After:  /chat/integrated → queues mission → returns immediately → executes async
+
+  User Experience:
+  - Chat responds instantly
+  - Mission starts processing
+  - Whiteboard shows progress
+  - User can continue chatting
+  - Results appear in whiteboard when complete
+
+"""

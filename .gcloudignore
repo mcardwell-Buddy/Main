@@ -1,0 +1,47 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.egg-info
+.pytest_cache
+.coverage
+htmlcov
+venv/
+.venv/
+env/
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.local
+
+# Data and logs
+data/
+logs/
+*.log
+
+# Firebase
+firebase.json
+.firebase/
+.firebaserc
+
+# Testing
+.pytest_cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/

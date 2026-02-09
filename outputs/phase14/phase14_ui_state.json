@@ -1,0 +1,163 @@
+{
+  "generated_at": "2026-02-05T22:36:21.731954",
+  "phase": 14,
+  "execution_mode": "planning_and_simulation",
+  "wave_stats": [
+    {
+      "wave": 1,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.06255000000000001,
+      "projected_next_wave_confidence": 0.9686999999999999
+    },
+    {
+      "wave": 2,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.06255000000000001,
+      "projected_next_wave_confidence": 0.9686999999999999
+    },
+    {
+      "wave": 3,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.06255000000000001,
+      "projected_next_wave_confidence": 0.9686999999999999
+    }
+  ],
+  "planning_summary": {
+    "total_waves": 3,
+    "total_planned_tasks": 12,
+    "waves": [
+      {
+        "wave": 1,
+        "planned_tasks": 4,
+        "deferred_tasks": 0,
+        "estimated_success_rate": 0.948375,
+        "estimated_avg_confidence": 0.883
+      },
+      {
+        "wave": 2,
+        "planned_tasks": 4,
+        "deferred_tasks": 0,
+        "estimated_success_rate": 0.948375,
+        "estimated_avg_confidence": 0.883
+      },
+      {
+        "wave": 3,
+        "planned_tasks": 4,
+        "deferred_tasks": 0,
+        "estimated_success_rate": 0.948375,
+        "estimated_avg_confidence": 0.883
+      }
+    ]
+  },
+  "meta_learning": {
+    "insights": [
+      {
+        "insight_type": "success_pattern",
+        "description": "LOW risk tasks show 100.0% success rate",
+        "confidence": 0.95,
+        "supporting_evidence": [
+          "4/4 tasks completed"
+        ],
+        "recommendation": "Prioritize low risk tasks in future waves",
+        "frequency": 4,
+        "affected_tasks": [
+          "explore_wave1_a",
+          "explore_wave2_a",
+          "explore_wave3_a",
+          "explore_wave4_a"
+        ]
+      },
+      {
+        "insight_type": "success_pattern",
+        "description": "MEDIUM risk tasks show 100.0% success rate",
+        "confidence": 0.95,
+        "supporting_evidence": [
+          "4/4 tasks completed"
+        ],
+        "recommendation": "Prioritize medium risk tasks in future waves",
+        "frequency": 4,
+        "affected_tasks": [
+          "explore_wave1_b",
+          "explore_wave2_b",
+          "explore_wave3_b",
+          "explore_wave4_b"
+        ]
+      },
+      {
+        "insight_type": "success_pattern",
+        "description": "Most common strategic decision: pattern_boost (8 instances)",
+        "confidence": 0.8,
+        "supporting_evidence": [
+          "Frequency: 8/8"
+        ],
+        "recommendation": "Leverage pattern_boost strategy in Phase 14 planning",
+        "frequency": 8,
+        "affected_tasks": []
+      }
+    ],
+    "heuristics": [
+      {
+        "heuristic_id": "h_low_risk_priority",
+        "category": "task_sequencing",
+        "rule": "Prioritize LOW risk tasks as foundation for wave",
+        "applicability": "universal",
+        "confidence": 0.95,
+        "supporting_evidence": 4,
+        "recommended_weight": 1.5
+      },
+      {
+        "heuristic_id": "h_high_confidence_selection",
+        "category": "risk_assessment",
+        "rule": "Prioritize tasks with confidence >= 0.75",
+        "applicability": "universal",
+        "confidence": 0.95,
+        "supporting_evidence": 4,
+        "recommended_weight": 1.4
+      }
+    ],
+    "patterns": {
+      "LOW_success_rate": 1.0,
+      "LOW_avg_confidence": 0.75,
+      "LOW_count": 4,
+      "MEDIUM_success_rate": 1.0,
+      "MEDIUM_avg_confidence": 0.7300000000000001,
+      "MEDIUM_count": 4,
+      "decision_type_distribution": {
+        "pattern_boost": 8
+      }
+    },
+    "policy_recommendations": [],
+    "metrics": {
+      "total_insights": 3,
+      "total_heuristics": 2,
+      "total_recommendations": 0
+    }
+  },
+  "policy": {
+    "high_risk_threshold": 0.8,
+    "retry_multiplier": 1.0,
+    "priority_bias": 1.5
+  },
+  "execution_summary": {
+    "total_waves": 3,
+    "total_planned_tasks": 12,
+    "total_simulated_outcomes": 12,
+    "avg_planned_confidence": 0.8829999999999999,
+    "overall_success_rate": 1.0
+  }
+}

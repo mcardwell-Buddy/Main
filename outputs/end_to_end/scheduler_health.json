@@ -1,0 +1,50 @@
+{
+  "wave1": {
+    "total_tasks": 25,
+    "total_executed": 25,
+    "total_succeeded": 25,
+    "total_failed": 0,
+    "total_deferred": 0,
+    "success_rate": 1.0,
+    "active_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 25,
+    "failed_tasks": 0
+  },
+  "wave2": {
+    "total_tasks": 26,
+    "total_executed": 26,
+    "total_succeeded": 26,
+    "total_failed": 0,
+    "total_deferred": 0,
+    "success_rate": 1.0,
+    "active_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 26,
+    "failed_tasks": 0
+  },
+  "wave3": {
+    "total_tasks": 15,
+    "total_executed": 15,
+    "total_succeeded": 15,
+    "total_failed": 0,
+    "total_deferred": 0,
+    "success_rate": 1.0,
+    "active_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 15,
+    "failed_tasks": 0
+  },
+  "wave4": {
+    "total_tasks": 5,
+    "total_executed": 7,
+    "total_succeeded": 4,
+    "total_failed": 3,
+    "total_deferred": 0,
+    "success_rate": 0.5714285714285714,
+    "active_tasks": 0,
+    "pending_tasks": 0,
+    "completed_tasks": 4,
+    "failed_tasks": 1
+  }
+}

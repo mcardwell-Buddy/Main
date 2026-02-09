@@ -1,0 +1,716 @@
+{
+  "test_run": {
+    "timestamp": "2026-02-05T12:30:05.231561",
+    "total_tests": 30,
+    "total_failures": 2,
+    "performance_alerts": 0,
+    "edge_case_coverage": 133.33333333333331
+  },
+  "summary": {
+    "success_rate": 93.33333333333333,
+    "avg_execution_time_ms": 0.11675357818603516,
+    "max_execution_time_ms": 1.5041828155517578
+  },
+  "results": [
+    {
+      "scenario_id": "L1-1",
+      "timestamp": "2026-02-05T12:30:05.210425",
+      "success": true,
+      "confidence": 0.7525277762691238,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_min": true,
+        "pre_validation": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 1,
+        "scenario_type": "basic_high_confidence",
+        "adversarial": false,
+        "edge_case": false,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L1-2",
+      "timestamp": "2026-02-05T12:30:05.210425",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "execution_path": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 1,
+        "scenario_type": "basic_low_confidence",
+        "adversarial": false,
+        "edge_case": false,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L2-3",
+      "timestamp": "2026-02-05T12:30:05.210425",
+      "success": false,
+      "confidence": 0.5297720346945101,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "clarification",
+      "execution_time_ms": 1.5041828155517578,
+      "expected_outcomes_met": {
+        "confidence_min": false,
+        "confidence_max": true,
+        "execution_path": false
+      },
+      "failures": [
+        "Expected outcomes not met: ['confidence_min', 'execution_path']"
+      ],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 2,
+        "scenario_type": "boundary_exactly_0.85",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L2-4",
+      "timestamp": "2026-02-05T12:30:05.211929",
+      "success": true,
+      "confidence": 0.658421511511492,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_min": true,
+        "confidence_max": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 2,
+        "scenario_type": "boundary_exactly_0.55",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L3-5",
+      "timestamp": "2026-02-05T12:30:05.213382",
+      "success": true,
+      "confidence": 0.5823528590759992,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.9987354278564453,
+      "expected_outcomes_met": {
+        "pre_validation": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 3,
+        "scenario_type": "tool_almost_exists",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L3-6",
+      "timestamp": "2026-02-05T12:30:05.214381",
+      "success": true,
+      "confidence": 0.5596161403113513,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "pre_validation": true,
+        "confidence_min": true,
+        "confidence_max": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 3,
+        "scenario_type": "contradiction_subtle",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L4-7",
+      "timestamp": "2026-02-05T12:30:05.215383",
+      "success": false,
+      "confidence": 0.5073547454318649,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_min": false,
+        "confidence_max": true,
+        "execution_path": false,
+        "tools_count_min": true
+      },
+      "failures": [
+        "Expected outcomes not met: ['confidence_min', 'execution_path']"
+      ],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 4,
+        "scenario_type": "multi_tool_high_complexity",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L4-8",
+      "timestamp": "2026-02-05T12:30:05.215383",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "execution_path": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 4,
+        "scenario_type": "context_missing_but_inferable",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L5-9",
+      "timestamp": "2026-02-05T12:30:05.217810",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "pre_validation": true,
+        "execution_path": true,
+        "confidence_max": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 5,
+        "scenario_type": "adversarial_sql_injection",
+        "adversarial": true,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L5-10",
+      "timestamp": "2026-02-05T12:30:05.217810",
+      "success": true,
+      "confidence": 0.6088498225778702,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "pre_validation": true,
+        "confidence_max": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 5,
+        "scenario_type": "adversarial_very_long_goal",
+        "adversarial": true,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L6-11",
+      "timestamp": "2026-02-05T12:30:05.218810",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "pre_validation": true,
+        "execution_path": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 6,
+        "scenario_type": "unicode_emojis",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L6-12",
+      "timestamp": "2026-02-05T12:30:05.218810",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "pre_validation": true,
+        "execution_path": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 6,
+        "scenario_type": "unicode_rtl",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L7-13",
+      "timestamp": "2026-02-05T12:30:05.219809",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "pre_validation": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 7,
+        "scenario_type": "high_understanding_no_tools",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L7-14",
+      "timestamp": "2026-02-05T12:30:05.219809",
+      "success": true,
+      "confidence": 0.4327555643971399,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "confidence_max": true,
+        "execution_path": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 7,
+        "scenario_type": "low_understanding_all_tools",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L8-15",
+      "timestamp": "2026-02-05T12:30:05.220808",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "response_valid": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 8,
+        "scenario_type": "chaos_random",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L8-16",
+      "timestamp": "2026-02-05T12:30:05.220808",
+      "success": true,
+      "confidence": 0.45432083020383984,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "response_valid": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 8,
+        "scenario_type": "chaos_random",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L8-17",
+      "timestamp": "2026-02-05T12:30:05.220808",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "response_valid": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 8,
+        "scenario_type": "chaos_random",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L8-18",
+      "timestamp": "2026-02-05T12:30:05.220808",
+      "success": true,
+      "confidence": 0.0,
+      "pre_validation_status": "pre_validation_failed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.9996891021728516,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "response_valid": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 8,
+        "scenario_type": "chaos_random",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 1
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.221808",
+      "success": true,
+      "confidence": 0.5729469369152764,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.221808",
+      "success": true,
+      "confidence": 0.6064413927245667,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.7176069344625265,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.6227034689732853,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.6363636911167997,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.6279612817614659,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.549068644857366,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "clarification",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.6051201469105489,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.6707638503596602,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L9-19",
+      "timestamp": "2026-02-05T12:30:05.222808",
+      "success": true,
+      "confidence": 0.625373488731105,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "execution_time_max_ms": true,
+        "no_crash": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 9,
+        "scenario_type": "stress_rapid_fire",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L10-29",
+      "timestamp": "2026-02-05T12:30:05.223809",
+      "success": true,
+      "confidence": 0.6620707378467878,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "handled_gracefully": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 10,
+        "scenario_type": "adversarial_null_bytes",
+        "adversarial": true,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L10-30",
+      "timestamp": "2026-02-05T12:30:05.223809",
+      "success": true,
+      "confidence": 0.6178982508655353,
+      "pre_validation_status": "pre_validation_passed",
+      "approval_path": "approved",
+      "execution_time_ms": 0.0,
+      "expected_outcomes_met": {
+        "no_crash": true,
+        "pre_validation": true,
+        "confidence_min": true
+      },
+      "failures": [],
+      "warnings": [],
+      "metrics": {
+        "difficulty_level": 10,
+        "scenario_type": "adversarial_extreme_nesting",
+        "adversarial": true,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    }
+  ],
+  "failures": [
+    {
+      "scenario_id": "L2-3",
+      "failures": [
+        "Expected outcomes not met: ['confidence_min', 'execution_path']"
+      ],
+      "metrics": {
+        "difficulty_level": 2,
+        "scenario_type": "boundary_exactly_0.85",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    },
+    {
+      "scenario_id": "L4-7",
+      "failures": [
+        "Expected outcomes not met: ['confidence_min', 'execution_path']"
+      ],
+      "metrics": {
+        "difficulty_level": 4,
+        "scenario_type": "multi_tool_high_complexity",
+        "adversarial": false,
+        "edge_case": true,
+        "pre_validation_failures": 0
+      }
+    }
+  ],
+  "performance_alerts": []
+}

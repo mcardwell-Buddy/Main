@@ -1,0 +1,362 @@
+"""
+CHAT SESSION HANDLER - QUICK REFERENCE
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+FILES CREATED THIS SESSION
+
+1. backend/chat_session_handler.py (400+ lines)
+   └─ Main implementation: ChatMessage, ChatResponse, ChatSessionHandler, ChatSessionManager
+
+2. test_chat_session_handler.py (445 lines)
+   └─ 15 unit tests across 6 test classes, covering 5 integration scenarios
+
+3. demo_chat_session_handler.py (200+ lines)
+   └─ 5 demonstration scenarios showing real-world usage
+
+4. CHAT_SESSION_HANDLER_DELIVERY.txt (this directory)
+   └─ Full delivery manifest and documentation
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+QUICK START
+
+Single Message Flow:
+───────────────────
+
+from backend.chat_session_handler import ChatSessionHandler
+
+handler = ChatSessionHandler("sess_id", "user_id")
+response = handler.handle_message("Get data from site.com")
+print(response.to_json())
+
+
+Multiple Sessions:
+──────────────────
+
+from backend.chat_session_handler import ChatSessionManager
+
+manager = ChatSessionManager()
+response = manager.handle_message("sess_id", "Get data...", "user_id")
+stats = manager.get_all_stats()
+
+
+Convenience Functions:
+──────────────────────
+
+from backend.chat_session_handler import handle_chat_message, get_session_stats
+
+response = handle_chat_message("sess_id", "Get data...", "user_id")
+stats = get_session_stats("sess_id")
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+MESSAGE FLOW (9 STEPS)
+
+1. Message arrives at ChatSessionHandler.handle_message()
+2. Generate unique message_id (UUID4)
+3. Create ChatMessage dataclass
+4. Log: [CHAT_RECEIVED] message details
+5. Call orchestrate_message() from InteractionOrchestrator
+6. Get ResponseEnvelope back
+7. Log: [RESPONSE_GENERATED] response details
+8. Log: [MISSION_SPAWNED] for each mission (if any)
+9. Log: [SIGNALS_EMITTED] signal batch
+10. Return ChatResponse with ResponseEnvelope
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+RESPONSE TYPES (from ResponseEnvelope)
+
+ResponseType.TEXT
+  ├─ Use: Questions, help requests, acknowledgments
+  ├─ Missions: None
+  └─ Example: "How do I scrape?" → explanatory text
+
+ResponseType.MISSION_PROPOSAL
+  ├─ Use: Execution requests
+  ├─ Missions: Yes (status='proposed')
+  └─ Example: "Get data from site.com" → mission with status=proposed
+
+ResponseType.STATUS_REPORT
+  ├─ Use: Status check requests
+  ├─ Missions: None
+  └─ Example: "What's the status?" → current mission status
+
+ResponseType.FORECAST
+  ├─ Use: Prediction/forecast requests
+  ├─ Missions: None
+  └─ Example: "Predict X" → forecast data
+
+ResponseType.CLARIFICATION_REQUEST
+  ├─ Use: Ambiguous or unclear messages
+  ├─ Missions: None
+  └─ Example: "xyz abc" → clarifying questions
+
+ResponseType.ERROR
+  ├─ Use: Errors during processing
+  ├─ Missions: None
+  └─ Example: System failure → error message
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+KEY METHODS
+
+ChatSessionHandler
+├─ __init__(session_id, user_id)
+├─ handle_message(text, context=None, message_id=None) → ChatResponse
+└─ get_session_stats() → Dict
+
+ChatSessionManager
+├─ get_or_create_session(session_id, user_id) → ChatSessionHandler
+├─ handle_message(session_id, text, user_id, context=None, message_id=None) → ChatResponse
+├─ get_session_stats(session_id) → Optional[Dict]
+└─ get_all_stats() → Dict
+
+Module-Level Functions
+├─ handle_chat_message(session_id, text, user_id, context=None, message_id=None) → ChatResponse
+├─ get_session_stats(session_id) → Optional[Dict]
+└─ get_all_stats() → Dict
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+TESTING
+
+Run Tests:
+──────────
+python -m pytest test_chat_session_handler.py -v
+
+Run Demo:
+─────────
+python demo_chat_session_handler.py
+
+Test Coverage:
+──────────────
+• ChatMessage (2 tests)
+• ChatResponse (2 tests)
+• ChatSessionHandler (8 tests including 5 scenarios)
+• ChatSessionManager (3 tests)
+• Convenience functions (2 tests)
+• Hard constraints (3 tests)
+• Total: 15 test methods
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+HARD CONSTRAINTS ENFORCED
+
+✓ NO AUTONOMY
+  └─ All missions status='proposed', awaiting_approval=True
+
+✓ NO UI CODE
+  └─ Pure schema (no render/display/to_html methods)
+
+✓ NO LOGIC CHANGES
+  └─ ChatSessionHandler only coordinates, doesn't modify agents
+
+✓ SIGNAL-BASED WHITEBOARD
+  └─ Missions updated via signals only (no direct API calls)
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+LOGGING OUTPUT
+
+Example Log Sequence:
+─────────────────────
+
+[CHAT_RECEIVED] msg_001 (user_123) 'Get product names from amazon.com'
+[ORCHESTRATE] REQUEST_EXECUTION (confidence: 0.95)
+[RESPONSE_GENERATED] resp_001 ← msg_001 (MISSION_PROPOSAL)
+[MISSION_SPAWNED] mission_789 status=proposed (WEB_NAVIGATION)
+[SIGNALS_EMITTED] 1 signal
+[SIGNAL] MISSION_LIFECYCLE (WHITEBOARD) from orchestrator
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+INTEGRATION WITH BACKEND (NEXT STEP)
+
+Add to backend/main.py:
+────────────────────────
+
+from backend.chat_session_handler import handle_chat_message
+
+@app.post("/chat")
+async def chat(
+    session_id: str,
+    text: str,
+    user_id: str = "default",
+    context: dict = None
+):
+    response = handle_chat_message(session_id, text, user_id, context)
+    return response.to_dict()
+
+
+Test Endpoint:
+───────────────
+
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "session_id": "user_123_session",
+    "text": "Get product data from amazon.com",
+    "user_id": "alice"
+  }'
+
+
+Response:
+──────────
+
+{
+  "response_id": "resp_789",
+  "message_id": "msg_456",
+  "session_id": "user_123_session",
+  "envelope": {
+    "response_type": "MISSION_PROPOSAL",
+    "summary": "I'll start a web navigation mission to get product data.",
+    "missions_spawned": [
+      {
+        "mission_id": "mission_001",
+        "status": "proposed",
+        "awaiting_approval": true,
+        "objective_type": "WEB_NAVIGATION",
+        "target_url": "https://amazon.com",
+        ...
+      }
+    ],
+    "signals_emitted": [...],
+    "timestamp": "2026-02-07T10:15:30Z"
+  },
+  "timestamp": "2026-02-07T10:15:30Z"
+}
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+SESSION STATISTICS
+
+Example Session Stats:
+──────────────────────
+
+{
+  "session_id": "user_123_session",
+  "user_id": "alice",
+  "created_at": "2026-02-07T10:00:00Z",
+  "message_count": 3,
+  "mission_count": 1,
+  "uptime_seconds": 900
+}
+
+
+Example Global Stats:
+──────────────────────
+
+{
+  "total_sessions": 5,
+  "total_messages": 23,
+  "total_missions": 8,
+  "sessions": {
+    "sess_001": {"message_count": 3, "mission_count": 1, ...},
+    "sess_002": {"message_count": 5, "mission_count": 2, ...},
+    ...
+  }
+}
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+INTEGRATION SCENARIOS (5 COVERED)
+
+Scenario 1: Execution Request
+──────────────────────────────
+User: "Get product names from amazon.com"
+Intent: REQUEST_EXECUTION
+Response: MISSION_PROPOSAL
+Outcome: ✓ Mission created (status=proposed)
+Test: test_scenario_1_execution_request
+
+
+Scenario 2: Question
+────────────────────
+User: "How do I scrape a dynamic website?"
+Intent: QUESTION
+Response: TEXT
+Outcome: ✓ No mission created
+Test: test_scenario_2_question
+
+
+Scenario 3: Ambiguous Request
+──────────────────────────────
+User: "xyz abc qwerty"
+Intent: CLARIFICATION_NEEDED
+Response: CLARIFICATION_REQUEST
+Outcome: ✓ No mission created
+Test: test_scenario_3_ambiguous
+
+
+Scenario 4: Acknowledgment
+──────────────────────────
+User: "Thanks!"
+Intent: ACKNOWLEDGMENT
+Response: TEXT
+Outcome: ✓ No side effects
+Test: test_scenario_4_acknowledgment
+
+
+Scenario 5: Multi-Session Tracking
+───────────────────────────────────
+Alice: 3 messages, 1 mission
+Bob: 2 messages, 1 mission
+Test: test_scenario_5_multiple_messages
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+IMPORTANT NOTES
+
+Data Flow:
+- Message comes in → ChatSessionHandler
+- ChatSessionHandler calls InteractionOrchestrator
+- Orchestrator returns ResponseEnvelope
+- ChatSessionHandler wraps it in ChatResponse
+- Logging at each step (8 points)
+
+Mission Lifecycle:
+- Created with status='proposed'
+- Awaiting user approval (awaiting_approval=True)
+- No automatic execution
+- Updates via signal emissions
+
+Session Tracking:
+- Each user gets a unique session_id
+- Messages tracked per session
+- Missions tracked per session
+- Stats available at any time
+
+Constraints:
+- NO autonomy (all proposed)
+- NO UI rendering (pure schema)
+- NO logic changes (delegation only)
+- Signal-based whiteboard (async coordination)
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+DEPENDENCY GRAPH
+
+backend/chat_session_handler.py
+├─ Imports from:
+│  ├─ backend.interaction_orchestrator (orchestrate_message)
+│  ├─ backend.response_envelope (ResponseEnvelope, Mission, ResponseType)
+│  └─ Python stdlib: logging, json, dataclasses, uuid, datetime, typing
+│
+├─ Used by:
+│  ├─ backend/main.py (will create /chat endpoint)
+│  ├─ test_chat_session_handler.py
+│  └─ demo_chat_session_handler.py
+│
+└─ Produces:
+   ├─ ChatMessage (dataclass)
+   ├─ ChatResponse (dataclass)
+   ├─ ChatSessionHandler (class)
+   ├─ ChatSessionManager (class)
+   └─ 3 convenience functions
+
+═══════════════════════════════════════════════════════════════════════════════════════════════════════
+
+END OF QUICK REFERENCE
+"""

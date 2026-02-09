@@ -1,0 +1,4 @@
+{"task_id": "seed_a", "wave": 5, "previous_confidence": 0.85, "updated_confidence": 0.8600000000000001, "delta": 0.01000000000000012, "reason": "success", "timestamp": "2026-02-05T21:51:35.777396"}
+{"task_id": "seed_b", "wave": 5, "previous_confidence": 0.7, "updated_confidence": 0.8600000000000001, "delta": 0.16000000000000014, "reason": "success", "timestamp": "2026-02-05T21:51:35.777396"}
+{"task_id": "wave5_fill", "wave": 5, "previous_confidence": 0.65, "updated_confidence": 0.8600000000000001, "delta": 0.21000000000000008, "reason": "success", "timestamp": "2026-02-05T21:51:35.828596"}
+{"task_id": "wave5_click", "wave": 5, "previous_confidence": 0.68, "updated_confidence": 0.8600000000000001, "delta": 0.18000000000000005, "reason": "success", "timestamp": "2026-02-05T21:51:35.829608"}

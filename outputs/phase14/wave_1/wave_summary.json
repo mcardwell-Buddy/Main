@@ -1,0 +1,11 @@
+{
+  "wave": 1,
+  "total_tasks": 4,
+  "completed": 4,
+  "failed": 0,
+  "deferred": 0,
+  "rolled_back": 0,
+  "success_rate": 1.0,
+  "avg_confidence_delta": 0.06255000000000001,
+  "projected_next_wave_confidence": 0.9686999999999999
+}

@@ -1,0 +1,38 @@
+{
+  "tag": "Synthetic Observation",
+  "total_runs": 500,
+  "success_runs": 500,
+  "success_rate": 1.0,
+  "avg_latency_ms": 16.19911159959156,
+  "avg_confidence_delta": 0.6971999999999936,
+  "by_category": {
+    "failure-injected": {
+      "count": 139,
+      "success": 139,
+      "avg_latency_ms": 16.6421776990031,
+      "avg_conf_delta": 0.6949640287769802,
+      "success_rate": 1.0
+    },
+    "ambiguous": {
+      "count": 115,
+      "success": 115,
+      "avg_latency_ms": 15.671935649943011,
+      "avg_conf_delta": 0.6939130434782623,
+      "success_rate": 1.0
+    },
+    "cross-domain": {
+      "count": 119,
+      "success": 119,
+      "avg_latency_ms": 17.160671428061175,
+      "avg_conf_delta": 0.7000000000000015,
+      "success_rate": 1.0
+    },
+    "atomic": {
+      "count": 127,
+      "success": 127,
+      "avg_latency_ms": 15.29055590513089,
+      "avg_conf_delta": 0.7000000000000016,
+      "success_rate": 1.0
+    }
+  }
+}

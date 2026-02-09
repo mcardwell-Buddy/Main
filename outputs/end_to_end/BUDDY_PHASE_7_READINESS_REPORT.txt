@@ -1,0 +1,28 @@
+BUDDY PHASE 7 READINESS REPORT
+===============================
+Generated: 2026-02-05T20:37:19.699178
+
+What worked well:
+- Priority scheduling and dependency resolution were stable.
+- Conditional branching produced additional tasks reliably.
+- Approval gating and mock Soul validation generated consistent routing.
+
+Pain points in defining workflows:
+- Expressing ambiguous goals required manual confidence tuning.
+- Conditional branches required explicit templates and dependencies.
+- Recovery required manual reconstruction of pending tasks.
+
+Where visualization would help:
+- Visual dependency graphs for workflows.
+- Real-time queue depth and task state transitions.
+- Confidence + approval overlays per step.
+
+Scheduler features to expose visually:
+- Priority ordering and dependency satisfaction.
+- Conditional branching paths and triggered outcomes.
+- Retry counts and failure reasons.
+
+Concepts users may struggle to express without a UI:
+- Multi-branch conditional logic.
+- Recovery expectations and manual checkpointing.
+- Risk and approval boundaries for mixed-risk workflows.

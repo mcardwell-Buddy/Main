@@ -1,0 +1,346 @@
+BUDDY MULTI-STEP TESTING - QUICK START GUIDE
+==============================================
+
+5-MINUTE SETUP
+==============
+
+This guide gets you running multi-step tests in 5 minutes.
+
+WHAT IS MULTI-STEP TESTING?
+===========================
+
+Multi-step testing simulates sequences of related requests to Buddy.
+
+Example Sequence:
+  1. "Click the login button"          ← Step 1
+  2. "Enter username 'john'"           ← Step 2 (context: previous success)
+  3. "Enter password"                  ← Step 3 (context: username entered)
+  4. "Click submit"                    ← Step 4 (context: both fields filled)
+  5. "Verify logged in"                ← Step 5 (context: submit clicked)
+
+Each step automatically receives context from previous steps.
+
+
+PREREQUISITES
+=============
+
+✅ Python 3.11+ installed
+✅ Virtual environment activated: .venv/Scripts/Activate.ps1
+✅ Phase 2 systems in place (locked, read-only)
+✅ buddy_context_manager.py created
+✅ buddy_multi_step_test_harness.py created
+✅ buddy_multi_step_main.py created
+
+
+QUICK START (3 STEPS)
+====================
+
+Step 1: Activate Environment
+─────────────────────────────
+PowerShell:
+  .venv/Scripts/Activate.ps1
+
+Bash:
+  source .venv/bin/activate
+
+
+Step 2: Run Default Campaign
+───────────────────────────
+python buddy_multi_step_main.py
+
+Output:
+  ✅ Runs 12 sequences total (3 of each difficulty)
+  ✅ Each sequence has 5 steps
+  ✅ Results saved to: buddy_multi_step_metrics.json
+  ✅ Campaign takes ~2-5 minutes
+
+
+Step 3: Review Results
+─────────────────────
+View output file:
+  type buddy_multi_step_metrics.json
+
+Results include:
+  • Per-step metrics (confidence, execution time, approval path)
+  • Sequence-level aggregates (success rate, total time)
+  • Session context (prior goal, prior clarifications)
+  • Campaign summary (by difficulty, total statistics)
+
+
+EXAMPLE COMMANDS
+================
+
+Run Default Campaign (12 sequences, 3 each difficulty):
+  python buddy_multi_step_main.py
+
+Run More Adversarial Tests (20 adversarial sequences):
+  python buddy_multi_step_main.py --adversarial 20
+
+Run Equal Mix (10 of each difficulty = 40 total):
+  python buddy_multi_step_main.py --all 10
+
+Run Specific Mix:
+  python buddy_multi_step_main.py --basic 5 --intermediate 5 --edge 10 --adversarial 15
+
+Change Output File:
+  python buddy_multi_step_main.py --output my_results.json
+
+Export Sessions to Directory:
+  python buddy_multi_step_main.py --export-sessions ./session_exports
+
+
+TEST DIFFICULTY LEVELS
+======================
+
+BASIC
+─────
+• Simple, related requests
+• Example: Login workflow
+• Confidence: High (0.6-0.8)
+• Approval Rate: ~85% approved
+
+INTERMEDIATE
+────────────
+• Mixed simple and moderate complexity
+• Ambiguity: low-to-medium
+• Confidence: Medium (0.3-0.7)
+• Approval Rate: ~40-50% approved
+
+EDGE CASES
+──────────
+• Conflicting signals
+• Missing context
+• Extreme nesting
+• Ultra-vague goals
+• Contradictions
+• Confidence: Low (0.0-0.5)
+• Approval Rate: ~30-40% approved
+
+ADVERSARIAL
+───────────
+• SQL injection attempts
+• Jailbreak attempts
+• Buffer overflows
+• Null byte injection
+• Command injection
+• Confidence: Always 0.0 (all blocked)
+• Approval Rate: 0% approved (100% clarification)
+
+
+UNDERSTANDING THE OUTPUT
+========================
+
+JSON Structure:
+  {
+    "campaign_started": "2026-02-05T13:00:00",
+    "campaign_completed": "2026-02-05T13:05:00",
+    "session_id": "session_abc12345",
+    "total_sequences": 12,
+    "sequences": [
+      {
+        "sequence_id": "seq_...",
+        "session_id": "session_...",
+        "difficulty": "BASIC",
+        "total_steps": 5,
+        "successful_steps": 5,
+        "success_rate": 1.0,
+        "avg_confidence": 0.65,
+        "total_clarifications": 1,
+        "step_details": [
+          {
+            "step_number": 1,
+            "success": true,
+            "confidence": 0.72,
+            "approval_path": "approved",
+            "clarification_triggered": false,
+            "execution_time_ms": 0.10
+          },
+          ...
+        ]
+      },
+      ...
+    ],
+    "session_metrics": {
+      "total_requests": 60,
+      "successful_requests": 60,
+      "success_rate": 1.0,
+      "avg_execution_time_ms": 0.05,
+      "confidence_mean": 0.30
+    }
+  }
+
+Key Fields Explained:
+  sequence_id          - Unique ID for this sequence
+  difficulty           - BASIC, INTERMEDIATE, EDGE_CASES, or ADVERSARIAL
+  total_steps          - Number of requests in sequence
+  successful_steps     - How many succeeded
+  success_rate         - successful_steps / total_steps
+  avg_confidence       - Average confidence across sequence
+  approval_path        - "approved", "clarification", or "error"
+  clarification_triggered - Whether human input needed
+  execution_time_ms    - Time to process this step
+
+
+CONTEXT PROPAGATION
+===================
+
+Each step automatically receives context from previous steps:
+
+Step 1 Request:
+  {
+    "goal": "Click login button"
+  }
+
+Step 2 Request (with prior context):
+  {
+    "goal": "Enter username",
+    "prior_context": {
+      "prior_requests_in_session": 1,
+      "last_goal": "Click login button",
+      "last_confidence": 0.72,
+      "last_approval_path": "approved",
+      "cumulative_clarifications": 0,
+      "session_success_rate": 1.0,
+      "average_confidence_so_far": 0.72
+    }
+  }
+
+Step 3 Request (with updated prior context):
+  {
+    "goal": "Enter password",
+    "prior_context": {
+      "prior_requests_in_session": 2,
+      "last_goal": "Enter username",
+      "last_confidence": 0.68,
+      "last_approval_path": "approved",
+      "cumulative_clarifications": 0,
+      "session_success_rate": 1.0,
+      "average_confidence_so_far": 0.70
+    }
+  }
+
+
+MONITORING
+==========
+
+While Campaign Runs:
+  Watch terminal output for:
+    ✅ Progress per sequence
+    ✅ Success rates by difficulty
+    ✅ Step counts and timings
+    ✅ Clarification rates
+
+After Campaign:
+  1. Check JSON output for detailed metrics
+  2. Compare difficulty levels
+  3. Verify context propagation
+  4. Identify patterns in approval routing
+
+
+SAFETY FEATURES
+===============
+
+✅ Read-Only Access
+   • Zero modifications to Phase 1/2 code
+   • Uses existing test infrastructure
+   • Safe to run alongside production
+
+✅ Error Isolation
+   • Individual step failures don't crash sequence
+   • Sequence failures don't crash campaign
+   • All errors logged for analysis
+
+✅ Feature Flags
+   • Can disable multi-step testing without affecting Phase 1/2
+   • Controlled via buddy_context_manager.py
+   • Safe for production environments
+
+✅ Session Management
+   • Thread-safe context tracking
+   • Automatic cleanup
+   • Export sessions for audit trail
+
+
+TROUBLESHOOTING
+===============
+
+Campaign Hangs:
+  • Press Ctrl+C to interrupt
+  • Results saved so far will be in output file
+  • Session can be recovered from JSON
+
+Python Import Error:
+  • Ensure .venv is activated
+  • Check all files are in same directory
+  • Verify phase2_adaptive_tests.py exists
+
+Low Success Rates:
+  • May be expected for EDGE_CASES and ADVERSARIAL
+  • Check error details in JSON output
+  • Review Phase 2 logs for details
+
+No Output File:
+  • Check --output parameter
+  • Verify write permissions in directory
+  • Try absolute path: --output C:\path\to\file.json
+
+
+NEXT STEPS
+==========
+
+After First Run:
+  1. Review JSON results
+  2. Check context propagation in step_details
+  3. Verify success rates match expectations
+  4. Run again with different parameters
+
+Advanced Analysis:
+  1. Load JSON into Python/pandas for analysis
+  2. Compare difficulty levels statistically
+  3. Track confidence distribution trends
+  4. Monitor approval routing patterns
+
+Production Deployment:
+  1. Run extended campaigns (100+ sequences)
+  2. Monitor long-term metrics
+  3. Establish baselines for each difficulty
+  4. Set up automated monitoring
+
+
+FILES CREATED
+=============
+
+Core Components:
+  • buddy_context_manager.py      - Session state management
+  • buddy_multi_step_test_harness.py - Test orchestration
+  • buddy_multi_step_main.py       - Execution script
+
+Documentation:
+  • BUDDY_MULTI_STEP_QUICK_START.txt (this file)
+  • BUDDY_MULTI_STEP_TESTING_SETUP.txt
+  • BUDDY_MULTI_STEP_METRICS_REFERENCE.txt
+
+Output:
+  • buddy_multi_step_metrics.json - Campaign results
+
+
+SUPPORT
+=======
+
+For questions about:
+  Metrics             → See BUDDY_MULTI_STEP_METRICS_REFERENCE.txt
+  Setup              → See BUDDY_MULTI_STEP_TESTING_SETUP.txt
+  Advanced usage     → See buddy_multi_step_test_harness.py comments
+  Architecture       → See buddy_context_manager.py docstrings
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+Ready? Start with:
+  python buddy_multi_step_main.py
+
+Questions? See detailed guides:
+  BUDDY_MULTI_STEP_TESTING_SETUP.txt
+  BUDDY_MULTI_STEP_METRICS_REFERENCE.txt
+
+═══════════════════════════════════════════════════════════════════════════════

@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-02-05T22:20:12.610157",
+  "wave_stats": [
+    {
+      "wave": 1,
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0,
+      "strategic_goals": 1,
+      "strategic_decisions": 2,
+      "confidence_boost_avg": 0.050000000000000044
+    },
+    {
+      "wave": 2,
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0,
+      "strategic_goals": 1,
+      "strategic_decisions": 2,
+      "confidence_boost_avg": 0.050000000000000044
+    },
+    {
+      "wave": 3,
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0,
+      "strategic_goals": 1,
+      "strategic_decisions": 2,
+      "confidence_boost_avg": 0.050000000000000044
+    },
+    {
+      "wave": 4,
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0,
+      "strategic_goals": 1,
+      "strategic_decisions": 2,
+      "confidence_boost_avg": 0.050000000000000044
+    }
+  ],
+  "policy": {
+    "high_risk_threshold": 0.8,
+    "retry_multiplier": 1.0,
+    "priority_bias": 1.5
+  },
+  "learning_insights": [
+    {
+      "insight_type": "deferred_high_risk",
+      "description": "2 high-risk tasks deferred (avg conf: 0.62)",
+      "confidence": 0.95,
+      "supporting_evidence": [
+        "Task wave4_high deferred at confidence 0.62",
+        "Task wave5_high deferred at confidence 0.62"
+      ],
+      "recommendation": "Implement confidence-boosting strategies via low-risk precursor tasks"
+    },
+    {
+      "insight_type": "high_success_risk_level",
+      "description": "LOW risk tasks show 100% success rate",
+      "confidence": 0.85,
+      "supporting_evidence": [
+        "10 LOW tasks completed"
+      ],
+      "recommendation": "Consider increasing complexity for LOW risk workflows"
+    },
+    {
+      "insight_type": "high_success_risk_level",
+      "description": "MEDIUM risk tasks show 100% success rate",
+      "confidence": 0.85,
+      "supporting_evidence": [
+        "7 MEDIUM tasks completed"
+      ],
+      "recommendation": "Consider increasing complexity for MEDIUM risk workflows"
+    }
+  ],
+  "strategic_summary": {
+    "total_decisions": 8,
+    "by_type": {
+      "pattern_boost": 8
+    },
+    "avg_confidence_boost": 0.050000000000000044
+  }
+}

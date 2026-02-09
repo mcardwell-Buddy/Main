@@ -1,0 +1,12 @@
+[
+  {
+    "wave": 2,
+    "health_score": 96.35483870967744,
+    "health_status": "EXCELLENT",
+    "success_rate": 1.0,
+    "availability": 1.0,
+    "accuracy": 0.85,
+    "load_balance": 0.967741935483871,
+    "timestamp": "2026-02-06T00:41:22.821310+00:00"
+  }
+]

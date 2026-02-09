@@ -1,0 +1,4 @@
+{"policy": {"high_risk_threshold": 0.8, "retry_multiplier": 1.0, "priority_bias": 1.4000000000000004}, "changes": ["increase_priority_bias"], "reason": "adaptive_update", "metrics": {"success_rate": 1.0, "deferred_rate": 0.0, "failed_rate": 0.0}}
+{"policy": {"high_risk_threshold": 0.8, "retry_multiplier": 1.0, "priority_bias": 1.4500000000000004}, "changes": ["increase_priority_bias"], "reason": "adaptive_update", "metrics": {"success_rate": 1.0, "deferred_rate": 0.0, "failed_rate": 0.0}}
+{"policy": {"high_risk_threshold": 0.8, "retry_multiplier": 1.0, "priority_bias": 1.5}, "changes": ["increase_priority_bias"], "reason": "adaptive_update", "metrics": {"success_rate": 1.0, "deferred_rate": 0.0, "failed_rate": 0.0}}
+{"policy": {"high_risk_threshold": 0.8, "retry_multiplier": 1.0, "priority_bias": 1.5}, "changes": ["increase_priority_bias"], "reason": "adaptive_update", "metrics": {"success_rate": 1.0, "deferred_rate": 0.0, "failed_rate": 0.0}}

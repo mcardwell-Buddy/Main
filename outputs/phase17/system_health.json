@@ -1,0 +1,19 @@
+{
+  "overall_health_score": 88.26287684747943,
+  "health_status": "EXCELLENT",
+  "component_scores": {
+    "success_rate": 92.3076923076923,
+    "execution_time": 91.74435395460863,
+    "confidence_delta": 72.64695335971157,
+    "retry_rate": 84.61538461538461,
+    "anomaly_severity": 100.0
+  },
+  "weights": {
+    "success_rate": 0.4,
+    "execution_time": 0.2,
+    "confidence_delta": 0.2,
+    "retry_rate": 0.1,
+    "anomaly_severity": 0.1
+  },
+  "timestamp": "2026-02-05T23:10:44.005310Z"
+}

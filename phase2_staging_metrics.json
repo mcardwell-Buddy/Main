@@ -1,0 +1,101 @@
+{
+  "deployment_timestamp": "2026-02-05T11:59:01.632166",
+  "feature_flags": {
+    "PHASE2_ENABLED": "true",
+    "PHASE2_PRE_VALIDATION_ENABLED": "true",
+    "PHASE2_APPROVAL_GATES_ENABLED": "true",
+    "PHASE2_CLARIFICATION_ENABLED": "true",
+    "PHASE2_GRADED_CONFIDENCE_ENABLED": "true",
+    "HIGH_CONFIDENCE_THRESHOLD": "0.85",
+    "MEDIUM_CONFIDENCE_THRESHOLD": "0.55"
+  },
+  "unit_tests": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "pass_rate": 0,
+    "timestamp": "2026-02-05T11:59:02.130047"
+  },
+  "synthetic_tests": {
+    "total_goals": 500,
+    "elapsed_time_seconds": 0.19919133186340332,
+    "confidence": {
+      "mean": 0.15,
+      "std_dev": 0.314,
+      "min": 0.0,
+      "max": 0.929
+    },
+    "execution_paths": {
+      "high_confidence": 47,
+      "approved": 40,
+      "clarification": 10,
+      "rejected": 403
+    },
+    "pre_validation": {
+      "passed": 97,
+      "failed": 403,
+      "catch_rate": 100.0
+    },
+    "approval_requests": {
+      "count": 40,
+      "rate": 8.0
+    },
+    "clarification_requests": {
+      "count": 10,
+      "rate": 2.0
+    },
+    "latency_per_goal_ms": 0.39838266372680664,
+    "timestamp": "2026-02-05T11:59:02.355833"
+  },
+  "sanity_checks": {
+    "confidence_continuous": {
+      "passed": true,
+      "value": 0.314,
+      "threshold": 0.2,
+      "message": "Confidence std dev 0.314 > 0.2"
+    },
+    "approval_rate_healthy": {
+      "passed": false,
+      "value": 8.0,
+      "threshold": "10.0-30.0",
+      "message": "Approval rate 8.0% outside 10.0-30.0% range"
+    },
+    "pre_validation_effective": {
+      "passed": true,
+      "value": 100.0,
+      "threshold": 80.0,
+      "message": "Pre-validation catch rate 100.0% >= 80.0%"
+    },
+    "unit_tests_passing": {
+      "passed": false,
+      "value": 0,
+      "threshold": 80.0,
+      "message": "Unit test pass rate 0.0% < 80.0%"
+    },
+    "latency_acceptable": {
+      "passed": true,
+      "value": 0.39838266372680664,
+      "threshold": 50.0,
+      "message": "Latency 0.40ms <= 50.0ms"
+    }
+  },
+  "recommendations": [
+    "Fix failing unit tests (pass rate: 0.0%, target: \u226580%)",
+    "Fix failing sanity checks before production rollout",
+    "Fix failing unit tests before deployment"
+  ],
+  "status": "NEEDS_FIXES",
+  "integration": {
+    "phase2_confidence.py": true,
+    "phase2_prevalidation.py": true,
+    "phase2_approval_gates.py": true,
+    "phase2_clarification.py": true,
+    "phase2_soul_integration.py": true,
+    "phase2_response_schema.py": true,
+    "test_phase2_all.py": true,
+    "backend_imports": true,
+    "backend_init": true,
+    "backend_endpoints": true
+  },
+  "all_sanity_checks_passed": false
+}

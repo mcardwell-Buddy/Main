@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-02-05T22:48:35.107856",
+  "phase": 15,
+  "execution_mode": "autonomous_real_time",
+  "dry_run": true,
+  "wave_stats": [
+    {
+      "wave": 1,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.06572834619494207
+    },
+    {
+      "wave": 2,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.07113466014860456
+    },
+    {
+      "wave": 3,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "rolled_back": 0,
+      "success_rate": 1.0,
+      "avg_confidence_delta": 0.06633824906637623
+    }
+  ],
+  "policy_summary": {
+    "initial_policy": {
+      "high_risk_threshold": 0.8,
+      "retry_multiplier": 1.0,
+      "priority_bias": 1.5
+    },
+    "current_policy": {
+      "high_risk_threshold": 0.8,
+      "retry_multiplier": 1.0,
+      "priority_bias": 1.6500000000000001
+    },
+    "updates_count": 3,
+    "policy_changes": {
+      "high_risk_threshold": 0.0,
+      "retry_multiplier": 0.0,
+      "priority_bias": 0.15000000000000013
+    }
+  },
+  "execution_summary": {
+    "total_waves": 3,
+    "total_tasks": 12,
+    "completed": 12,
+    "failed": 0,
+    "deferred": 0,
+    "rolled_back": 0,
+    "overall_success_rate": 1.0
+  }
+}

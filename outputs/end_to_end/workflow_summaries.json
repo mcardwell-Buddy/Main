@@ -1,0 +1,106 @@
+[
+  {
+    "wave": "wave1",
+    "workflow_id": "wave1_single_step",
+    "session_id": "session_cf6333a7",
+    "total_tasks": 25,
+    "completed": 25,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave2",
+    "workflow_id": "wave2_workflow_1",
+    "session_id": "session_9d673492",
+    "total_tasks": 5,
+    "completed": 5,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave2",
+    "workflow_id": "wave2_workflow_2",
+    "session_id": "session_9d673492",
+    "total_tasks": 5,
+    "completed": 5,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave2",
+    "workflow_id": "wave2_workflow_3",
+    "session_id": "session_9d673492",
+    "total_tasks": 5,
+    "completed": 5,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave2",
+    "workflow_id": "wave2_workflow_4",
+    "session_id": "session_9d673492",
+    "total_tasks": 5,
+    "completed": 5,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave2",
+    "workflow_id": "wave2_workflow_5",
+    "session_id": "session_9d673492",
+    "total_tasks": 5,
+    "completed": 5,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave3",
+    "workflow_id": "wave3_workflow_1",
+    "session_id": "session_5c507c0a",
+    "total_tasks": 4,
+    "completed": 4,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave3",
+    "workflow_id": "wave3_workflow_2",
+    "session_id": "session_5c507c0a",
+    "total_tasks": 4,
+    "completed": 4,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave3",
+    "workflow_id": "wave3_workflow_3",
+    "session_id": "session_5c507c0a",
+    "total_tasks": 4,
+    "completed": 4,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave3",
+    "workflow_id": "wave3_workflow_4",
+    "session_id": "session_5c507c0a",
+    "total_tasks": 4,
+    "completed": 3,
+    "success_rate": 0.75
+  },
+  {
+    "wave": "wave4",
+    "workflow_id": "wave4_failures",
+    "session_id": "session_6fd0425c",
+    "total_tasks": 1,
+    "completed": 0,
+    "success_rate": 0.0
+  },
+  {
+    "wave": "wave4",
+    "workflow_id": "wave4_high_risk",
+    "session_id": "session_6fd0425c",
+    "total_tasks": 1,
+    "completed": 1,
+    "success_rate": 1.0
+  },
+  {
+    "wave": "wave4",
+    "workflow_id": "wave4_recovery",
+    "session_id": "session_6fd0425c",
+    "total_tasks": 3,
+    "completed": 3,
+    "success_rate": 1.0
+  }
+]

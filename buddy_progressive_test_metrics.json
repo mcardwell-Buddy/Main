@@ -1,0 +1,308 @@
+{
+  "start_time": "2026-02-05T12:59:40.536044",
+  "waves": [
+    {
+      "wave_number": 1,
+      "wave_name": "Baseline Stability",
+      "description": "Mostly atomic and clear goals, low ambiguity",
+      "start_time": "2026-02-05T12:59:40.554215",
+      "end_time": "2026-02-05T12:59:40.588135",
+      "config": {
+        "name": "Baseline Stability",
+        "requests": 1000,
+        "description": "Mostly atomic and clear goals, low ambiguity",
+        "distribution": {
+          "simple": 60,
+          "multi_step": 5,
+          "low_confidence": 5,
+          "high_confidence": 20,
+          "conflicting_gates": 0,
+          "clarification": 5,
+          "edge_cases": 3,
+          "adversarial": 2
+        },
+        "thresholds": {
+          "max_latency_ms": 50,
+          "min_success_rate": 0.95,
+          "max_error_rate": 0.05
+        }
+      },
+      "aggregated_metrics": {
+        "total_requests": 1000,
+        "successful_requests": 1000,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "confidence": {
+          "mean": 0.6041437048040683,
+          "min": 0.4702207215336519,
+          "max": 0.7267299123439881,
+          "std_dev": 0.05022957068997823
+        },
+        "confidence_buckets": {
+          "low": 141,
+          "medium": 859,
+          "high": 0,
+          "error": 0
+        },
+        "approval_paths": {
+          "approved": 859,
+          "clarification": 141
+        },
+        "pre_validation": {
+          "passed": 0,
+          "failed": 0,
+          "pass_rate": 0.0
+        },
+        "clarifications": {
+          "triggered": 141,
+          "rate": 0.141
+        },
+        "execution_time": {
+          "avg": 0.020854949951171875,
+          "min": 0.0,
+          "max": 1.6016960144042969,
+          "p95": 0.0
+        },
+        "errors": {
+          "count": 0,
+          "rate": 0.0,
+          "details": []
+        },
+        "duration_seconds": 0.033032894134521484,
+        "requests_per_second": 30272.85456513894
+      },
+      "safety_violations": [],
+      "threshold_violations": [],
+      "status": "PASSED"
+    },
+    {
+      "wave_number": 2,
+      "wave_name": "Mixed Realism",
+      "description": "Natural distribution with mild ambiguity",
+      "start_time": "2026-02-05T12:59:45.653375",
+      "end_time": "2026-02-05T12:59:45.797066",
+      "config": {
+        "name": "Mixed Realism",
+        "requests": 2500,
+        "description": "Natural distribution with mild ambiguity",
+        "distribution": {
+          "simple": 30,
+          "multi_step": 15,
+          "low_confidence": 15,
+          "high_confidence": 20,
+          "conflicting_gates": 5,
+          "clarification": 10,
+          "edge_cases": 3,
+          "adversarial": 2
+        },
+        "thresholds": {
+          "max_latency_ms": 50,
+          "min_success_rate": 0.9,
+          "max_error_rate": 0.1
+        }
+      },
+      "aggregated_metrics": {
+        "total_requests": 2500,
+        "successful_requests": 2500,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "confidence": {
+          "mean": 0.2921242540877872,
+          "min": 0.0,
+          "max": 0.7484378366540718,
+          "std_dev": 0.30442893083676825
+        },
+        "confidence_buckets": {
+          "low": 1474,
+          "medium": 1026,
+          "high": 0,
+          "error": 0
+        },
+        "approval_paths": {
+          "clarification": 1474,
+          "approved": 1026
+        },
+        "pre_validation": {
+          "passed": 0,
+          "failed": 0,
+          "pass_rate": 0.0
+        },
+        "clarifications": {
+          "triggered": 1474,
+          "rate": 0.5896
+        },
+        "execution_time": {
+          "avg": 0.028614330291748046,
+          "min": 0.0,
+          "max": 1.5079975128173828,
+          "p95": 0.0
+        },
+        "errors": {
+          "count": 0,
+          "rate": 0.0,
+          "details": []
+        },
+        "duration_seconds": 0.14175105094909668,
+        "requests_per_second": 17636.553544126873
+      },
+      "safety_violations": [],
+      "threshold_violations": [],
+      "status": "PASSED"
+    },
+    {
+      "wave_number": 3,
+      "wave_name": "Hard Edge Cases",
+      "description": "Heavy pre-validation, clarification, conflicting signals",
+      "start_time": "2026-02-05T12:59:51.000185",
+      "end_time": "2026-02-05T12:59:51.795932",
+      "config": {
+        "name": "Hard Edge Cases",
+        "requests": 5000,
+        "description": "Heavy pre-validation, clarification, conflicting signals",
+        "distribution": {
+          "simple": 15,
+          "multi_step": 15,
+          "low_confidence": 15,
+          "high_confidence": 10,
+          "conflicting_gates": 15,
+          "clarification": 15,
+          "edge_cases": 10,
+          "adversarial": 5
+        },
+        "thresholds": {
+          "max_latency_ms": 50,
+          "min_success_rate": 0.85,
+          "max_error_rate": 0.15
+        }
+      },
+      "aggregated_metrics": {
+        "total_requests": 5000,
+        "successful_requests": 5000,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "confidence": {
+          "mean": 0.30654566351334356,
+          "min": 0.0,
+          "max": 0.7536789993828981,
+          "std_dev": 0.30461642673720907
+        },
+        "confidence_buckets": {
+          "low": 2837,
+          "medium": 2163,
+          "high": 0,
+          "error": 0
+        },
+        "approval_paths": {
+          "clarification": 2837,
+          "approved": 2163
+        },
+        "pre_validation": {
+          "passed": 0,
+          "failed": 0,
+          "pass_rate": 0.0
+        },
+        "clarifications": {
+          "triggered": 2837,
+          "rate": 0.5674
+        },
+        "execution_time": {
+          "avg": 0.11951045989990235,
+          "min": 0.0,
+          "max": 6.885528564453125,
+          "p95": 1.0046958923339844
+        },
+        "errors": {
+          "count": 0,
+          "rate": 0.0,
+          "details": []
+        },
+        "duration_seconds": 0.7888567447662354,
+        "requests_per_second": 6338.286429282755
+      },
+      "safety_violations": [],
+      "threshold_violations": [],
+      "status": "PASSED"
+    },
+    {
+      "wave_number": 4,
+      "wave_name": "Adversarial & Stress",
+      "description": "Adversarial inputs, extreme nesting, long context",
+      "start_time": "2026-02-05T12:59:57.702812",
+      "end_time": "2026-02-05T12:59:57.952978",
+      "config": {
+        "name": "Adversarial & Stress",
+        "requests": 5000,
+        "description": "Adversarial inputs, extreme nesting, long context",
+        "distribution": {
+          "simple": 10,
+          "multi_step": 10,
+          "low_confidence": 10,
+          "high_confidence": 10,
+          "conflicting_gates": 15,
+          "clarification": 10,
+          "edge_cases": 20,
+          "adversarial": 15
+        },
+        "thresholds": {
+          "max_latency_ms": 50,
+          "min_success_rate": 0.8,
+          "max_error_rate": 0.2
+        }
+      },
+      "aggregated_metrics": {
+        "total_requests": 5000,
+        "successful_requests": 5000,
+        "failed_requests": 0,
+        "success_rate": 1.0,
+        "confidence": {
+          "mean": 0.0,
+          "min": 0.0,
+          "max": 0.0,
+          "std_dev": 0.0
+        },
+        "confidence_buckets": {
+          "low": 5000,
+          "medium": 0,
+          "high": 0,
+          "error": 0
+        },
+        "approval_paths": {
+          "clarification": 5000
+        },
+        "pre_validation": {
+          "passed": 0,
+          "failed": 0,
+          "pass_rate": 0.0
+        },
+        "clarifications": {
+          "triggered": 5000,
+          "rate": 1.0
+        },
+        "execution_time": {
+          "avg": 0.024988365173339844,
+          "min": 0.0,
+          "max": 2.275705337524414,
+          "p95": 0.0
+        },
+        "errors": {
+          "count": 0,
+          "rate": 0.0,
+          "details": []
+        },
+        "duration_seconds": 0.24689531326293945,
+        "requests_per_second": 20251.498231864298
+      },
+      "safety_violations": [],
+      "threshold_violations": [],
+      "status": "PASSED"
+    }
+  ],
+  "total_requests": 13500,
+  "total_errors": 0,
+  "overall_success_rate": 1.0,
+  "end_time": "2026-02-05T12:59:59.165538",
+  "overall_confidence": {
+    "mean": 0.21238390056220557,
+    "std_dev": 0.18037796701105338
+  }
+}

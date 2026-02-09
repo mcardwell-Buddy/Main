@@ -1,0 +1,9 @@
+{
+  "tag": "Synthetic Observation",
+  "heatmap": {
+    "failure-injected": {},
+    "ambiguous": {},
+    "cross-domain": {},
+    "atomic": {}
+  }
+}

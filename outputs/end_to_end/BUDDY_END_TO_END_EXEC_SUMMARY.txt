@@ -1,0 +1,15 @@
+BUDDY END-TO-END EXECUTIVE SUMMARY
+=================================
+Generated: 2026-02-05T20:37:19.698178
+
+WAVE1: 25/25 completed (100.0%)
+WAVE2: 25/25 completed (100.0%)
+WAVE3: 15/16 completed (93.8%)
+WAVE4: 4/5 completed (80.0%)
+  Recovery tasks restored: 5
+
+Scheduler Health:
+  wave1: success_rate=1.00, failed=0, deferred=0
+  wave2: success_rate=1.00, failed=0, deferred=0
+  wave3: success_rate=1.00, failed=0, deferred=0
+  wave4: success_rate=0.57, failed=3, deferred=0

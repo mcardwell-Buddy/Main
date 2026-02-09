@@ -1,0 +1,5 @@
+{"metric_name": "Success Rate", "value": 0.9230769230769231, "unit": "ratio", "threshold_min": 0.75, "threshold_max": null, "status": "normal", "timestamp": "2026-02-05T23:10:44.002802Z"}
+{"metric_name": "Average Execution Time", "value": 28.255646045391376, "unit": "ms", "threshold_min": null, "threshold_max": 30.0, "status": "normal", "timestamp": "2026-02-05T23:10:44.002802Z"}
+{"metric_name": "Average Confidence Delta", "value": 0.045293906719423155, "unit": "ratio", "threshold_min": 0.02, "threshold_max": null, "status": "normal", "timestamp": "2026-02-05T23:10:44.002802Z"}
+{"metric_name": "Retry Rate", "value": 0.07692307692307693, "unit": "ratio", "threshold_min": null, "threshold_max": 0.2, "status": "normal", "timestamp": "2026-02-05T23:10:44.002802Z"}
+{"metric_name": "Task Throughput", "value": 35.39115681140494, "unit": "tasks/sec", "threshold_min": 30.0, "threshold_max": null, "status": "normal", "timestamp": "2026-02-05T23:10:44.002802Z"}

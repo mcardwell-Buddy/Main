@@ -1,0 +1,110 @@
+.mission-timeline {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 16px;
+}
+
+.mission-timeline.empty {
+  opacity: 0.7;
+}
+
+.mission-title {
+  font-weight: 600;
+  color: #111827;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mission-status {
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.status-connected {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-connecting {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.status-error {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.mission-id {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.mission-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+}
+
+.progress-label {
+  font-size: 12px;
+  color: #1f2937;
+}
+
+.mission-current {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.mission-log {
+  margin-top: 12px;
+}
+
+.mission-log-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  max-height: 220px;
+  overflow: auto;
+}
+
+.mission-log-item {
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: 80px 140px 1fr;
+  gap: 8px;
+  color: #374151;
+}
+
+.mission-log-time {
+  color: #6b7280;
+}
+
+.mission-log-type {
+  font-weight: 600;
+}

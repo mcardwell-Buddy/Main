@@ -1,0 +1,8 @@
+{"task_id": "seed_a", "wave": 1, "question": "Did the task complete successfully?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.351819"}
+{"task_id": "seed_a", "wave": 1, "question": "Were dependencies satisfied before execution?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.351819"}
+{"task_id": "seed_a", "wave": 1, "question": "Was the risk level respected?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.351819"}
+{"task_id": "seed_a", "wave": 1, "question": "Is confidence aligned with outcome?", "answer": "aligned", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.351819"}
+{"task_id": "seed_b", "wave": 1, "question": "Did the task complete successfully?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.360941"}
+{"task_id": "seed_b", "wave": 1, "question": "Were dependencies satisfied before execution?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.360941"}
+{"task_id": "seed_b", "wave": 1, "question": "Was the risk level respected?", "answer": "yes", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.360941"}
+{"task_id": "seed_b", "wave": 1, "question": "Is confidence aligned with outcome?", "answer": "aligned", "confidence": 0.9, "timestamp": "2026-02-05T21:36:12.360941"}

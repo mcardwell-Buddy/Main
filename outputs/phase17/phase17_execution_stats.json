@@ -1,0 +1,9 @@
+{
+  "tasks_executed": 13,
+  "tasks_succeeded": 12,
+  "tasks_failed": 1,
+  "total_retries": 1,
+  "avg_execution_time_ms": 28.255646045391376,
+  "avg_confidence_improvement": 0.045293906719423155,
+  "success_rate": 0.9230769230769231
+}

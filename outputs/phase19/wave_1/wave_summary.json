@@ -1,0 +1,13 @@
+{
+  "wave": 1,
+  "total_tasks": 4,
+  "agents": [
+    "agent_0",
+    "agent_1",
+    "agent_2",
+    "agent_3"
+  ],
+  "actual_success_rate": 1.0,
+  "actual_throughput": 131.14754098360658,
+  "schedule_adherence": 0.95
+}

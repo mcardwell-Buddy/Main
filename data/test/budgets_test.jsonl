@@ -1,0 +1,2 @@
+{"event_type": "serpapi_usage", "service": "serpapi", "searches_used": 50, "mission_id": "test", "timestamp": "2026-02-09T21:06:06.062933+00:00"}
+{"event_type": "openai_usage", "service": "openai", "cost_usd": 5.5, "tokens": {}, "mission_id": "test", "timestamp": "2026-02-09T21:06:06.063934+00:00"}

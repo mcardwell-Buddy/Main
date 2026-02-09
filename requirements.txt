@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+requests
+firebase-admin
+python-dotenv
+beautifulsoup4
+websockets
+
+# LLM Integration (optional - install what you need)
+openai>=1.0.0  # For OpenAI GPT models
+anthropic>=0.18.0  # For Claude models

@@ -1,0 +1,2532 @@
+{
+  "tag": "Synthetic Observation",
+  "overall": {
+    "mean": 0.6971999999999936,
+    "min": 0.0,
+    "max": 0.7
+  },
+  "by_category": {
+    "failure-injected": {
+      "mean": 0.6949640287769802,
+      "min": 0.0,
+      "max": 0.7
+    },
+    "ambiguous": {
+      "mean": 0.6939130434782623,
+      "min": 0.0,
+      "max": 0.7
+    },
+    "cross-domain": {
+      "mean": 0.7000000000000015,
+      "min": 0.7,
+      "max": 0.7
+    },
+    "atomic": {
+      "mean": 0.7000000000000016,
+      "min": 0.7,
+      "max": 0.7
+    }
+  },
+  "series": [
+    {
+      "run_index": 1,
+      "category": "failure-injected",
+      "confidence_delta": 0.0
+    },
+    {
+      "run_index": 2,
+      "category": "ambiguous",
+      "confidence_delta": 0.0
+    },
+    {
+      "run_index": 3,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 4,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 5,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 6,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 7,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 8,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 9,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 10,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 11,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 12,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 13,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 14,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 15,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 16,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 17,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 18,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 19,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 20,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 21,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 22,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 23,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 24,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 25,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 26,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 27,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 28,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 29,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 30,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 31,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 32,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 33,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 34,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 35,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 36,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 37,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 38,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 39,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 40,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 41,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 42,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 43,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 44,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 45,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 46,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 47,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 48,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 49,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 50,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 51,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 52,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 53,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 54,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 55,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 56,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 57,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 58,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 59,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 60,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 61,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 62,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 63,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 64,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 65,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 66,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 67,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 68,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 69,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 70,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 71,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 72,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 73,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 74,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 75,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 76,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 77,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 78,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 79,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 80,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 81,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 82,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 83,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 84,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 85,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 86,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 87,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 88,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 89,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 90,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 91,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 92,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 93,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 94,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 95,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 96,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 97,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 98,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 99,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 100,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 101,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 102,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 103,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 104,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 105,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 106,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 107,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 108,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 109,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 110,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 111,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 112,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 113,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 114,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 115,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 116,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 117,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 118,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 119,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 120,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 121,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 122,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 123,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 124,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 125,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 126,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 127,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 128,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 129,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 130,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 131,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 132,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 133,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 134,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 135,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 136,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 137,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 138,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 139,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 140,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 141,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 142,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 143,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 144,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 145,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 146,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 147,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 148,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 149,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 150,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 151,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 152,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 153,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 154,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 155,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 156,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 157,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 158,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 159,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 160,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 161,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 162,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 163,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 164,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 165,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 166,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 167,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 168,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 169,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 170,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 171,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 172,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 173,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 174,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 175,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 176,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 177,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 178,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 179,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 180,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 181,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 182,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 183,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 184,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 185,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 186,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 187,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 188,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 189,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 190,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 191,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 192,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 193,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 194,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 195,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 196,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 197,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 198,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 199,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 200,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 201,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 202,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 203,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 204,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 205,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 206,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 207,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 208,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 209,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 210,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 211,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 212,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 213,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 214,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 215,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 216,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 217,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 218,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 219,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 220,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 221,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 222,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 223,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 224,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 225,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 226,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 227,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 228,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 229,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 230,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 231,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 232,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 233,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 234,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 235,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 236,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 237,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 238,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 239,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 240,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 241,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 242,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 243,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 244,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 245,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 246,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 247,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 248,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 249,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 250,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 251,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 252,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 253,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 254,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 255,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 256,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 257,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 258,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 259,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 260,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 261,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 262,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 263,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 264,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 265,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 266,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 267,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 268,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 269,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 270,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 271,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 272,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 273,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 274,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 275,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 276,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 277,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 278,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 279,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 280,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 281,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 282,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 283,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 284,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 285,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 286,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 287,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 288,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 289,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 290,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 291,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 292,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 293,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 294,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 295,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 296,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 297,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 298,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 299,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 300,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 301,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 302,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 303,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 304,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 305,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 306,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 307,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 308,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 309,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 310,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 311,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 312,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 313,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 314,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 315,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 316,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 317,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 318,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 319,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 320,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 321,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 322,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 323,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 324,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 325,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 326,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 327,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 328,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 329,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 330,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 331,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 332,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 333,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 334,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 335,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 336,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 337,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 338,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 339,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 340,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 341,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 342,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 343,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 344,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 345,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 346,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 347,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 348,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 349,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 350,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 351,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 352,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 353,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 354,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 355,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 356,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 357,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 358,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 359,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 360,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 361,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 362,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 363,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 364,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 365,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 366,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 367,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 368,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 369,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 370,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 371,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 372,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 373,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 374,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 375,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 376,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 377,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 378,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 379,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 380,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 381,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 382,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 383,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 384,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 385,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 386,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 387,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 388,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 389,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 390,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 391,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 392,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 393,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 394,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 395,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 396,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 397,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 398,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 399,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 400,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 401,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 402,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 403,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 404,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 405,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 406,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 407,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 408,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 409,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 410,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 411,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 412,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 413,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 414,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 415,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 416,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 417,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 418,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 419,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 420,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 421,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 422,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 423,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 424,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 425,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 426,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 427,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 428,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 429,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 430,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 431,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 432,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 433,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 434,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 435,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 436,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 437,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 438,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 439,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 440,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 441,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 442,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 443,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 444,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 445,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 446,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 447,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 448,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 449,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 450,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 451,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 452,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 453,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 454,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 455,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 456,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 457,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 458,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 459,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 460,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 461,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 462,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 463,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 464,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 465,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 466,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 467,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 468,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 469,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 470,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 471,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 472,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 473,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 474,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 475,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 476,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 477,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 478,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 479,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 480,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 481,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 482,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 483,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 484,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 485,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 486,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 487,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 488,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 489,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 490,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 491,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 492,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 493,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 494,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 495,
+      "category": "atomic",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 496,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 497,
+      "category": "cross-domain",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 498,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 499,
+      "category": "ambiguous",
+      "confidence_delta": 0.7
+    },
+    {
+      "run_index": 500,
+      "category": "failure-injected",
+      "confidence_delta": 0.7
+    }
+  ]
+}

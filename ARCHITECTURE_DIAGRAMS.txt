@@ -1,0 +1,342 @@
+BUDDY ARCHITECTURE DIAGRAM & INTEGRATION FLOW
+==============================================
+
+1. SUBSYSTEM INTERACTION MODEL (Current)
+────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────────────────┐
+│                      USER & FEEDBACK                                │
+│                            ▲                                         │
+│                            │                                         │
+│                  ┌─────────┴────────────┐                           │
+│                  │                      │                           │
+│            ┌─────▼─────┐    ┌──────────▼───┐                      │
+│            │  Frontend  │    │   Response   │                      │
+│            │ (Chat UI)  │    │  Compilation │                      │
+│            └─────┬─────┘    └──────┬───────┘                       │
+│                  │                  │                              │
+│                  └──────────────────┘                              │
+│                         ▲                                           │
+│                         │                                           │
+│         ┌───────────────┼───────────────┐                         │
+│         │               │               │                         │
+│    ┌────▼────┐  ┌──────▼──────┐  ┌────▼─────┐                   │
+│    │ MEMORY  │  │   LLM       │  │ SOUL      │                   │
+│    │ MANAGER │  │  REASONING  │  │ (VALUES)  │                   │
+│    └────┬────┘  └──────┬──────┘  └────┬─────┘                   │
+│         │               │               │                         │
+│         └───────┬───────┴───────────────┘                         │
+│                 │                                                  │
+│                 ▼                                                  │
+│         ┌───────────────────────────────────────────┐            │
+│         │  AGENT REASONING (6-Stage Pipeline)      │            │
+│         │  - Understand                             │            │
+│         │  - Plan                                   │            │
+│         │  - Execute Loop:                          │            │
+│         │    ├─ _decide_next_action()               │            │
+│         │    ├─ _simulate_tool_execution()          │            │
+│         │    ├─ Reflect                             │            │
+│         │    └─ Decide (loop back?)                 │            │
+│         │  - Respond                                │            │
+│         └───────┬───────────────────────────────────┘            │
+│                 │                                                  │
+│         ┌───────┴──────────────────────────────────┐             │
+│         │                                          │              │
+│    ┌────▼──────────┐    ┌──────────┬──────────┐   │             │
+│    │  TOOL SELECTOR│    │ TOOL REGISTRY        │   │             │
+│    │ (Which tool?) │───▶│ (Execute tool)       │   │             │
+│    └───────────────┘    └──────────┬──────────┘   │             │
+│                                   │               │              │
+│                ┌──────────────────┼──────────────┐              │
+│                │                  │              │              │
+│         ┌──────▼────────┐  ┌──────▼────┐  ┌────▼──────┐        │
+│         │ MPLOYER TOOLS │  │ GOHIGHLEVEL│  │ADDITIONAL │        │
+│         │ (Selenium)    │  │  TOOLS     │  │  TOOLS    │        │
+│         └──────┬────────┘  └───────────┘  └───────────┘        │
+│                │                                                 │
+│    ┌───────────┼──────────────────────────┐                    │
+│    │           │                          │                    │
+│    ▼           ▼                          ▼                    │
+│ ┌──────────────────────┐  ┌───────────────────────────┐       │
+│ │  BUDDYS_VISION_CORE  │  │    BUDDYS_ARMS (Selenium)│       │
+│ │  (Website Inspection)│  │    (Click, Fill, etc)     │       │
+│ │                      │  │                           │       │
+│ │ - DOM analysis       │  │ - Navigate               │       │
+│ │ - Element finding    │  │ - Click by selector      │       │
+│ │ - Accessibility      │  │ - Fill form fields       │       │
+│ │                      │  │ - Submit forms           │       │
+│ │ Returns: Elements,   │  │ - Retry logic (3x)       │       │
+│ │          Selectors   │  │ - Frame context mgr      │       │
+│ └──────────────────────┘  └───────────────────────────┘       │
+│         ▲                           ▲                           │
+│         │                           │                           │
+│         └─────────┬──────────────────┘                         │
+│                   │                                             │
+│           🔴 PROBLEM: VISION                                   │
+│           calls Arms.click() directly                          │
+│           (should only return suggestions)                     │
+│                   │                                             │
+│                   ▼                                             │
+│         ┌──────────────────────┐                              │
+│         │  BROWSER (Selenium)  │                              │
+│         │  & Website State     │                              │
+│         └──────────────────────┘                              │
+│                   ▲                                             │
+│                   │                                             │
+│              Captured as:                                      │
+│              - Screenshots                                     │
+│              - Page state                                      │
+│              - Clickables                                      │
+│                   │                                             │
+│         ┌─────────┴──────────────┐                           │
+│         │                        │                           │
+│  ┌──────▼────────┐    ┌─────────▼──────┐                    │
+│  │ BROWSER VIEW  │    │ LIVE BROWSER    │                   │
+│  │ (Screenshot)  │    │ (WebSocket)     │                   │
+│  │ Static image  │    │ Streaming frames│                   │
+│  └───────────────┘    └─────────────────┘                   │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+
+
+2. CURRENT COMMUNICATION PATHS
+──────────────────────────────
+
+✓ GOOD PATHS:
+  - User → Frontend → Agent Reasoning (REST call)
+  - Agent → Tool Registry → Tool execution
+  - Tool → Arms → Browser
+  - Frontend ← Agent Response (REST response)
+  - Frontend ← WebSocket stream (live view)
+
+❌ PROBLEM PATHS:
+  1. Agent calls Tool Registry directly
+     Should: Agent asks Legs to execute
+     Impact: No retry/timeout wrapper
+  
+  2. Vision calls Arms directly
+     Should: Vision returns suggestions, Arms called by Legs only
+     Impact: Coupled, hard to test independently
+  
+  3. Body modifies files directly
+     Should: Body proposes, Mind approves, then modifies
+     Impact: Dangerous autonomous changes
+  
+  4. Soul not consulted anywhere
+     Should: All changes evaluated by Soul first
+     Impact: No value alignment enforcement
+  
+  5. Tool failure → web_search fallback (partially fixed)
+     Should: Domain-aware fallback or escalation
+     Impact: Wrong results for domain-specific goals
+
+
+3. MESSAGE FLOW FOR MPLOYER TASK
+────────────────────────────────
+
+User: "Login to Mployer and search for Maryland employers 10-500 employees"
+  │
+  ├─────────────────────────────────────────────────────────────►
+  │ (REST POST /reason)
+  │
+  ▼
+┌─────────────────────────────────────────────┐
+│ Agent Reasoning (6 stages)                  │
+├─────────────────────────────────────────────┤
+│ Stage 1: Understand                         │
+│ ├─ Extract goal: "Mployer login & search"  │
+│ ├─ Infer domain: "web automation"          │
+│ └─ Confidence: 0.8                         │
+│                                             │
+│ Stage 2: Plan                               │
+│ ├─ Step 1: Login                           │
+│ ├─ Step 2: Navigate to search              │
+│ └─ Step 3: Execute search                  │
+│                                             │
+│ Stage 3: Execute (Loop)                    │
+│ ├─ Iteration 1                             │
+│ │  ├─ Decision: "Run mployer_login"       │
+│ │  ├─ Tool call: tool_registry('mployer_login') ──┐
+│ │  │                                               │
+│ │  └─ Tool result: {success: T, screenshot...}    │
+│ │                                                  │
+│ │  ├─ Result check: success ✓                   │
+│ │  ├─ Add findings                             │
+│ │  └─ Loop iteration 1 complete                 │
+│ │                                                  │
+│ ├─ Iteration 2                                   │
+│ │  ├─ Decision: "Run mployer_search"            │
+│ │  └─ Tool result: {success: F, error: ".."}    │
+│ │     (returns failure!)                         │
+│ │                                                  │
+│ │  🔴 PROBLEM HERE:                            │
+│ │  Despite success: False, continues to Iteration 3
+│ │  (tool result detection may not be working)   │
+│ │                                                  │
+│ ├─ Iteration 3                                   │
+│ │  ├─ Decision: "Fallback to web_search?"      │
+│ │  └─ Confidence < 0.7? (if yes, calls web_search)
+│ │     BUT recent fix checks 'mployer' NOT in goal
+│ │                                                  │
+│ └─ Iteration 4+: Continue or stop?              │
+│                                                  │
+│ Stage 4: Reflect                               │
+│ ├─ Evaluate progress                            │
+│ └─ Update confidence                            │
+│                                                  │
+│ Stage 5: Decide                                 │
+│ ├─ Continue loop? (iterations used: 3/5)       │
+│ └─ Result confidence: 0.8                       │
+│                                                  │
+│ Stage 6: Respond                               │
+│ ├─ Compile findings                            │
+│ ├─ Extract tool results                        │
+│ ├─ Build response message                      │
+│ └─ Include reasoning steps                     │
+│                                             │
+└─────────────────────────────────────────────┘
+  │
+  ├──────────────────────────────────────────────►
+  │ (REST response + tools_used + screenshots)
+  │
+  ▼
+Frontend (UnifiedChat.js)
+├─ Display response message
+├─ Check: toolsUsed contains 'mployer_*'?
+├─ If yes: Create LiveBrowserView preview
+│  └─ streamUrl: /vision/stream
+│
+├─ Render message with browser view
+│  └─ LiveBrowserView opens WebSocket
+│     └─ WebSocket polls /vision/stream
+│        └─ Stream endpoint checks: Is Mployer scraper active?
+│           └─ If yes: Send frame every 0.5s
+│           └─ If no: No frames (tool already completed)
+│
+└─ Display findings to user
+
+🔴 KEY PROBLEM:
+Live view opens AFTER tool execution completes
+Stream never gets frames because next tool isn't running yet
+User expected to see LIVE clicking, but sees empty "Waiting..." view
+
+
+4. FAILURE RECOVERY PATHS (Current vs Proposed)
+───────────────────────────────────────────────
+
+VISION FAILURE (Element not found):
+  Current: Returns empty list
+           Mind: "Nothing found, maybe search?"
+           Result: Tries web_search (wrong!)
+  
+  Proposed: {success: False, error: "Element not found"}
+            Mind: "Vision failed, escalate"
+            Result: Ask user for clarification
+
+ARMS FAILURE (Click didn't work):
+  Current: Returns False
+           Mind: "Action failed, try another tool"
+           Result: web_search fallback
+  
+  Proposed: {success: False, reason: "Blocked by dialog"}
+            Mind: "Specific failure, suggest close dialog first"
+            Result: Retry with prerequisite action
+
+TOOL NOT FOUND:
+  Current: Exception caught, "Error: Tool X not found"
+           Mind: Tries anyway (infinite loop?)
+           Result: User sees repeated errors
+  
+  Proposed: Tool registry validation before calling
+            Mind: Knows available tools
+            Result: Graceful "Tool not available"
+
+TIMEOUT:
+  Current: No timeout (hangs indefinitely)
+           Mind: Still waiting
+           Result: Browser hangs, user has to reload
+  
+  Proposed: 30s timeout on tool execution
+            Mind: "Tool took too long"
+            Result: Escalate or retry with timeout flag
+
+
+5. STATE MANAGEMENT (Current Problems)
+──────────────────────────────────────
+
+Current: Implicit state via results list
+  agent_reasoning.results = [
+    {tool: 'mployer_login', success: T, screenshot: ...},
+    {tool: 'mployer_search', success: F, ...},
+    ...
+  ]
+  
+  To check "are we logged in?":
+    any(r['tool'] == 'mployer_login' and r['success'] for r in results)
+  
+  Problem: Fragile (depends on results list)
+           Circular (depends on tool name conventions)
+           Incomplete (doesn't track all state)
+
+Proposed: Explicit state dict
+  execution_state = {
+    'authenticated': False,
+    'current_url': 'https://mployer.com',
+    'page_loaded': True,
+    'form_filled': {'state': 'MD', 'employees': '10-500'},
+    'search_completed': False,
+    'results_available': 42,
+    'last_action': 'mployer_login',
+    'last_action_time': 1707158400,
+    'confidence': 0.8,
+    'iterations_used': 1,
+    'errors': []
+  }
+  
+  To check "are we logged in?":
+    execution_state['authenticated']
+  
+  Better: Explicit, easy to track, works across retries
+
+
+6. TOOL REGISTRY CONTRACTS (Missing)
+───────────────────────────────────
+
+Current: Tools return anything
+  mployer_login() → {success: T, screenshot: ..., ...}
+  gohighlevel_tools() → {status: 'ok', data: ...}
+  web_search() → {results: [...]}
+  
+  Problem: No schema, different fields, inconsistent
+           Tool consumer must handle all cases
+
+Proposed: All tools return this structure
+  {
+    "success": bool,
+    "tool_name": str,
+    "input": any,
+    "output": any,
+    "duration_ms": int,
+    "confidence": 0.0-1.0,  # How sure are we this worked?
+    "error": str | null,
+    "metadata": {
+      "screenshot": base64 | null,
+      "page_state": {...},
+      "retries": int,
+      "timestamp": int
+    }
+  }
+  
+  All tools wrapped by tool_registry.call():
+    1. Validate input (if schema defined)
+    2. Start timer
+    3. Call actual tool
+    4. Validate output (if schema defined)
+    5. Wrap result in standard format
+    6. Return wrapped result
+  
+  Mind receives consistent data
+  Easy to detect failures
+  Easy to set confidence thresholds
+
+================================================================================

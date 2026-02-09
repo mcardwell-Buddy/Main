@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-02-05T21:51:35.840064",
+  "wave_stats": [
+    {
+      "wave": 1,
+      "total_tasks": 2,
+      "completed": 2,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0
+    },
+    {
+      "wave": 2,
+      "total_tasks": 3,
+      "completed": 3,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0
+    },
+    {
+      "wave": 3,
+      "total_tasks": 4,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 0,
+      "success_rate": 1.0
+    },
+    {
+      "wave": 4,
+      "total_tasks": 5,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 1,
+      "success_rate": 0.8
+    },
+    {
+      "wave": 5,
+      "total_tasks": 5,
+      "completed": 4,
+      "failed": 0,
+      "deferred": 1,
+      "success_rate": 0.8
+    }
+  ],
+  "policy": {
+    "high_risk_threshold": 0.8,
+    "retry_multiplier": 1.0,
+    "priority_bias": 1.2000000000000002
+  }
+}

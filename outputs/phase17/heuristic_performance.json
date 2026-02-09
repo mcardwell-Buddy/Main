@@ -1,0 +1,18 @@
+{
+  "H16_001": {
+    "applications": 13,
+    "successes": 12,
+    "failures": 1,
+    "total_confidence_delta": 0.588820787352501,
+    "avg_confidence_delta": 0.045293906719423155,
+    "success_rate": 0.9230769230769231
+  },
+  "H16_002": {
+    "applications": 1,
+    "successes": 1,
+    "failures": 0,
+    "total_confidence_delta": 0.08824632838760627,
+    "avg_confidence_delta": 0.08824632838760627,
+    "success_rate": 1.0
+  }
+}

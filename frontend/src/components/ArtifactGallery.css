@@ -1,0 +1,95 @@
+.artifact-gallery {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  margin-bottom: 16px;
+}
+
+.artifact-gallery.empty {
+  opacity: 0.7;
+}
+
+.artifact-gallery-title {
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.artifact-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.artifact-gallery-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  background: #f9fafb;
+}
+
+.artifact-gallery-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.artifact-gallery-objective {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.artifact-gallery-status {
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.status-completed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-approved {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.artifact-gallery-previews {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.artifact-preview-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.artifact-preview-type {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.artifact-preview-summary {
+  font-size: 13px;
+  color: #1f2937;
+}
+
+.artifact-preview-items {
+  margin-top: 6px;
+  padding-left: 16px;
+  color: #4b5563;
+  font-size: 12px;
+}

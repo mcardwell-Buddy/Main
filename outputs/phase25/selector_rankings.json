@@ -1,0 +1,57 @@
+[
+  {
+    "selector": "a[rel='next']",
+    "selector_type": "css",
+    "attempts": 3,
+    "successes": 3,
+    "failures": 0,
+    "success_rate": 1.0,
+    "avg_duration_ms": 126.67,
+    "avg_retry_count": 0.0,
+    "rank": 1
+  },
+  {
+    "selector": "#pagination-next",
+    "selector_type": "css",
+    "attempts": 2,
+    "successes": 2,
+    "failures": 0,
+    "success_rate": 1.0,
+    "avg_duration_ms": 410.0,
+    "avg_retry_count": 0.0,
+    "rank": 2
+  },
+  {
+    "selector": ".next-button",
+    "selector_type": "css",
+    "attempts": 4,
+    "successes": 4,
+    "failures": 0,
+    "success_rate": 1.0,
+    "avg_duration_ms": 191.25,
+    "avg_retry_count": 0.5,
+    "rank": 3
+  },
+  {
+    "selector": "//a[contains(text(),'Next')]",
+    "selector_type": "xpath",
+    "attempts": 4,
+    "successes": 3,
+    "failures": 1,
+    "success_rate": 0.75,
+    "avg_duration_ms": 262.5,
+    "avg_retry_count": 0.75,
+    "rank": 4
+  },
+  {
+    "selector": ".page-next",
+    "selector_type": "css",
+    "attempts": 3,
+    "successes": 1,
+    "failures": 2,
+    "success_rate": 0.3333,
+    "avg_duration_ms": 476.67,
+    "avg_retry_count": 2.67,
+    "rank": 5
+  }
+]

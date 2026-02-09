@@ -1,0 +1,19 @@
+{
+  "total_conflicts": 0,
+  "by_type": {
+    "RESOURCE": 0,
+    "ORDERING": 0,
+    "RATE_LIMIT": 0,
+    "DUPLICATE_ACTION": 0,
+    "PERMISSION": 0,
+    "TIMEOUT": 0
+  },
+  "by_resolution_strategy": {
+    "DELAY": 0,
+    "REASSIGN": 0,
+    "DOWNGRADE": 0,
+    "ABORT": 0
+  },
+  "tool_dependencies_validated": true,
+  "rate_limits_enforced": true
+}

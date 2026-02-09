@@ -1,0 +1,2849 @@
+{
+  "test_run": {
+    "timestamp": "2026-02-05T11:59:02.305276",
+    "total_goals": 500,
+    "phase2_version": "1.0.0"
+  },
+  "metrics": {
+    "confidence": {
+      "mean": 0.15,
+      "std_dev": 0.314,
+      "min": 0.0,
+      "max": 0.929,
+      "distribution": [
+        0.0,
+        0.0,
+        0.0,
+        0.6780607045755943,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8512635975760731,
+        0.0,
+        0.7525513338991081,
+        0.8473463979600837,
+        0.0,
+        0.8768599481980306,
+        0.8340980985299427,
+        0.0,
+        0.0,
+        0.8597155044476498,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3090063090103793,
+        0.8542982658541538,
+        0.866999978148776,
+        0.0,
+        0.0,
+        0.0,
+        0.8496100357374647,
+        0.8246124987540331,
+        0.0,
+        0.0,
+        0.8783468716834555,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8159390532360492,
+        0.0,
+        0.8852666888354028,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.9054356173189294,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8790061393085626,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8758487604492979,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.844395504863888,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8178792492939033,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8471390187286792,
+        0.0,
+        0.0,
+        0.8608582681964498,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8608001699966019,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6876588114330856,
+        0.0,
+        0.0,
+        0.8501758411440512,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8601755039770067,
+        0.8843716755756439,
+        0.2778215531303114,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8815637197538692,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.927025734288845,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8759740362229194,
+        0.8574098256663938,
+        0.0,
+        0.8557231526760516,
+        0.0,
+        0.0,
+        0.0,
+        0.8913546057263007,
+        0.0,
+        0.6908659696534545,
+        0.7545887828956837,
+        0.8440336643614987,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8790252324252285,
+        0.0,
+        0.925007093798858,
+        0.0,
+        0.0,
+        0.8716333802261579,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8530811680909697,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8819686712143668,
+        0.0,
+        0.0,
+        0.9293601212850852,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.4364946318055521,
+        0.8332456883810728,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6497329847901085,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.898737684646097,
+        0.8207283229372716,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8822567656776956,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.27856221861802244,
+        0.0,
+        0.8336540306616032,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8837018536509788,
+        0.7142911858066594,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8550331170140298,
+        0.8291566613076379,
+        0.0,
+        0.8755206424588092,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8216852381641606,
+        0.8538654639946479,
+        0.0,
+        0.0,
+        0.8421445359259692,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6403392371629969,
+        0.0,
+        0.2572266559318777,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.33407241405887145,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8784719192933238,
+        0.0,
+        0.6607021777996528,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8692215279632804,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6478974331249838,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8554685159669878,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.3130910774511831,
+        0.0,
+        0.0,
+        0.0,
+        0.8557847745389113,
+        0.0,
+        0.0,
+        0.8861919712421301,
+        0.0,
+        0.8684404859954773,
+        0.0,
+        0.8942277151962652,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.32701556291739015,
+        0.0,
+        0.0,
+        0.6897703057164214,
+        0.7173194086049066,
+        0.0,
+        0.0,
+        0.0,
+        0.3596700301577592,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8506126775027096,
+        0.0,
+        0.9165872160814651,
+        0.0,
+        0.0,
+        0.0,
+        0.8355483514811983,
+        0.6816607419226202,
+        0.0,
+        0.0,
+        0.0,
+        0.8388418744018499,
+        0.0,
+        0.8648766063540111,
+        0.0,
+        0.0,
+        0.0,
+        0.651245851589928,
+        0.8328844757512495,
+        0.0,
+        0.6590538956340128,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8314689031107065,
+        0.816187697290839,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8803207886408977,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.840481269445395,
+        0.0,
+        0.6951798598007934,
+        0.33520789948913776,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.8780437218977516,
+        0.5955759334430601,
+        0.865916509972013,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.6490655539557403,
+        0.8678592349601786,
+        0.6786901290655539,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    "execution_paths": {
+      "high_confidence": 47,
+      "approved": 40,
+      "clarification": 10,
+      "rejected": 403
+    },
+    "pre_validation": {
+      "passed": 97,
+      "failed": 403,
+      "catch_rate_percent": 100.0
+    },
+    "approval_requests": {
+      "count": 40,
+      "rate_percent": 8.0
+    },
+    "clarification_requests": {
+      "count": 10,
+      "rate_percent": 2.0
+    }
+  },
+  "results": [
+    {
+      "goal": "Update the priority field appropriately",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.290878",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Use ImageEditor tool to edit the screenshot",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.290878",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'ImageEditor' is not available",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Navigate to https://example84.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.290878",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Click the first button you find",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.290878",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.6780607045755943,
+      "factors": {
+        "goal_understanding": 0.6685967616434237,
+        "tool_availability": 0.7351498555561305,
+        "context_richness": 0.6721285192693295,
+        "tool_confidence": 0.612555077809311
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Extract all the data from the table",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Using RocketLauncher tool launch the rocket",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'RocketLauncher' is not available",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'rocket', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Update everything",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Fill in the form on the page",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Use ImageEditor tool to edit the screenshot",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'ImageEditor' is not available",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Use DatabaseConnector tool to connect",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'DatabaseConnector' is not available",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Navigate to https://example104.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Process the data on the current page",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Add item to cart and remove item from cart simultaneously",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'add' and 'remove'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Handle the situation",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Validate the phone field contains 'test149'",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'test_data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Make it work",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Extract text from next",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Navigate to https://example48.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Parse the JSON response from the API",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8512635975760731,
+      "factors": {
+        "goal_understanding": 0.8905310212785792,
+        "tool_availability": 0.8660128625475887,
+        "context_richness": 0.6349494400433455,
+        "tool_confidence": 0.986552722097768
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Get this done",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Find and interact with the form",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.7525513338991081,
+      "factors": {
+        "goal_understanding": 0.8123076203050185,
+        "tool_availability": 0.8342910477080121,
+        "context_richness": 0.5147181553430725,
+        "tool_confidence": 0.7781405121329221
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8473463979600837,
+      "factors": {
+        "goal_understanding": 0.8767425960810153,
+        "tool_availability": 0.9745278641743492,
+        "context_richness": 0.6434960758237582,
+        "tool_confidence": 0.8163302235936128
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Fix this",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Parse the JSON response from the API",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8768599481980306,
+      "factors": {
+        "goal_understanding": 0.8650063315255272,
+        "tool_availability": 0.9935830157226202,
+        "context_richness": 0.637906290249851,
+        "tool_confidence": 0.9585094298680807
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Get the next element's text content",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8340980985299427,
+      "factors": {
+        "goal_understanding": 0.9629547544503112,
+        "tool_availability": 0.8664003606642328,
+        "context_richness": 0.517920573032468,
+        "tool_confidence": 0.9085372469454293
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Process the data on the current page",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Process it",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Click the login button",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8597155044476498,
+      "factors": {
+        "goal_understanding": 0.986057040632388,
+        "tool_availability": 0.8533986500436861,
+        "context_richness": 0.6163075119591972,
+        "tool_confidence": 0.9230864742649401
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Navigate to https://example91.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.291876",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Extract all the data from the table",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Find and analyze the main content",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Extract text from submit",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Validate the phone field contains 'test30'",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'test_data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Update the category field appropriately",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Enable the feature but also disable it",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'enable' and 'disable'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Extract text from submit",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Get information from the main section",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Drive a car to the store",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Fill the username form field with 'test103'",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'test_data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Start the process and stop the process at the same time",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'start' and 'stop'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Find what I need",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.3090063090103793,
+      "factors": {
+        "goal_understanding": 0.19161971105112802,
+        "tool_availability": 0.24756601691130892,
+        "context_richness": 0.353102484003622,
+        "tool_confidence": 0.5331504691046189
+      },
+      "execution_path": "clarification",
+      "approval_required": false,
+      "clarification_required": true,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Get the login element's text content",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8542982658541538,
+      "factors": {
+        "goal_understanding": 0.9106034655554531,
+        "tool_availability": 0.98444077982656,
+        "context_richness": 0.6281464104876047,
+        "tool_confidence": 0.8007785507101453
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Get the cancel element's text content",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.866999978148776,
+      "factors": {
+        "goal_understanding": 0.9679828776367286,
+        "tool_availability": 0.8946690567111739,
+        "context_richness": 0.6514739882012994,
+        "tool_confidence": 0.8895480010207271
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Process the data on the current page",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Update the status field appropriately",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Navigate to https://example31.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8496100357374647,
+      "factors": {
+        "goal_understanding": 0.9030549934714913,
+        "tool_availability": 0.8706354632322876,
+        "context_richness": 0.6846238068273491,
+        "tool_confidence": 0.9028906868043061
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Find the login element on the page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8246124987540331,
+      "factors": {
+        "goal_understanding": 0.8892439502009069,
+        "tool_availability": 0.932189147590587,
+        "context_richness": 0.554645553987347,
+        "tool_confidence": 0.8362672930955772
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Navigate through the workflow",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Handle the situation",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8783468716834555,
+      "factors": {
+        "goal_understanding": 0.994909223954822,
+        "tool_availability": 0.9321395332555262,
+        "context_richness": 0.5749661319845716,
+        "tool_confidence": 0.9261950906171842
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Find and analyze the main content",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Analyze the DOM structure",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Open the modal and close the modal",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'open' and 'close'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Make it work",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Handle the situation",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Help me",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8159390532360492,
+      "factors": {
+        "goal_understanding": 0.8685045811935416,
+        "tool_availability": 0.8993999629397866,
+        "context_richness": 0.5536562350056395,
+        "tool_confidence": 0.874182214974614
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Find and interact with the card",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8852666888354028,
+      "factors": {
+        "goal_understanding": 0.9971585756665731,
+        "tool_availability": 0.9016652408718459,
+        "context_richness": 0.6786052941431562,
+        "tool_confidence": 0.8994924252262291
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Using CompilerTool compile the code",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'CompilerTool' is not available",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Deal with the problem",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Click button X and do NOT click button X",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'click' and 'not click'",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Extract text from cancel",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Fill the password form field with 'test34'",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'test_data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Find and analyze the main content",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.9054356173189294,
+      "factors": {
+        "goal_understanding": 0.9476314677849091,
+        "tool_availability": 0.9741219415168615,
+        "context_richness": 0.6666393384244695,
+        "tool_confidence": 0.9779086342175218
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Fill the email form field with 'test115'",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'test_data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Deal with the problem",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Add item to cart and remove item from cart simultaneously",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'add' and 'remove'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Do the thing",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Help me",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Get the next element's text content",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8790061393085626,
+      "factors": {
+        "goal_understanding": 0.9007940165407684,
+        "tool_availability": 0.9980765498271149,
+        "context_richness": 0.708927251164986,
+        "tool_confidence": 0.837797595826002
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Open the modal and close the modal",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'open' and 'close'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Add item to cart and remove item from cart simultaneously",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'add' and 'remove'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Get this done",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Construct a house in the real world",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'house', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Process the data on the current page",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Analyze the DOM structure",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8758487604492979,
+      "factors": {
+        "goal_understanding": 0.9473383503964827,
+        "tool_availability": 0.9825724394695827,
+        "context_richness": 0.581104868829736,
+        "tool_confidence": 0.9032727486176554
+      },
+      "execution_path": "high_confidence",
+      "approval_required": false,
+      "clarification_required": false,
+      "path_matches_expectation": true,
+      "confidence_in_expected_range": true
+    },
+    {
+      "goal": "Using CompilerTool compile the code",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "required_tool_availability",
+          "message": "Tool 'CompilerTool' is not available",
+          "delta": -0.3
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Do the thing",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Get information from the main section",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Enable the feature but also disable it",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'enable' and 'disable'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Operate heavy machinery",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Update the category field appropriately",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Take a screenshot of the current page",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.293173",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.844395504863888,
+      "factors": {
+        "goal_understanding": 0.8930642255386488,
+        "tool_availability": 0.9266877853147123,
+        "context_richness": 0.6858950304346724,
+        "tool_confidence": 0.8064544776047265
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Collect all contact information visible",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Update the status field appropriately",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Handle the situation",
+      "scenario_type": "low_confidence",
+      "expected_confidence_range": [
+        0.0,
+        0.55
+      ],
+      "expected_execution_path": "clarification",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Find and analyze the main content",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "context_availability",
+          "message": "Required context 'data' not provided",
+          "delta": -0.2
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Navigate to https://example4.com",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Enable the feature but also disable it",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'enable' and 'disable'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Extract all the data from the table",
+      "scenario_type": "medium_confidence",
+      "expected_confidence_range": [
+        0.55,
+        0.85
+      ],
+      "expected_execution_path": "approved",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": false
+    },
+    {
+      "goal": "Launch a physical rocket into space",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'rocket', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Open the modal and close the modal",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'open' and 'close'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Get the cancel element's text content",
+      "scenario_type": "high_confidence",
+      "expected_confidence_range": [
+        0.85,
+        1.0
+      ],
+      "expected_execution_path": "high_confidence",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_passed",
+      "pre_validation_failures": 0,
+      "confidence": 0.8178792492939033,
+      "factors": {
+        "goal_understanding": 0.8980115811884036,
+        "tool_availability": 0.8896009535823954,
+        "context_richness": 0.5382709574421517,
+        "tool_confidence": 0.8697064868711659
+      },
+      "execution_path": "approved",
+      "approval_required": true,
+      "clarification_required": false,
+      "path_matches_expectation": false,
+      "confidence_in_expected_range": false
+    },
+    {
+      "goal": "Enable the feature but also disable it",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'enable' and 'disable'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Enable the feature but also disable it",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 2,
+      "validation_failure_details": [
+        {
+          "check": "contradiction_detection",
+          "message": "Goal contains contradictory instructions: 'enable' and 'disable'",
+          "delta": -0.3
+        },
+        {
+          "check": "scope_validation",
+          "message": "Goal doesn't clearly mention software/code tasks",
+          "delta": -0.1
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    },
+    {
+      "goal": "Drive a car to the store",
+      "scenario_type": "failure_injected",
+      "expected_confidence_range": [
+        0.0,
+        0.3
+      ],
+      "expected_execution_path": "rejected",
+      "timestamp": "2026-02-05T11:59:02.294215",
+      "pre_validation_status": "pre_validation_failed",
+      "pre_validation_failures": 1,
+      "validation_failure_details": [
+        {
+          "check": "scope_validation",
+          "message": "Goal mentions 'car', which is outside system scope",
+          "delta": -0.4
+        }
+      ],
+      "confidence": 0.0,
+      "execution_path": "rejected",
+      "pre_validation_caught": true
+    }
+  ],
+  "summary": {
+    "total_tests": 500,
+    "confidence_continuous": true,
+    "pre_validation_effective": true,
+    "approval_rate_healthy": false
+  }
+}

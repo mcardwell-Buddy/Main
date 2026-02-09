@@ -1,0 +1,273 @@
+/* BrowserView.css - Live browser display component */
+
+.browser-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.browser-view-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: #f9f9f9;
+  border: 2px dashed #ddd;
+  border-radius: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  color: #666;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Browser Header */
+.browser-header {
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 12px;
+}
+
+.browser-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.browser-url-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f5f5f5;
+  padding: 6px 8px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.browser-icon {
+  font-size: 14px;
+}
+
+.url-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  color: #333;
+  font-family: 'Monaco', 'Courier New', monospace;
+  outline: none;
+}
+
+.url-input::-webkit-input-placeholder {
+  color: #999;
+}
+
+.browser-buttons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.toggle-overlay-btn {
+  padding: 6px 10px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.toggle-overlay-btn:hover {
+  background: #e0e0e0;
+  border-color: #999;
+}
+
+.toggle-overlay-btn:active {
+  background: #d0d0d0;
+}
+
+.loading-indicator {
+  font-size: 12px;
+  color: #666;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.browser-title {
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #666;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-height: 18px;
+}
+
+/* Browser Viewport */
+.browser-viewport {
+  flex: 1;
+  overflow: auto;
+  background: #fff;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 12px;
+}
+
+.screenshot-container {
+  position: relative;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.screenshot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Element Overlay */
+.element-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+.element-rect {
+  fill: transparent;
+  stroke: #3b82f6;
+  stroke-width: 2;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.element-rect:hover {
+  fill: rgba(59, 130, 246, 0.1);
+  stroke: #1e40af;
+  stroke-width: 2.5;
+}
+
+.label-background {
+  fill: #1e40af;
+  stroke: none;
+  rx: 2;
+}
+
+.element-label {
+  fill: white;
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+  text-anchor: start;
+  dominant-baseline: middle;
+}
+
+/* Browser Footer */
+.browser-footer {
+  background: #f9f9f9;
+  border-top: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #666;
+}
+
+.footer-info {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.info-badge {
+  padding: 2px 6px;
+  background: #e8f1fe;
+  border-radius: 3px;
+  color: #1e40af;
+  font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .browser-controls {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .browser-url-bar {
+    flex: 1;
+    width: 100%;
+  }
+
+  .browser-viewport {
+    padding: 8px;
+  }
+
+  .toggle-overlay-btn {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .browser-view {
+    background: #2a2a2a;
+  }
+
+  .browser-header {
+    background: #1e1e1e;
+    border-bottom-color: #3a3a3a;
+  }
+
+  .browser-controls {
+    background: #2a2a2a;
+  }
+
+  .browser-url-bar {
+    background: #3a3a3a;
+    border-color: #4a4a4a;
+  }
+
+  .url-input {
+    color: #e0e0e0;
+  }
+
+  .browser-title {
+    color: #b0b0b0;
+  }
+
+  .browser-viewport {
+    background: #1e1e1e;
+  }
+
+  .browser-footer {
+    background: #2a2a2a;
+    border-top-color: #3a3a3a;
+  }
+}

@@ -1,0 +1,2 @@
+{"task_id": "wave1_task_3", "agent_id": "agent_3", "wave": 1, "priority": 1, "predicted_success": 0.9, "scheduled_time": "2026-02-06T01:00:27.442902+00:00", "dry_run": false}
+{"task_id": "wave1_task_7", "agent_id": "agent_3", "wave": 1, "priority": 1, "predicted_success": 0.9, "scheduled_time": "2026-02-06T01:00:27.442902+00:00", "dry_run": false}

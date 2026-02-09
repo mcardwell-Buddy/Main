@@ -1,0 +1,301 @@
+WHITEBOARD DOM SNAPSHOT (VISUAL STRUCTURE)
+Generated: 2026-02-06T06:15:00Z
+Source: BuddyWhiteboard.js component analysis
+
+═══════════════════════════════════════════════════════════════
+                    COMPONENT HIERARCHY
+═══════════════════════════════════════════════════════════════
+
+<BuddyWhiteboard>
+  │
+  ├─ <div className="whiteboard-overlay"> [FULL SCREEN CONTAINER]
+  │   │
+  │   ├─ Alerts Modal (conditional: showAlerts === true)
+  │   │   └─ <div className="modal-overlay">
+  │   │       └─ <div className="modal">
+  │   │           ├─ <div className="modal-header">
+  │   │           │   ├─ <h3>⚠️ Alerts & Warnings</h3>
+  │   │           │   └─ <button className="modal-close">✕</button>
+  │   │           └─ <div className="modal-body">
+  │   │               └─ List of unresolved conflicts
+  │   │
+  │   ├─ Execution Details Modal (conditional: selectedExecution)
+  │   │   └─ Shows execution_id, tool_name, status, data, duration
+  │   │
+  │   ├─ Signal Details Modal (conditional: selectedSignal)
+  │   │   └─ Shows signal type, confidence, source, insight
+  │   │
+  │   ├─ <div className="whiteboard-banner"> [FIXED TOP BAR]
+  │   │   │
+  │   │   ├─ <div className="banner-left">
+  │   │   │   ├─ <img src="/buddy-clean.png"> [Buddy Logo]
+  │   │   │   └─ <span>Whiteboard</span>
+  │   │   │
+  │   │   ├─ <nav className="banner-center">
+  │   │   │   ├─ <button onClick={scrollToSection('operations')}>⚙️ Operations</button>
+  │   │   │   ├─ <button onClick={scrollToSection('learning')}>📊 Learning</button>
+  │   │   │   ├─ <button onClick={scrollToSection('hustle')}>💰 Hustle</button>
+  │   │   │   └─ <button onClick={scrollToSection('interaction')}>💬 Interaction</button>
+  │   │   │
+  │   │   └─ <div className="banner-right">
+  │   │       ├─ <div className="mini-summary">
+  │   │       │   ├─ <div className="summary-card"> [Goals: {activeGoals}]
+  │   │       │   ├─ <div className="summary-card confidence-score"> [Confidence: {confidence}%]
+  │   │       │   └─ <div className="summary-card alert-card" onClick={showAlerts}> [Alerts: ⚠️ {alerts}]
+  │   │       └─ <button onClick={onClose} className="close-btn">✕</button>
+  │   │
+  │   └─ <div className="whiteboard-content"> [SCROLLABLE MAIN AREA]
+  │       │
+  │       ├─ <section id="operations" className="whiteboard-section">
+  │       │   │
+  │       │   ├─ <div className="section-header" onClick={toggleSection('operations')}>
+  │       │   │   ├─ <span className="section-icon">⚙️</span>
+  │       │   │   ├─ <h2>Operations</h2>
+  │       │   │   ├─ <span className="mode-badge">{execution_mode}</span>
+  │       │   │   └─ <button className="collapse-btn">{collapsed ? '▼' : '▲'}</button>
+  │       │   │
+  │       │   └─ <div className="section-body"> (if !collapsed)
+  │       │       │
+  │       │       ├─ <div className="controls-bar"> [FILTERS]
+  │       │       │   ├─ <select value={executionFilter}> [Mode: all/MOCK/DRY_RUN/LIVE]
+  │       │       │   ├─ <select value={timeFilter}> [Time: 24h/7d/30d/all]
+  │       │       │   ├─ <select value={sortBy}> [Sort: timestamp/tool/status]
+  │       │       │   └─ <button onClick={toggleSortOrder}> [↑/↓]
+  │       │       │
+  │       │       ├─ <div className="metrics-grid"> [4 METRIC CARDS]
+  │       │       │   ├─ Active Goals: {operationsData.active_goals}
+  │       │       │   ├─ Active Tasks: {operationsData.active_tasks}
+  │       │       │   ├─ Conflicts: {operationsData.unresolved_conflicts.length}
+  │       │       │   └─ Recent Rollbacks: {operationsData.recent_rollbacks.length}
+  │       │       │
+  │       │       ├─ <div className="data-table"> [EXECUTION LOG TABLE]
+  │       │       │   ├─ <h3>Tool Execution Log ({filteredExecutions.length} executions)</h3>
+  │       │       │   └─ <table>
+  │       │       │       ├─ <thead>
+  │       │       │       │   └─ <tr> [Timestamp | Tool | Action | State | Outcome | Duration | Details]
+  │       │       │       └─ <tbody>
+  │       │       │           └─ {filteredExecutions.map(exec => (
+  │       │       │               <tr className="execution-row">
+  │       │       │                   ├─ <td className="timestamp-cell"> {time}
+  │       │       │                   ├─ <td className="tool-cell"> {tool_name}
+  │       │       │                   ├─ <td className="action-cell"> {action}
+  │       │       │                   ├─ <td className="state-cell">
+  │       │       │                   │   └─ <span className="mode-badge-small" style={{backgroundColor}}> {execution_mode}
+  │       │       │                   ├─ <td className="outcome-cell">
+  │       │       │                   │   └─ <span className="status-badge status-{status}"> {status}
+  │       │       │                   ├─ <td className="duration-cell"> {execution_time_ms}ms
+  │       │       │                   └─ <td className="details-cell">
+  │       │       │                       └─ <button onClick={() => setSelectedExecution(exec)}> 👁️
+  │       │       │
+  │       │       └─ <div className="system-health-card"> [HEALTH METRICS]
+  │       │           ├─ Health Score: {system_health.health_score}
+  │       │           ├─ Tool Success Rate: {tool_success_rate}%
+  │       │           ├─ Execution Latency: {execution_latency_ms}ms
+  │       │           ├─ Rollback Frequency: {rollback_frequency}
+  │       │           └─ Conflict Rate: {conflict_rate}
+  │       │
+  │       ├─ <section id="learning" className="whiteboard-section">
+  │       │   │
+  │       │   ├─ <div className="section-header"> [Learning Header with Collapse]
+  │       │   │
+  │       │   └─ <div className="section-body"> (if !collapsed)
+  │       │       │
+  │       │       ├─ <div className="metrics-grid"> [4 METRIC CARDS]
+  │       │       │   ├─ Competitor Insights: {competitor_insights.length}
+  │       │       │   ├─ GHL Campaign Trends: {ghl_campaign_trends.length}
+  │       │       │   ├─ Learning Signals: {learning_signals.length}
+  │       │       │   └─ Market Opportunities: {market_opportunities.length}
+  │       │       │
+  │       │       ├─ <div className="confidence-chart"> [BAR CHART]
+  │       │       │   ├─ <h3>Confidence Trend</h3>
+  │       │       │   └─ <div className="chart-bars">
+  │       │       │       └─ {learning_signals.map(signal => (
+  │       │       │           <div className="chart-bar-wrapper">
+  │       │       │               ├─ <div className="chart-bar" style={{height: {confidence}%, backgroundColor: getColor(confidence)}}/>
+  │       │       │               └─ <div className="chart-label"> {signal_type}
+  │       │       │
+  │       │       ├─ <div className="learning-signals-feed"> [SIGNAL LIST]
+  │       │       │   ├─ <h3>Recent Learning Signals</h3>
+  │       │       │   └─ {learning_signals.map(signal => (
+  │       │       │       <div className="signal-item" onClick={() => setSelectedSignal(signal)}>
+  │       │       │           ├─ <div className="signal-icon"> {getIcon(signal_type)}
+  │       │       │           ├─ <div className="signal-content">
+  │       │       │           │   ├─ <div className="signal-type"> {signal_type}
+  │       │       │           │   ├─ <div className="signal-confidence"> {confidence_score * 100}%
+  │       │       │           │   ├─ <div className="signal-source"> {tool_name}
+  │       │       │           │   └─ <div className="signal-timestamp"> {timestamp}
+  │       │       │           └─ <div className="signal-arrow"> →
+  │       │       │
+  │       │       └─ <div className="success-metrics-card"> [SUCCESS METRICS]
+  │       │           ├─ Overall Success Rate: {overall_success_rate}%
+  │       │           ├─ Tool Accuracy: {tool_accuracy}%
+  │       │           └─ Learning Rate: {learning_rate}
+  │       │
+  │       ├─ <section id="hustle" className="whiteboard-section">
+  │       │   │
+  │       │   ├─ <div className="section-header"> [Hustle Header with Collapse]
+  │       │   │
+  │       │   └─ <div className="section-body"> (if !collapsed)
+  │       │       │
+  │       │       ├─ <div className="metrics-grid"> [4 METRIC CARDS]
+  │       │       │   ├─ Active Opportunities: {active_opportunities.length}
+  │       │       │   ├─ Revenue Potential: ${revenue_potential}
+  │       │       │   ├─ Automated Tasks: {automated_tasks.length}
+  │       │       │   └─ Income Streams: {income_streams.length}
+  │       │       │
+  │       │       └─ <div className="data-table"> [OPPORTUNITIES TABLE]
+  │       │           ├─ <h3>Active Opportunities</h3>
+  │       │           └─ <table>
+  │       │               ├─ <thead>
+  │       │               │   └─ <tr> [Opportunity | Type | Potential Revenue | Status]
+  │       │               └─ <tbody>
+  │       │                   └─ {active_opportunities.map(opp => (
+  │       │                       <tr>
+  │       │                           ├─ <td> {opp.name}
+  │       │                           ├─ <td> {opp.type}
+  │       │                           ├─ <td> ${opp.potential_revenue}
+  │       │                           └─ <td>
+  │       │                               └─ <span className="status-badge status-{status}"> {opp.status}
+  │       │
+  │       └─ <section id="interaction" className="whiteboard-section">
+  │           │
+  │           ├─ <div className="section-header"> [Interaction Header with Collapse]
+  │           │
+  │           └─ <div className="section-body"> (if !collapsed)
+  │               │
+  │               ├─ <div className="metrics-grid"> [4 METRIC CARDS]
+  │               │   ├─ Pending Approvals: 0 [HARDCODED]
+  │               │   ├─ Active Alerts: {unresolved_conflicts.length}
+  │               │   ├─ Recent Commands: 0 [HARDCODED]
+  │               │   └─ User Interactions: 0 [HARDCODED]
+  │               │
+  │               └─ <div className="info-message"> [PLACEHOLDER MESSAGE]
+  │                   ├─ <p>📝 Interaction tracking coming soon...
+  │                   └─ <ul> [List of planned features]
+
+═══════════════════════════════════════════════════════════════
+                    CSS CLASS STRUCTURE
+═══════════════════════════════════════════════════════════════
+
+Root Container:
+  .whiteboard-overlay (full-screen, z-index: 9999)
+
+Banner (Fixed Top):
+  .whiteboard-banner (fixed, top: 0, background: blue gradient)
+    ├─ .banner-left (Buddy logo + title)
+    ├─ .banner-center (navigation buttons)
+    │   └─ .nav-btn (scroll-to-section buttons)
+    └─ .banner-right (summary + close)
+        ├─ .mini-summary
+        │   └─ .summary-card (goals/confidence/alerts)
+        └─ .close-btn
+
+Content (Scrollable):
+  .whiteboard-content (overflow-y: auto, padding-top: 80px)
+    └─ .whiteboard-section
+        ├─ .section-header (gradient background, clickable)
+        │   ├─ .section-icon
+        │   ├─ .section-title
+        │   ├─ .mode-badge (execution mode indicator)
+        │   └─ .collapse-btn
+        └─ .section-body (expandable content)
+            ├─ .controls-bar (filters)
+            ├─ .metrics-grid (metric cards)
+            │   └─ .metric-card
+            ├─ .data-table (execution log / opportunities)
+            │   └─ table (styled with hover effects)
+            ├─ .confidence-chart (bar chart visualization)
+            │   └─ .chart-bar (color-coded bars)
+            ├─ .learning-signals-feed (signal list)
+            │   └─ .signal-item (clickable items)
+            └─ .system-health-card (health metrics)
+
+Modals:
+  .modal-overlay (semi-transparent backdrop)
+    └─ .modal (centered, white card)
+        ├─ .modal-header
+        │   ├─ <h3> (modal title)
+        │   └─ .modal-close (X button)
+        └─ .modal-body (modal content)
+
+Badges:
+  .mode-badge-small (execution mode: MOCK/DRY_RUN/LIVE)
+  .status-badge (status: completed/failed/pending)
+  .status-{status} (color variants)
+
+═══════════════════════════════════════════════════════════════
+                    COLOR SCHEME
+═══════════════════════════════════════════════════════════════
+
+Banner Background: Linear gradient #1e40af → #1e3a8a (blue)
+Section Headers: Linear gradient #667eea → #764ba2 (purple-blue)
+White Cards: #ffffff with subtle shadow
+Alert Red: Red badge for conflicts/failures
+Success Green: Green for completed/healthy
+Warning Yellow: Yellow for DRY_RUN mode
+Neutral Gray: Gray for MOCK mode
+
+Execution Mode Badges:
+  MOCK: rgba(128, 128, 128, 0.2) - Gray
+  DRY_RUN: rgba(59, 130, 246, 0.2) - Blue
+  LIVE (success): rgba(16, 185, 129, 0.2) - Green
+  LIVE (failed): rgba(239, 68, 68, 0.2) - Red
+
+═══════════════════════════════════════════════════════════════
+                    INTERACTIVE ELEMENTS
+═══════════════════════════════════════════════════════════════
+
+Clickable Elements:
+  1. Buddy logo (banner left) - No action (cosmetic)
+  2. Navigation buttons (banner center) - scrollToSection()
+  3. Summary cards (banner right) - Alerts card opens modal
+  4. Close button (banner right) - onClose() → returns to chat
+  5. Section headers - toggleSection() → expand/collapse
+  6. Collapse buttons - toggleSection()
+  7. Filter selects - Update filter state → re-render table
+  8. Sort order button - Toggle asc/desc
+  9. Details buttons (execution log) - Open execution modal
+  10. Signal items (learning feed) - Open signal modal
+  11. Modal overlay - Close modal on click
+  12. Modal close button - Close modal
+
+Hover Effects:
+  - Navigation buttons (scale slightly)
+  - Table rows (background highlight)
+  - Details buttons (color change)
+  - Signal items (background highlight)
+  - Summary cards (scale slightly)
+
+═══════════════════════════════════════════════════════════════
+                    DATA BINDING SUMMARY
+═══════════════════════════════════════════════════════════════
+
+State Variables:
+  - operationsData: Fetched from /dashboards/operations
+  - learningData: Fetched from /dashboards/learning
+  - hustleData: Fetched from /dashboards/side_hustle
+  - collapsed: Object tracking section collapse states
+  - executionFilter: Filter for execution mode
+  - timeFilter: Filter for time range
+  - sortBy: Sort field
+  - sortOrder: Sort direction
+  - selectedExecution: Currently viewed execution details
+  - selectedSignal: Currently viewed signal details
+  - showAlerts: Alerts modal visibility
+
+Auto-Refresh:
+  useEffect(() => {
+    fetchAllData();
+    const interval = setInterval(fetchAllData, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+═══════════════════════════════════════════════════════════════
+                    RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════════
+
+Desktop (default): Full width, multi-column grids
+Tablet (< 1024px): Adjusted grid columns
+Mobile (< 768px): Single column stacking
+
+Note: Full responsive CSS in BuddyWhiteboard.css (1000+ LOC)

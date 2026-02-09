@@ -1,0 +1,6 @@
+{"from_state": "MOCK", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:22.500Z", "reason": "Escalation approved", "tool_name": "vision_inspect", "confidence": 0.85}
+{"from_state": "DRY_RUN", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:22.612Z", "reason": "Tool execution completed", "tool_name": "vision_inspect"}
+{"from_state": "MOCK", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:22.750Z", "reason": "Escalation approved", "tool_name": "form_fill", "confidence": 0.78}
+{"from_state": "DRY_RUN", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:22.839Z", "reason": "Tool execution completed", "tool_name": "form_fill"}
+{"from_state": "MOCK", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:22.950Z", "reason": "Escalation approved", "tool_name": "button_click", "confidence": 0.92}
+{"from_state": "DRY_RUN", "to_state": "DRY_RUN", "timestamp": "2024-01-15T14:30:23.031Z", "reason": "Tool execution completed", "tool_name": "button_click"}

@@ -1,0 +1,379 @@
+/**
+ * AgentTodoList Styles
+ * 
+ * Styling for the reasoning steps progress display
+ */
+
+.agent-todo-list {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============ HEADER ============ */
+
+.todo-list-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-left h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.goal-summary {
+  margin: 0;
+  font-size: 12px;
+  opacity: 0.9;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 400px;
+}
+
+.close-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.close-button:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============ PROGRESS STATS ============ */
+
+.progress-stats {
+  padding: 16px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  flex-shrink: 0;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.progress-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.confidence-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confidence-label {
+  font-size: 12px;
+  color: #6b7280;
+  font-weight: 500;
+  min-width: 70px;
+}
+
+.confidence-bar {
+  width: 80px;
+  height: 4px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.confidence-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #667eea;
+  min-width: 35px;
+  text-align: right;
+}
+
+/* ============ STEPS LIST ============ */
+
+.steps-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.step-item {
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.step-item:hover {
+  background: #f9fafb;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+}
+
+.step-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+.icon-complete {
+  background: #d1fae5;
+  color: #10b981;
+}
+
+.icon-in-progress {
+  background: #fef3c7;
+  color: #f59e0b;
+  animation: spin 1s linear infinite;
+}
+
+.icon-failed {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.icon-pending {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.step-number {
+  font-weight: 600;
+  color: #667eea;
+  min-width: 50px;
+  font-size: 12px;
+}
+
+.step-task {
+  flex: 1;
+  color: #374151;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.step-status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.status-complete {
+  background: #d1fae5;
+  color: #10b981;
+}
+
+.status-in-progress {
+  background: #fef3c7;
+  color: #f59e0b;
+}
+
+.status-failed {
+  background: #fee2e2;
+  color: #ef4444;
+}
+
+.status-pending {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.step-has-result {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.step-chevron {
+  color: #9ca3af;
+  font-size: 12px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.step-chevron.open {
+  transform: rotate(90deg);
+}
+
+/* ============ STEP DETAILS ============ */
+
+.step-details {
+  background: #f9fafb;
+  padding: 12px 16px;
+  border-top: 1px solid #e5e7eb;
+  animation: slideDown 0.2s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.details-content {
+  font-size: 12px;
+}
+
+.details-content strong {
+  display: block;
+  color: #667eea;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.details-content pre {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 0;
+  font-size: 11px;
+  overflow-x: auto;
+  color: #374151;
+  line-height: 1.4;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+/* ============ WARNING MESSAGE ============ */
+
+.warning-message {
+  background: #fef3c7;
+  border-top: 1px solid #fde68a;
+  color: #92400e;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ============ SCROLLBAR ============ */
+
+.steps-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.steps-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.steps-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.steps-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 768px) {
+  .agent-todo-list {
+    max-height: 400px;
+  }
+
+  .step-task {
+    max-width: 150px;
+  }
+
+  .goal-summary {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .agent-todo-list {
+    max-height: 300px;
+  }
+
+  .step-header {
+    padding: 10px 12px;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .step-task {
+    max-width: 100px;
+  }
+
+  .step-status {
+    display: none;
+  }
+
+  .progress-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

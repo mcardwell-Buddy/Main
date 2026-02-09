@@ -1,0 +1,13 @@
+.env
+.env.*
+*.pem
+*.key
+*credentials*.json
+*firebase-adminsdk*.json
+**/buddy_site_knowledge.json
+user_profile.json
+msgraph_token_cache.json
+mployer_cookies.pkl
+node_modules/
+.venv/
+__pycache__/

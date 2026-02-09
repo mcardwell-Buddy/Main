@@ -1,0 +1,11 @@
+{
+  "LOW_success_rate": 1.0,
+  "LOW_avg_confidence": 0.75,
+  "LOW_count": 4,
+  "MEDIUM_success_rate": 1.0,
+  "MEDIUM_avg_confidence": 0.7300000000000001,
+  "MEDIUM_count": 4,
+  "decision_type_distribution": {
+    "pattern_boost": 8
+  }
+}

@@ -1,0 +1,1 @@
+{"anomaly_id": "AN_SCHEDULE_DRIFT", "anomaly_type": "schedule_drift", "severity": "medium", "description": "Schedule adherence below threshold", "affected_waves": [], "affected_agents": [], "recommendation": "Increase scheduling buffers and load balancing", "timestamp": "2026-02-06T00:06:08.155823+00:00"}
