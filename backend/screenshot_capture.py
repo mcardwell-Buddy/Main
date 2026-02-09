@@ -7,9 +7,6 @@ import logging
 import base64
 import json
 from io import BytesIO
-from PIL import Image
-from selenium import webdriver
-from selenium.webdriver.common.by import By
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +27,8 @@ def capture_screenshot_as_base64(driver, max_width=1280, max_height=720):
         # Get full page screenshot
         screenshot = driver.get_screenshot_as_png()
         
+        from PIL import Image
+
         # Open as PIL image
         img = Image.open(BytesIO(screenshot))
         
@@ -89,6 +88,8 @@ def capture_clickable_elements(driver, limit=50):
         list of dicts with element info (text, position, tag)
     """
     try:
+        from selenium.webdriver.common.by import By
+
         elements = []
         
         # Find buttons, links, and interactive elements
