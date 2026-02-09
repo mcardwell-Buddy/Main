@@ -1,11 +1,32 @@
 fastapi
 uvicorn
+gunicorn
 requests
 firebase-admin
 python-dotenv
 beautifulsoup4
 websockets
+pydantic
+pydantic-settings
+aiofiles
+click
+colorama
+h11
+idna
+sniffio
+starlette
+typing-extensions
 
 # LLM Integration (optional - install what you need)
 openai>=1.0.0  # For OpenAI GPT models
 anthropic>=0.18.0  # For Claude models
+
+# Cloud & OAuth
+google-cloud-storage
+google-cloud-tasks
+oauth2-client
+requests-oauthlib
+PyJWT
+cryptography
+Pillow
+numpy
