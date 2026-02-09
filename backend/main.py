@@ -2,6 +2,7 @@ import os
 import logging
 import re
 import asyncio
+import json
 from datetime import datetime
 from typing import Optional
 import requests
@@ -34,6 +35,17 @@ from backend.buddys_vision_core import BuddysVisionCore
 from backend.buddys_arms import BuddysArms
 from backend.buddys_vision import BuddysVision
 from backend.buddy_core import handle_user_message, list_conversation_sessions, get_conversation_session, update_conversation_session, delete_conversation_session
+
+try:
+    import firebase_admin
+    from firebase_admin import auth as firebase_auth
+    from firebase_admin import credentials as firebase_credentials
+    _FIREBASE_AUTH_AVAILABLE = True
+except Exception:
+    firebase_admin = None
+    firebase_auth = None
+    firebase_credentials = None
+    _FIREBASE_AUTH_AVAILABLE = False
 
 # Phase 2: Graded Confidence & Approval Gates
 from phase2_confidence import GradedConfidenceCalculator, ConfidenceFactors
@@ -68,6 +80,111 @@ mployer_tools.register_mployer_tools(tool_registry)
 web_tools.register_web_tools(tool_registry)  # PHASE 5: Vision & Arms Integration
 
 app = FastAPI(title="Buddy API", version="1.0.0")
+
+FIREBASE_AUTH_ENABLED = os.getenv("FIREBASE_AUTH_ENABLED", "true").lower() == "true"
+FIREBASE_AUTH_ALLOWLIST = {
+    "/",
+    "/health",
+    "/docs",
+    "/openapi.json",
+    "/redoc",
+}
+
+
+def _init_firebase_admin() -> bool:
+    if not FIREBASE_AUTH_ENABLED:
+        return False
+    if not _FIREBASE_AUTH_AVAILABLE:
+        logging.error("Firebase Auth is enabled but firebase_admin is unavailable")
+        return False
+    if firebase_admin._apps:
+        return True
+
+    try:
+        if Config.FIREBASE_CREDENTIALS_JSON:
+            payload = json.loads(Config.FIREBASE_CREDENTIALS_JSON)
+            cred = firebase_credentials.Certificate(payload)
+            firebase_admin.initialize_app(cred)
+            return True
+        if Config.FIREBASE_CREDENTIALS_PATH:
+            cred = firebase_credentials.Certificate(Config.FIREBASE_CREDENTIALS_PATH)
+            firebase_admin.initialize_app(cred)
+            return True
+        if Config.FIREBASE_PROJECT_ID and Config.FIREBASE_CLIENT_EMAIL and Config.FIREBASE_PRIVATE_KEY:
+            private_key = Config.FIREBASE_PRIVATE_KEY.replace("\\n", "\n")
+            payload = {
+                "type": "service_account",
+                "project_id": Config.FIREBASE_PROJECT_ID,
+                "client_email": Config.FIREBASE_CLIENT_EMAIL,
+                "private_key": private_key,
+                "token_uri": "https://oauth2.googleapis.com/token",
+            }
+            cred = firebase_credentials.Certificate(payload)
+            firebase_admin.initialize_app(cred)
+            return True
+    except Exception as e:
+        logging.error(f"Failed to initialize Firebase Admin: {e}", exc_info=True)
+        return False
+
+    logging.error("Firebase Auth enabled but no service account credentials found")
+    return False
+
+
+def _extract_bearer_token(authorization_header: str) -> Optional[str]:
+    if not authorization_header:
+        return None
+    parts = authorization_header.split(" ", 1)
+    if len(parts) != 2 or parts[0].lower() != "bearer":
+        return None
+    return parts[1].strip()
+
+
+def _verify_firebase_token(id_token: str) -> Optional[dict]:
+    if not id_token:
+        return None
+    if not _init_firebase_admin():
+        return None
+    try:
+        return firebase_auth.verify_id_token(id_token)
+    except Exception as e:
+        logging.warning(f"Firebase token verification failed: {e}")
+        return None
+
+
+def _is_path_allowed(path: str) -> bool:
+    if path in FIREBASE_AUTH_ALLOWLIST:
+        return True
+    return False
+
+
+async def _require_ws_auth(websocket: WebSocket) -> bool:
+    if not FIREBASE_AUTH_ENABLED:
+        return True
+    auth_header = websocket.headers.get("Authorization", "")
+    id_token = _extract_bearer_token(auth_header)
+    if not id_token:
+        id_token = websocket.query_params.get("token") or websocket.query_params.get("auth")
+    decoded = _verify_firebase_token(id_token)
+    if not decoded:
+        await websocket.close(code=4401)
+        return False
+    websocket.state.user = decoded
+    return True
+
+
+@app.middleware("http")
+async def firebase_auth_middleware(request: Request, call_next):
+    if not FIREBASE_AUTH_ENABLED or _is_path_allowed(request.url.path):
+        return await call_next(request)
+
+    auth_header = request.headers.get("Authorization", "")
+    id_token = _extract_bearer_token(auth_header)
+    decoded = _verify_firebase_token(id_token)
+    if not decoded:
+        return JSONResponse(status_code=401, content={"error": "Unauthorized"})
+
+    request.state.user = decoded
+    return await call_next(request)
 
 app.add_middleware(
     CORSMiddleware,
@@ -312,6 +429,11 @@ async def shutdown_executor():
 async def root():
     return {"status": "running", "version": "1.0.0", "agent": "autonomous", "features": ["domains", "goal_decomposition"]}
 
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok"}
+
 @app.get("/tools")
 async def list_tools():
     tools = []
@@ -516,6 +638,8 @@ async def get_tasks_for_goal(goal_id: str):
 async def websocket_endpoint(websocket: WebSocket):
     """WebSocket endpoint for real-time streaming of agent execution"""
     try:
+        if not await _require_ws_auth(websocket):
+            return
         await websocket.accept()
         logging.info("WebSocket client connected")
         
@@ -2009,6 +2133,8 @@ async def vision_capture(request: dict):
 @app.websocket("/vision/stream")
 async def vision_stream(websocket: WebSocket):
     """Stream live browser frames over WebSocket"""
+    if not await _require_ws_auth(websocket):
+        return
     await websocket.accept()
     try:
         while True:
