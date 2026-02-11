@@ -164,6 +164,44 @@ const UnifiedChat = () => {
           const backendSessions = (data.sessions || []).map((session, index) => 
             mapBackendSession(session, (data.sessions || []).length - index)
           );
+          
+          // AUTO-CREATE DEFAULT SESSION IF NONE EXIST
+          if (backendSessions.length === 0) {
+            console.log('[SESSION] No sessions found, creating default session...');
+            try {
+              const createResponse = await authorizedFetch('/conversation/sessions/create', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                  source: 'chat_ui',
+                  external_user_id: 'anonymous' 
+                })
+              });
+              const createData = await createResponse.json();
+              
+              if (createData.status === 'success') {
+                // Save title to backend
+                await authorizedFetch(`/conversation/sessions/${createData.session_id}`, {
+                  method: 'PATCH',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ title: 'Session 1' })
+                }).catch(() => {}); 
+                
+                const defaultSession = createSession(createData.session_id, 'Session 1', '');
+                setSessions([defaultSession]);
+                setActiveSessionId(defaultSession.id);
+                console.log('[SESSION] Created default session:', defaultSession.id);
+                return;
+              }
+            } catch (createError) {
+              console.error('[SESSION] Failed to create default session:', createError);
+              const fallbackSession = createSession(Date.now(), 'Session 1', '');
+              setSessions([fallbackSession]);
+              setActiveSessionId(fallbackSession.id);
+              return;
+            }
+          }
+          
           setSessions(backendSessions);
           
           const savedSessionId = localStorage.getItem('buddy_active_session_id');
@@ -172,15 +210,17 @@ const UnifiedChat = () => {
             if (sessionExists) {
               setActiveSessionId(savedSessionId);
             } else {
-              // Clear invalid session ID from localStorage
+              // Clear invalid session ID and select first available
+              console.log('[SESSION] Saved session not found, clearing localStorage');
               try { localStorage.removeItem('buddy_active_session_id'); } catch {}
-              setActiveSessionId(backendSessions[0]?.id || null);
+              setActiveSessionId(backendSessions[0].id);
             }
           } else if (backendSessions.length > 0) {
             setActiveSessionId(backendSessions[0].id);
           }
         }
       } catch (error) {
+        console.error('[SESSION] Failed to load sessions:', error);
         setSessions([]);
       }
     };
@@ -196,10 +236,21 @@ const UnifiedChat = () => {
       try {
         const response = await authorizedFetch(`/conversation/sessions/${activeSessionId}`);
         if (!response.ok) {
-          // If session not found, clear it and load a valid session
           if (response.status === 404) {
+            console.error(`[SESSION] Session ${activeSessionId} not found (404)`);
             try { localStorage.removeItem('buddy_active_session_id'); } catch {}
-            setActiveSessionId(sessions[0]?.id || null);
+            
+            // Reload sessions from backend to get current state
+            const reloadResponse = await authorizedFetch('/conversation/sessions');
+            if (reloadResponse.ok) {
+              const data = await reloadResponse.json();
+              const backendSessions = (data.sessions || []).map((session, index) => 
+                mapBackendSession(session, (data.sessions || []).length - index)
+              );
+              setSessions(backendSessions);
+              setActiveSessionId(backendSessions[0]?.id || null);
+              console.log('[SESSION] Reloaded sessions after 404, selected:', backendSessions[0]?.id);
+            }
           }
           return;
         }
@@ -208,12 +259,12 @@ const UnifiedChat = () => {
         const sessionWithMessages = mapBackendSession(fullSession);
         setSessions(prev => mergeSessions(prev, [sessionWithMessages]));
       } catch (error) {
-        // Silently fail - session loading errors are not critical
+        console.error('[SESSION] Failed to load session details:', error);
       }
     };
     
     loadSessionDetails();
-  }, [activeSessionId, sessions]);
+  }, [activeSessionId]);
 
   // Save active session ID to localStorage (UI state only)
   useEffect(() => {
@@ -226,51 +277,10 @@ const UnifiedChat = () => {
     }
   }, [activeSessionId]);
 
-  // Load sessions from backend on mount
+  // Auto-scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  // Load sessions from backend on mount and when navigating back to chat
-  useEffect(() => {
-    const loadSessionsFromBackend = async () => {
-      try {
-        const response = await authorizedFetch('/conversation/sessions');
-        if (response.ok) {
-          const data = await response.json();
-          const backendSessions = (data.sessions || []).map((session, index) => 
-            mapBackendSession(session, (data.sessions || []).length - index)
-          );
-          setSessions(backendSessions);
-          
-          if (activeSessionId) {
-            const sessionExists = backendSessions.some(s => s.id === activeSessionId);
-            if (!sessionExists && backendSessions.length > 0) {
-              try { localStorage.removeItem('buddy_active_session_id'); } catch {}
-              setActiveSessionId(backendSessions[0].id);
-            }
-          } else if (backendSessions.length > 0) {
-            setActiveSessionId(backendSessions[0].id);
-          }
-        }
-      } catch (error) {
-        setSessions([]);
-      }
-    };
-    
-    // Load on component mount and whenever location changes
-    loadSessionsFromBackend();
-    
-    // Also reload when tab comes back into focus (returns from another tab/app)
-    const handleVisibilityChange = () => {
-      if (!document.hidden) {
-        loadSessionsFromBackend();
-      }
-    };
-    
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
-  }, [location.pathname, activeSessionId]); // Reload when navigating or session changes
 
   // Focus input when component mounts or active session changes
   useEffect(() => {
