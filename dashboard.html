@@ -478,7 +478,7 @@
     <div class="container">
         <header>
             <h1>🚀 Buddy System Monitor</h1>
-            <p style="color: #888;">Real-time Analytics & Performance Dashboard</p>
+            <p style="color: #888;">Real-time Analytics & Performance System Monitor</p>
         </header>
 
         <div class="status-bar">
@@ -550,7 +550,7 @@
             </div>
         </div>
 
-        <!-- MAIN DASHBOARD (other sections - no auto-refresh) -->
+        <!-- MAIN SYSTEM MONITOR (other sections - no auto-refresh) -->
         <div class="dashboard-grid">
             <!-- SECTION 1: API USAGE & COSTING -->
             <div class="card">
@@ -621,7 +621,7 @@
 
         <footer>
             <p>Buddy System Monitor v1.0 | <span class="update-time" id="footerTime">Loading...</span></p>
-            <p style="margin-top: 10px; font-size: 0.8em;">Powered by Phase 7 Analytics Engine & Phase 8 Dashboard</p>
+            <p style="margin-top: 10px; font-size: 0.8em;">Powered by Phase 7 Analytics Engine & Phase 8 System Monitor</p>
         </footer>
     </div>
 
@@ -847,10 +847,11 @@
         }
 
         function updateLearning(data) {
-            // Use data directly - high_confidence, medium_confidence, low_confidence are top-level fields
-            document.getElementById('highConfidence').textContent = data.high_confidence || 0;
-            document.getElementById('mediumConfidence').textContent = data.medium_confidence || 0;
-            document.getElementById('lowConfidence').textContent = data.low_confidence || 0;
+            // data is the "learning" object containing confidence_distribution and tool_profiles
+            const confidence = data.confidence_distribution || {};
+            document.getElementById('highConfidence').textContent = confidence.high_confidence || 0;
+            document.getElementById('mediumConfidence').textContent = confidence.medium_confidence || 0;
+            document.getElementById('lowConfidence').textContent = confidence.low_confidence || 0;
 
             const toolProfiles = data.tool_profiles || [];
             const container = document.getElementById('toolsList');

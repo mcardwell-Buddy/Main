@@ -169,7 +169,13 @@ const UnifiedChat = () => {
           const savedSessionId = localStorage.getItem('buddy_active_session_id');
           if (savedSessionId) {
             const sessionExists = backendSessions.some(s => s.id === savedSessionId);
-            setActiveSessionId(sessionExists ? savedSessionId : backendSessions[0]?.id || null);
+            if (sessionExists) {
+              setActiveSessionId(savedSessionId);
+            } else {
+              // Clear invalid session ID from localStorage
+              try { localStorage.removeItem('buddy_active_session_id'); } catch {}
+              setActiveSessionId(backendSessions[0]?.id || null);
+            }
           } else if (backendSessions.length > 0) {
             setActiveSessionId(backendSessions[0].id);
           }
@@ -189,7 +195,14 @@ const UnifiedChat = () => {
       
       try {
         const response = await authorizedFetch(`/conversation/sessions/${activeSessionId}`);
-        if (!response.ok) return;
+        if (!response.ok) {
+          // If session not found, clear it and load a valid session
+          if (response.status === 404) {
+            try { localStorage.removeItem('buddy_active_session_id'); } catch {}
+            setActiveSessionId(sessions[0]?.id || null);
+          }
+          return;
+        }
         
         const fullSession = await response.json();
         const sessionWithMessages = mapBackendSession(fullSession);
@@ -200,7 +213,7 @@ const UnifiedChat = () => {
     };
     
     loadSessionDetails();
-  }, [activeSessionId]);
+  }, [activeSessionId, sessions]);
 
   // Save active session ID to localStorage (UI state only)
   useEffect(() => {

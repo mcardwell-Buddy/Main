@@ -1,0 +1,23 @@
+﻿
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : {"timestamp":"2026-02-11T21:25:52.806909","overall_health":"healthy","summary":{"core":{"green":3,"red":0,"yellow":
+                    1,"gray":0},"intelligence":{"green":4,"red":0,"yellow":0,"gray":0},"learning":{"green...
+RawContent        : HTTP/1.1 200 OK
+                    Connection: keep-alive
+                    Strict-Transport-Security: max-age=31556926; includeSubDomains; preload
+                    X-Cloud-Trace-Context: 3777ae0c0490cb07000b777dd74b67b9;o=1
+                    X-Country-Code: US
+                    X-Ser...
+Forms             : 
+Headers           : {[Connection, keep-alive], [Strict-Transport-Security, max-age=31556926; includeSubDomains; preload], 
+                    [X-Cloud-Trace-Context, 3777ae0c0490cb07000b777dd74b67b9;o=1], [X-Country-Code, US]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : 
+RawContentLength  : 5791
+
+
+
