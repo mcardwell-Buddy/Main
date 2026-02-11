@@ -1,0 +1,3 @@
+2026-02-11 17:58:11,453 - Back_End.mission_sync_service - INFO - MissionSyncService initialized (interval: 300s, batch: 100)
+2026-02-11 17:58:11,453 - Back_End.mission_sync_service - INFO - Force sync requested
+2026-02-11 17:58:11,453 - Back_End.mission_sync_service - INFO - Syncing 1 events to Firebase...

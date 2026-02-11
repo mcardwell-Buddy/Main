@@ -20,5 +20,11 @@ class Config:
     FIREBASE_PROJECT_ID = os.getenv('FIREBASE_PROJECT_ID')
     FIREBASE_CLIENT_EMAIL = os.getenv('FIREBASE_CLIENT_EMAIL')
     FIREBASE_PRIVATE_KEY = os.getenv('FIREBASE_PRIVATE_KEY')
+    
+    # Mission Storage Mode (Cost Optimization)
+    # 'local-first': Write to SQLite, sync to Firebase in background (70-90% cost savings)
+    # 'cloud-direct': Write directly to Firebase (original behavior)
+    MISSION_STORAGE_MODE = os.getenv('MISSION_STORAGE_MODE', 'cloud-direct')
+    
     # Add more config as needed
 

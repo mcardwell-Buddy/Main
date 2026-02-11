@@ -1,10 +1,14 @@
-"""Mission store with Firebase-only persistence.
+"""Mission store with dual-mode persistence: local-first or cloud-direct.
 
-Replaces outputs/phase25/missions.jsonl with Firebase collection 'missions'.
-Single source of truth for all mission lifecycle events.
+Supports two modes:
+1. local-first: Write to SQLite, sync to Firebase in background (cost savings)
+2. cloud-direct: Write directly to Firebase (original behavior)
+
+Mode controlled by environment variable MISSION_STORAGE_MODE.
 """
 from __future__ import annotations
 
+import os
 import threading
 import logging
 from dataclasses import dataclass, field
@@ -23,6 +27,15 @@ try:
 except ImportError:
     FIREBASE_AVAILABLE = False
     logger.warning("Firebase not available - mission persistence disabled")
+
+# Local storage imports (for local-first mode)
+try:
+    from Back_End.local_mission_store import get_local_mission_store
+    from Back_End.mission_sync_service import get_sync_service
+    LOCAL_STORAGE_AVAILABLE = True
+except ImportError:
+    LOCAL_STORAGE_AVAILABLE = False
+    logger.warning("Local storage not available - falling back to cloud-direct mode")
 
 
 def _now_iso() -> str:
@@ -104,29 +117,47 @@ class MissionStore:
         self._missions: Dict[str, List[Mission]] = {}  # mission_id → list of events
         self._lock = threading.RLock()
         
-        # Initialize Firebase client
-        self._firebase_enabled = FIREBASE_AVAILABLE
-        self._db = None
-        if self._firebase_enabled:
-            try:
-                # Initialize firebase_admin if not already initialized
-                if not firebase_admin._apps:
-                    cred_path = Config.FIREBASE_CREDENTIALS_PATH
-                    if cred_path:
-                        cred = credentials.Certificate(cred_path)
-                        firebase_admin.initialize_app(cred)
-                    else:
-                        raise RuntimeError("FIREBASE_CREDENTIALS_PATH not set")
-                
-                self._db = firestore.client()
-                self._collection = self._db.collection('missions')
-                self._load_from_firebase()
-                logger.info("MissionStore initialized with Firebase persistence")
-            except Exception as e:
-                logger.error(f"Failed to initialize Firebase for missions: {e}")
-                self._firebase_enabled = False
+        # Detect storage mode from environment
+        self._storage_mode = os.getenv('MISSION_STORAGE_MODE', 'cloud-direct').lower()
+        logger.info(f"MissionStore initializing in '{self._storage_mode}' mode")
+        
+        # Initialize based on mode
+        if self._storage_mode == 'local-first' and LOCAL_STORAGE_AVAILABLE:
+            # Local-first mode: Use SQLite + background sync
+            self._local_store = get_local_mission_store()
+            self._sync_service = get_sync_service()
+            self._sync_service.start()
+            self._firebase_enabled = False  # Don't write directly to Firebase
+            self._db = None
+            logger.info("✅ MissionStore initialized in LOCAL-FIRST mode (SQLite + background sync)")
+            logger.info(f"💾 Local database: {self._local_store.db_path}")
+            logger.info(f"🔄 Sync interval: {self._sync_service.sync_interval}s")
         else:
-            logger.warning("MissionStore initialized WITHOUT Firebase persistence")
+            # Cloud-direct mode: Original Firebase-only behavior
+            self._local_store = None
+            self._sync_service = None
+            self._firebase_enabled = FIREBASE_AVAILABLE
+            self._db = None
+            if self._firebase_enabled:
+                try:
+                    # Initialize firebase_admin if not already initialized
+                    if not firebase_admin._apps:
+                        cred_path = Config.FIREBASE_CREDENTIALS_PATH
+                        if cred_path:
+                            cred = credentials.Certificate(cred_path)
+                            firebase_admin.initialize_app(cred)
+                        else:
+                            raise RuntimeError("FIREBASE_CREDENTIALS_PATH not set")
+                    
+                    self._db = firestore.client()
+                    self._collection = self._db.collection('missions')
+                    self._load_from_firebase()
+                    logger.info("✅ MissionStore initialized in CLOUD-DIRECT mode (Firebase-only)")
+                except Exception as e:
+                    logger.error(f"Failed to initialize Firebase for missions: {e}")
+                    self._firebase_enabled = False
+            else:
+                logger.warning("MissionStore initialized WITHOUT Firebase persistence")
     
     def _load_from_firebase(self) -> None:
         """Load all existing missions from Firebase on startup."""
@@ -184,14 +215,27 @@ class MissionStore:
             logger.error(f"Failed to save mission {mission.mission_id} to Firebase: {e}")
     
     def write_mission_event(self, mission: Mission) -> None:
-        """Write a mission event (proposed, approved, executed, etc.)."""
+        """Write a mission event (proposed, approved, executed, etc.).
+        
+        Routes to appropriate storage based on mode:
+        - local-first: Write to SQLite (synced to Firebase in background)
+        - cloud-direct: Write directly to Firebase (original behavior)
+        """
         with self._lock:
             if mission.mission_id not in self._missions:
                 self._missions[mission.mission_id] = []
             
             self._missions[mission.mission_id].append(mission)
-            self._save_to_firebase(mission)
-            logger.info(f"Mission event written: {mission.mission_id} → {mission.event_type} → {mission.status}")
+            
+            # Route based on storage mode
+            if self._storage_mode == 'local-first' and self._local_store:
+                # Write to local SQLite (will be synced to Firebase later)
+                self._local_store.write_mission_event(mission.to_dict())
+                logger.info(f"📝 Mission event written locally: {mission.mission_id} → {mission.event_type} → {mission.status}")
+            else:
+                # Write directly to Firebase (original behavior)
+                self._save_to_firebase(mission)
+                logger.info(f"☁️ Mission event written to cloud: {mission.mission_id} → {mission.event_type} → {mission.status}")
     
     def get_mission_events(self, mission_id: str) -> List[Mission]:
         """Get all events for a mission."""
