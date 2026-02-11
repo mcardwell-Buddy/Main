@@ -162,7 +162,7 @@ class SystemHealthMonitor:
                     }
                 else:
                     return {
-                        "status": "yellow",
+                        "status": "green",
                         "message": "Firebase session store accessible",
                         "details": "No active sessions yet"
                     }
@@ -222,7 +222,7 @@ class SystemHealthMonitor:
             api_key = os.getenv('SERAPI_API_KEY')
             if not api_key:
                 return {
-                    "status": "yellow",
+                    "status": "gray",
                     "message": "SerpAPI key not configured",
                     "details": "SERAPI_API_KEY environment variable is empty"
                 }
@@ -441,7 +441,7 @@ class SystemHealthMonitor:
                 }
             elif test_succeeded:
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Budget Tracker ready",
                     "details": "Tested: Functional but no usage data yet"
                 }
@@ -471,7 +471,7 @@ class SystemHealthMonitor:
                     }
                 else:
                     return {
-                        "status": "yellow",
+                        "status": "green",
                         "message": "Autonomy Manager ready",
                         "details": "Tested: Functional but no usage data yet"
                     }
@@ -496,7 +496,7 @@ class SystemHealthMonitor:
                     }
                 else:
                     return {
-                        "status": "yellow",
+                        "status": "green",
                         "message": "Success Tracker ready",
                         "details": "Tested: Functional but no goals tracked yet"
                     }
@@ -505,12 +505,16 @@ class SystemHealthMonitor:
             return {"status": "red", "message": "Success Tracker check failed", "error": str(e)}
     
     def _check_email_system(self) -> Dict[str, Any]:
-        """Check Email System - Verify Yahoo OAuth configuration"""
+        """Check Email System - Verify Yahoo OAuth or IMAP/SMTP configuration"""
         try:
             # Check for Yahoo OAuth credentials (primary method)
             yahoo_client_id = os.getenv('YAHOO_CLIENT_ID')
             yahoo_client_secret = os.getenv('YAHOO_CLIENT_SECRET')
             yahoo_email = os.getenv('BUDDY_YAHOO_EMAIL')
+            
+            # Check for professional email (Outlook IMAP/SMTP)
+            email_imap_user = os.getenv('EMAIL_IMAP_USER')
+            email_imap_password = os.getenv('EMAIL_IMAP_PASSWORD')
             
             # Fallback to generic SMTP
             smtp_key = os.getenv('SMTP_API_KEY')
@@ -521,17 +525,23 @@ class SystemHealthMonitor:
                     "message": "Yahoo OAuth configured",
                     "details": f"Tested: OAuth credentials present for {yahoo_email}"
                 }
+            elif email_imap_user and email_imap_password:
+                return {
+                    "status": "green",
+                    "message": "Professional email configured",
+                    "details": f"Outlook IMAP configured for {email_imap_user}"
+                }
             elif smtp_key:
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Generic SMTP configured",
-                    "details": "Should configure Yahoo OAuth for full integration"
+                    "details": "SMTP API configured"
                 }
             else:
                 return {
-                    "status": "yellow",
+                    "status": "gray",
                     "message": "Email system not configured",
-                    "details": "Set YAHOO_CLIENT_ID, YAHOO_CLIENT_SECRET, BUDDY_YAHOO_EMAIL"
+                    "details": "Set EMAIL_IMAP_USER or YAHOO_CLIENT_ID"
                 }
         except Exception as e:
             return {"status": "red", "message": "Email system check failed", "error": str(e)}
@@ -547,7 +557,7 @@ class SystemHealthMonitor:
                     "details": "CRM integration active"
                 }
             return {
-                "status": "yellow",
+                "status": "gray",
                 "message": "GHL CRM not configured",
                 "details": "GHL_API_TOKEN not set"
             }
@@ -577,7 +587,7 @@ class SystemHealthMonitor:
             if not os.path.exists(signals_dir):
                 os.makedirs(signals_dir, exist_ok=True)
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Learning Signals initialized",
                     "details": "Directory created, ready for learning events"
                 }
@@ -592,7 +602,7 @@ class SystemHealthMonitor:
                 }
             else:
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Learning Signals ready",
                     "details": "Directory exists, awaiting learning events"
                 }
@@ -608,7 +618,7 @@ class SystemHealthMonitor:
             if not os.path.exists(exec_dir):
                 os.makedirs(exec_dir, exist_ok=True)
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Execution Stream initialized",
                     "details": "Directory created, ready for execution logging"
                 }
@@ -623,7 +633,7 @@ class SystemHealthMonitor:
                 }
             else:
                 return {
-                    "status": "yellow",
+                    "status": "green",
                     "message": "Execution Stream ready",
                     "details": "Directory exists, awaiting execution logs"
                 }
@@ -641,7 +651,7 @@ class SystemHealthMonitor:
             }
         except ImportError:
             return {
-                "status": "yellow",
+                "status": "gray",
                 "message": "Screenshot Capture not available",
                 "details": "Vision dependencies not installed"
             }

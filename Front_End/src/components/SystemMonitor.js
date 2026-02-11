@@ -127,11 +127,6 @@ function SystemMonitor({ skipRefreshButton = false }) {
             <span className="decoder-count">{healthData.summary?.total?.green ?? 0}</span>
           </div>
           <div className="decoder-item">
-            <span className="decoder-circle" style={{ backgroundColor: '#f59e0b' }}></span>
-            <span className="decoder-label">Signal Ready</span>
-            <span className="decoder-count">{healthData.summary?.total?.yellow ?? 0}</span>
-          </div>
-          <div className="decoder-item">
             <span className="decoder-circle" style={{ backgroundColor: '#9ca3af' }}></span>
             <span className="decoder-label">Not Found</span>
             <span className="decoder-count">{healthData.summary?.total?.gray ?? 0}</span>
