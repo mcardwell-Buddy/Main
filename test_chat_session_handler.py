@@ -21,11 +21,11 @@ CONSTRAINTS VALIDATED:
 import unittest
 from datetime import datetime
 
-from backend.chat_session_handler import (
+from Back_End.chat_session_handler import (
     ChatMessage, ChatResponse, ChatSessionHandler, ChatSessionManager,
     handle_chat_message, get_session_stats, get_all_stats
 )
-from backend.response_envelope import ResponseType
+from Back_End.response_envelope import ResponseType
 
 
 class TestChatMessage(unittest.TestCase):
@@ -66,7 +66,7 @@ class TestChatResponse(unittest.TestCase):
     
     def test_chat_response_creation(self):
         """Test creating a chat response."""
-        from backend.response_envelope import text_response
+        from Back_End.response_envelope import text_response
         
         envelope = text_response("Hello!")
         response = ChatResponse(
@@ -82,7 +82,7 @@ class TestChatResponse(unittest.TestCase):
     
     def test_chat_response_serialization(self):
         """Test ChatResponse JSON serialization."""
-        from backend.response_envelope import text_response
+        from Back_End.response_envelope import text_response
         
         envelope = text_response("Test")
         response = ChatResponse(
@@ -423,7 +423,7 @@ class TestHardConstraints(unittest.TestCase):
         handler = ChatSessionHandler("sess", "user")
         
         # Import orchestrator directly and compare
-        from backend.interaction_orchestrator import orchestrate_message
+        from Back_End.interaction_orchestrator import orchestrate_message
         
         msg = "Get data from site.com"
         
@@ -442,3 +442,4 @@ class TestHardConstraints(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
+

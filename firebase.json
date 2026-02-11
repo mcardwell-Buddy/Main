@@ -1,18 +1,83 @@
 {
   "hosting": {
-    "public": ".",
+    "site": "buddy-aeabf",
+    "public": "Front_End/build",
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**",
-      "**/__pycache__/**",
-      "**/*.py[cod]",
-      ".env*",
-      "data/**",
-      "venv/**",
-      ".venv/**"
+      "**/node_modules/**"
     ],
     "rewrites": [
+      {
+        "source": "/conversation/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/chat/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/knowledge/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/vision/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/success/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/ws/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/api/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/system/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/boot/**",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
+      {
+        "source": "/health",
+        "run": {
+          "serviceId": "buddy-app",
+          "region": "us-east4"
+        }
+      },
       {
         "source": "**",
         "destination": "/index.html"

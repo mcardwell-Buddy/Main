@@ -123,7 +123,7 @@ def validate_mission_attribution():
     # Test whiteboard reconstruction
     print(f"\n🔍 Testing Whiteboard Reconstruction:")
     try:
-        from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+        from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
         
         whiteboard = get_mission_whiteboard(mission_id)
         print(f"  ✅ Whiteboard retrieved successfully")
@@ -153,3 +153,4 @@ def validate_mission_attribution():
 
 if __name__ == "__main__":
     validate_mission_attribution()
+

@@ -336,3 +336,4 @@ if __name__ == '__main__':
         'confidence': 0.85
     })
     print(f"Approval validation: {result}")
+

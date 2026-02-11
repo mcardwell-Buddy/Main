@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.interaction_orchestrator import InteractionOrchestrator
+from Back_End.interaction_orchestrator import InteractionOrchestrator
 
 orchestrator = InteractionOrchestrator()
 session_id = "test_debug"
@@ -26,3 +26,4 @@ response = orchestrator.process_message(
 
 print("Full Response:")
 print(json.dumps(response.to_dict(), indent=2, default=str))
+

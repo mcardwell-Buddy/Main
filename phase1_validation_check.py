@@ -16,7 +16,7 @@ print("=" * 70)
 # Test 1: Import
 print("\n[TEST 1] WebNavigatorAgent Import")
 try:
-    from backend.agents import WebNavigatorAgent
+    from Back_End.agents import WebNavigatorAgent
     print("  PASS: WebNavigatorAgent imported successfully")
 except Exception as e:
     print(f"  FAIL: {e}")
@@ -163,3 +163,4 @@ print("\nNext: Execute phase1_validation_run_v2.py to collect real learning data
 print("  (Note: Actual execution will open browser and visit sites)")
 
 sys.exit(0)
+

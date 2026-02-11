@@ -20,10 +20,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mission_control.chat_intent_router import ChatIntentRouter
-from backend.mission_control.mission_draft_builder import MissionDraftBuilder
-from backend.mission_control.mission_proposal_emitter import MissionProposalEmitter
-from backend.mission_control.chat_intake_coordinator import ChatIntakeCoordinator
+from Back_End.mission_control.chat_intent_router import ChatIntentRouter
+from Back_End.mission_control.mission_draft_builder import MissionDraftBuilder
+from Back_End.mission_control.mission_proposal_emitter import MissionProposalEmitter
+from Back_End.mission_control.chat_intake_coordinator import ChatIntakeCoordinator
 
 
 def test_intent_router():
@@ -285,3 +285,4 @@ def run_all_tests():
 if __name__ == '__main__':
     success = run_all_tests()
     sys.exit(0 if success else 1)
+

@@ -5,8 +5,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.conversation.session_store import get_conversation_store
-from backend.config import Config
+from Back_End.conversation.session_store import get_conversation_store
+from Back_End.config import Config
 
 print("=" * 80)
 print("COMPREHENSIVE INVESTIGATION: SESSION PERSISTENCE ANOMALY")
@@ -106,3 +106,4 @@ HYPOTHESIS 3: Timing issue
 
 NEXT: Check the actual get_or_create() implementation
 """)
+

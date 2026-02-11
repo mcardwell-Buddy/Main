@@ -8,7 +8,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.action_readiness_engine import ActionReadinessEngine, IntentCandidate
+from Back_End.action_readiness_engine import ActionReadinessEngine, IntentCandidate
 
 def investigate_extract_intent_fix():
     """Trace the exact flow for extract intent"""
@@ -91,3 +91,4 @@ if __name__ == "__main__":
     else:
         print("\n⚠️  FINDING: Readiness blocked before mission builder")
         sys.exit(0)
+

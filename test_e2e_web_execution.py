@@ -12,8 +12,8 @@ Tests the complete flow:
 import sys
 sys.path.insert(0, '.')
 
-from backend.interaction_orchestrator import InteractionOrchestrator
-from backend.response_envelope import ResponseType
+from Back_End.interaction_orchestrator import InteractionOrchestrator
+from Back_End.response_envelope import ResponseType
 
 print("=" * 70)
 print("END-TO-END INTEGRATION TEST: Web Navigate Execution")
@@ -133,3 +133,4 @@ print("=" * 70)
 print("\n✅ Web tools are now registered and execution paths work")
 print("✅ No 'Tool not found' errors")
 print("✅ Missions can be approved and executed")
+

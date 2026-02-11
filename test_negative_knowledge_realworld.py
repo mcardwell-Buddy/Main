@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.negative_knowledge_registry import (
+from Back_End.learning.negative_knowledge_registry import (
     NegativeKnowledgeRegistry,
     get_negative_knowledge_for_whiteboard
 )
@@ -120,3 +120,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

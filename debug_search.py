@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 from selenium.webdriver.common.by import By
 
 logging.basicConfig(level=logging.INFO)
@@ -152,3 +152,4 @@ finally:
             subprocess.run(['taskkill', '/F', '/IM', 'chromedriver.exe'], capture_output=True)
         except:
             pass
+

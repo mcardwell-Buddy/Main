@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 from email.message import EmailMessage
 
-from backend.interfaces.email_interface import EmailInterface
+from Back_End.interfaces.email_interface import EmailInterface
 
 
 class TestEmailInterface(unittest.TestCase):
@@ -67,3 +67,4 @@ class TestEmailInterface(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

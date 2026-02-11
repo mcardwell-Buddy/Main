@@ -12,7 +12,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 # Global persistent browser
 persistent_scraper = None
@@ -248,3 +248,4 @@ def interactive_test_loop():
 
 if __name__ == "__main__":
     interactive_test_loop()
+

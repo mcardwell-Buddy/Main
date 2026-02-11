@@ -9,7 +9,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -76,3 +76,4 @@ finally:
             subprocess.run(['taskkill', '/F', '/IM', 'chromedriver.exe'], capture_output=True)
         except:
             pass
+

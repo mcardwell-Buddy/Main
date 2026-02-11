@@ -70,3 +70,4 @@ if (not buddy_sessions_matches and
     print("5. Sessions should now load ONLY from Firebase")
 else:
     print("⚠️  Some issues remain - review output above")
+

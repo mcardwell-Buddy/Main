@@ -31,7 +31,7 @@ print("-" * 80)
 print("File: backend/interaction_orchestrator.py (line ~732)")
 print("Old code:")
 print("  try:")
-print("    from backend.execution import execution_queue")
+print("    from Back_End.execution import execution_queue")
 print("    execution_queue.enqueue({mission_data})")
 print("")
 print("New code:")
@@ -121,3 +121,4 @@ if invariants_passed:
 else:
     print("✗ FIX FAILED: Some invariants did not pass")
 print("="*80 + "\n")
+

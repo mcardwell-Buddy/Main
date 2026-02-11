@@ -495,3 +495,4 @@ class Phase2SyntheticHarness:
 if __name__ == '__main__':
     harness = Phase2SyntheticHarness()
     harness.run_full_test_suite()
+

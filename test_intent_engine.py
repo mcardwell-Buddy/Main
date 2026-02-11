@@ -6,7 +6,7 @@ import os
 os.chdir(r'C:\Users\micha\Buddy')
 sys.path.insert(0, r'C:\Users\micha\Buddy')
 
-from backend.agents.navigation_intent_engine import NavigationIntentEngine
+from Back_End.agents.navigation_intent_engine import NavigationIntentEngine
 
 print("Testing NavigationIntentEngine...")
 
@@ -49,3 +49,4 @@ if signal['top_candidate']:
     print(f"  Top: {signal['top_candidate']['text']} (score: {signal['top_candidate']['score']})")
 
 print("\n✅ NavigationIntentEngine working!")
+

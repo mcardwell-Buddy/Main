@@ -1,7 +1,7 @@
 """Test penalties and adjustments"""
-from backend.tool_selector import tool_selector
-from backend.memory_manager import memory_manager
-from backend.feedback_manager import feedback_manager
+from Back_End.tool_selector import tool_selector
+from Back_End.memory_manager import memory_manager
+from Back_End.feedback_manager import feedback_manager
 
 goal = "What is the current time?"
 domain = "_global"
@@ -16,3 +16,4 @@ for tool in ['get_time', 'calculate', 'web_search']:
     multiplier, constraint, matched = feedback_manager.get_tool_adjustment(goal, tool, domain)
     if matched:
         print(f"  {tool}: multiplier={multiplier}, constraint={constraint}")
+

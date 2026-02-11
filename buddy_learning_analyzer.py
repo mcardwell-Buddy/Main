@@ -180,3 +180,4 @@ class LearningAnalyzer:
                 })
         
         return candidates
+

@@ -10,9 +10,9 @@ Validates:
 """
 
 import json
-from backend.proposal_presenter import ProposalPresenter
-from backend.task_breakdown_and_proposal import TaskBreakdownEngine
-from backend.cost_estimator import ServiceTier
+from Back_End.proposal_presenter import ProposalPresenter
+from Back_End.task_breakdown_and_proposal import TaskBreakdownEngine
+from Back_End.cost_estimator import ServiceTier
 
 def test_simple_proposal():
     """Test proposal for a simple task."""
@@ -262,3 +262,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

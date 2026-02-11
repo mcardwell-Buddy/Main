@@ -6,7 +6,7 @@ Test read-only codebase awareness tools.
 import sys
 sys.path.insert(0, '.')
 
-from backend.codebase_analyzer import CodebaseAnalyzer
+from Back_End.codebase_analyzer import CodebaseAnalyzer
 
 
 def test_repo_index():
@@ -49,3 +49,4 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("✓ All code awareness tests completed!")
     print("=" * 60)
+

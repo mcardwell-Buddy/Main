@@ -308,3 +308,4 @@ class SimulatedExecutor:
         with path.open("w", encoding="utf-8") as f:
             for item in payload:
                 f.write(json.dumps(item) + "\n")
+

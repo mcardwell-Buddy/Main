@@ -295,3 +295,4 @@ class AgentManager:
             3. Return True if valid, raise exception otherwise
         """
         pass
+

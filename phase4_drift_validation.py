@@ -19,7 +19,7 @@ from typing import Dict, List
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.drift_detector import detect_drift, DriftDetector
+from Back_End.learning.drift_detector import detect_drift, DriftDetector
 
 
 def create_test_signals_with_drift(test_file: Path) -> None:
@@ -379,3 +379,4 @@ def validate_drift_detection():
 if __name__ == "__main__":
     exit_code = validate_drift_detection()
     sys.exit(exit_code)
+

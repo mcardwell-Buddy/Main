@@ -34,7 +34,7 @@ print(f"   Expression: {mission_record['tool_input']}")
 print()
 
 # Now test approval
-from backend.mission_approval_service import approve_mission
+from Back_End.mission_approval_service import approve_mission
 
 print("=" * 60)
 print("STEP 2: APPROVAL & EXECUTION")
@@ -46,7 +46,7 @@ print(f"✅ Approval Result: {approval_result}")
 print()
 
 # Execute mission  
-from backend.execution_service import ExecutionService
+from Back_End.execution_service import ExecutionService
 
 execution_service = ExecutionService()
 execution_result = execution_service.execute_mission(mission_id)
@@ -87,4 +87,5 @@ if artifacts_file.exists():
         print(f"   Total artifacts in file: {len(lines)}")
 else:
     print(f"❌ Artifacts file does not exist: {artifacts_file}")
+
 

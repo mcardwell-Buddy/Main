@@ -1,0 +1,58 @@
+# Configuration for Buddy Local Agent
+
+# Firebase
+firebase_project_id: buddy-ai-platform
+firebase_database_url: https://buddy-ai-platform.firebaseio.com
+
+# Agent Settings
+agent_poll_interval: 5                    # seconds between polls
+agent_heartbeat_interval: 30              # seconds between heartbeats
+agent_stale_threshold: 60                 # seconds before agent considered offline
+
+# Browser Settings (Phase 3)
+max_browsers: 25                          # Conservative default (adjust based on Phase 0 results)
+browser_launch_timeout_ms: 30000
+browser_restart_after_tasks: 50
+
+# Task Settings (Phase 4)
+max_concurrent_tasks: 20
+task_timeout_ms: 120000                   # 2 minutes default
+task_retry_limit: 3
+task_retry_backoff_ms: 5000
+
+# Resource Settings (Phase 2)
+ram_warning_threshold_percent: 85
+ram_shutdown_threshold_percent: 90
+cpu_warning_threshold_percent: 80
+
+# Sync Settings (Phase 6)
+sync_interval_seconds: 60
+sync_batch_size: 50
+sync_max_retries: 3
+
+# Cache Settings (Phase 5)
+cache_enabled: true
+cache_ttl_hours: 24
+cache_max_size_mb: 500
+
+# Logging
+log_level: DEBUG                          # DEBUG, INFO, WARNING, ERROR
+log_retention_days: 7
+log_max_size_mb: 100
+
+# Database
+database_cleanup_hour: 3                  # Run cleanup at 3 AM
+database_cleanup_retention_days: 7
+
+# Development
+debug_mode: false
+test_mode: false
+
+# Notification Settings (Phase 11)
+alert_on_offline: true
+alert_on_high_memory: true
+alert_on_failures: true
+
+# Version
+agent_version: "1.0.0"
+agent_build_date: "2026-02-11"

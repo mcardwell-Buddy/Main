@@ -23,7 +23,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Import WebNavigatorAgent
-from backend.agents import WebNavigatorAgent
+from Back_End.agents import WebNavigatorAgent
 
 # Site configurations
 VALIDATION_SITES = [
@@ -178,3 +178,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

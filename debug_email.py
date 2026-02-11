@@ -41,3 +41,4 @@ try:
     imap.logout()
 except Exception as e:
     print("✗ Connection/Login failed:", e)
+

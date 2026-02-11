@@ -8,7 +8,7 @@ HR Contact System - Quick Reference Guide
 
 # 1️⃣ FIND HR CONTACTS (Simplest)
 # ─────────────────────────────────────────────────────────────────────────
-from backend.hr_contact_manager import find_hr_contacts
+from Back_End.hr_contact_manager import find_hr_contacts
 
 contacts = find_hr_contacts(
     employer_data=employers,              # From Mployer search
@@ -28,7 +28,7 @@ for contact in contacts:
 
 # 2️⃣ USE PRESET SEARCHES
 # ─────────────────────────────────────────────────────────────────────────
-from backend.hr_contact_manager import HRContactManager, PresetSearches
+from Back_End.hr_contact_manager import HRContactManager, PresetSearches
 
 manager = HRContactManager()
 
@@ -46,7 +46,7 @@ results = manager.search_from_employer_data(
 
 # 3️⃣ CUSTOM FLUENT SEARCH
 # ─────────────────────────────────────────────────────────────────────────
-from backend.hr_search_params import HRContactSearchBuilder, ContactDataType
+from Back_End.hr_search_params import HRContactSearchBuilder, ContactDataType
 
 params = (HRContactSearchBuilder()
     .executive_and_above()                           # VP or C-suite
@@ -142,7 +142,7 @@ csv_str = manager.export_results(format="csv")
 
 # 9️⃣ FULL MPLOYER WORKFLOW
 # ─────────────────────────────────────────────────────────────────────────
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 # 1. Search Mployer
 scraper = MployerScraper(username, password, headless=False)
@@ -187,7 +187,7 @@ filtered = manager.search(params)
 # "all"                  → All HR roles including managers
 
 # Enum values (for builder):
-from backend.hr_search_params import SeniorityLevel
+from Back_End.hr_search_params import SeniorityLevel
 
 SeniorityLevel.C_SUITE
 SeniorityLevel.EXECUTIVE
@@ -201,7 +201,7 @@ SeniorityLevel.ALL
 # CONTACT DATA TYPES
 # ============================================================================
 
-from backend.hr_search_params import ContactDataType
+from Back_End.hr_search_params import ContactDataType
 
 ContactDataType.EMAIL              # Email address
 ContactDataType.PHONE_DIRECT       # Direct phone line
@@ -364,7 +364,7 @@ contacts = find_hr_contacts(
 )
 
 # Scenario 2: "Find HR directors in our state with complete contact info"
-from backend.hr_search_params import HRContactSearchBuilder, ContactDataType
+from Back_End.hr_search_params import HRContactSearchBuilder, ContactDataType
 
 params = (HRContactSearchBuilder()
     .director_and_above()
@@ -500,3 +500,4 @@ manager.save_results()
 # Check what was created
 import os
 os.listdir("hr_contacts")
+

@@ -16,7 +16,7 @@ from typing import List, Dict
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.forecast_domain_contract import (
+from Back_End.learning.forecast_domain_contract import (
     DomainContract,
     load_domain_contracts,
     validate_all_contracts
@@ -212,3 +212,4 @@ def validate_domain_contracts():
 if __name__ == "__main__":
     exit_code = validate_domain_contracts()
     sys.exit(exit_code)
+

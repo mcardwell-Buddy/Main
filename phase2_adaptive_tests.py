@@ -756,3 +756,4 @@ class AdaptiveTestRunner:
 if __name__ == '__main__':
     runner = AdaptiveTestRunner()
     runner.run_adaptive_tests()
+

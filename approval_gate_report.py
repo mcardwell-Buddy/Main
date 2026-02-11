@@ -77,3 +77,4 @@ print("  [ ] UI integration (approval button, tool picker)")
 print("\n" + "="*80)
 print("✓ APPROVAL GATE SUCCESSFULLY IMPLEMENTED & VERIFIED")
 print("="*80 + "\n")
+

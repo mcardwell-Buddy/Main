@@ -56,7 +56,7 @@ except Exception as e:
 # Test 2: Verify mission in Firebase (not local file)
 print(f"\n[TEST 2] Verifying mission {mission_id} is in Firebase...")
 try:
-    from backend.mission_store import get_mission_store
+    from Back_End.mission_store import get_mission_store
     store = get_mission_store()
     
     mission = store.find_mission(mission_id)
@@ -111,7 +111,7 @@ except Exception as e:
 # Test 4: Verify approval in Firebase
 print(f"\n[TEST 4] Verifying approval status in Firebase...")
 try:
-    from backend.mission_store import get_mission_store
+    from Back_End.mission_store import get_mission_store
     store = get_mission_store()
     
     status = store.get_current_status(mission_id)
@@ -159,7 +159,7 @@ except Exception as e:
 # Test 6: Verify execution in Firebase
 print(f"\n[TEST 6] Verifying execution in Firebase...")
 try:
-    from backend.mission_store import get_mission_store
+    from Back_End.mission_store import get_mission_store
     store = get_mission_store()
     
     status = store.get_current_status(mission_id)
@@ -191,7 +191,7 @@ except Exception as e:
 # Test 7: Verify learning signals in Firebase
 print(f"\n[TEST 7] Verifying learning signals in Firebase...")
 try:
-    from backend.memory_manager import memory
+    from Back_End.memory_manager import memory
     
     # Check execution signal
     exec_signal_key = f"execution_outcome:{mission_id}"
@@ -227,3 +227,4 @@ print("  6. ✅ Execution recorded in Firebase")
 print("  7. ✅ Learning signals in Firebase")
 print("\n🎉 Single source of truth: Firebase ✅")
 print("🚀 Cloud-ready architecture confirmed!")
+

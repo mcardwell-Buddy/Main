@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 import sys
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.negative_knowledge_registry import (
+from Back_End.learning.negative_knowledge_registry import (
     NegativeKnowledgeRegistry,
     NegativeKnowledgeEntry,
     get_negative_knowledge_for_whiteboard
@@ -545,3 +545,4 @@ def run_all_tests():
 if __name__ == "__main__":
     success = run_all_tests()
     exit(0 if success else 1)
+

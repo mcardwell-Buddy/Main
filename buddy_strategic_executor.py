@@ -258,3 +258,4 @@ class StrategicExecutor(SimulatedExecutor):
             for d in self.strategic_decisions
         )
         return total_boost / len(self.strategic_decisions)
+

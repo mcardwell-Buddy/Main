@@ -6,10 +6,10 @@ Test goal decomposition and composite goal execution.
 import sys
 sys.path.insert(0, '.')
 
-from backend.goal_decomposer import goal_decomposer
-from backend.composite_agent import execute_goal
-from backend.config import Config
-from backend.memory import memory
+from Back_End.goal_decomposer import goal_decomposer
+from Back_End.composite_agent import execute_goal
+from Back_End.config import Config
+from Back_End.memory import memory
 
 
 def _clear_memory_safe():
@@ -87,3 +87,4 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("✓ All goal decomposition tests completed!")
     print("=" * 60)
+

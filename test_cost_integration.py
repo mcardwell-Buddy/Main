@@ -6,8 +6,8 @@ Test with real mission data from learning_signals.jsonl
 import json
 from pathlib import Path
 
-from backend.mission.mission_cost_accountant import MissionCostAccountant
-from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+from Back_End.mission.mission_cost_accountant import MissionCostAccountant
+from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
 
 
 def test_real_mission_costs():
@@ -110,3 +110,4 @@ def test_real_mission_costs():
 
 if __name__ == "__main__":
     test_real_mission_costs()
+

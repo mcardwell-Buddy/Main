@@ -497,3 +497,4 @@ class Phase2StagingVerifier:
 if __name__ == '__main__':
     verifier = Phase2StagingVerifier()
     verifier.run_full_verification()
+

@@ -18,8 +18,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.interaction_orchestrator import InteractionOrchestrator
-from backend.response_envelope import ResponseEnvelope
+from Back_End.interaction_orchestrator import InteractionOrchestrator
+from Back_End.response_envelope import ResponseEnvelope
 
 def print_section(title):
     """Print a formatted section header"""
@@ -139,7 +139,7 @@ def test_end_to_end():
     print_section("STEP 3: Mission Execution")
     
     try:
-        from backend.session_context_manager import SessionContextManager
+        from Back_End.session_context_manager import SessionContextManager
         scm = SessionContextManager()
         context = scm.get_or_create(session_id)
         
@@ -213,3 +213,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

@@ -7,9 +7,9 @@ Tests the new /chat/integrated endpoint.
 import sys
 sys.path.insert(0, r"c:\Users\micha\Buddy")
 
-from backend.chat_session_handler import ChatSessionHandler, ChatMessage
-from backend.interaction_orchestrator import orchestrate_message
-from backend.response_envelope import ResponseEnvelope
+from Back_End.chat_session_handler import ChatSessionHandler, ChatMessage
+from Back_End.interaction_orchestrator import orchestrate_message
+from Back_End.response_envelope import ResponseEnvelope
 from uuid import uuid4
 
 def test_local_integration():
@@ -139,3 +139,4 @@ if __name__ == "__main__":
     success = test_local_integration()
     verify_files()
     sys.exit(0 if success else 1)
+

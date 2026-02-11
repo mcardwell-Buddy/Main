@@ -20,13 +20,13 @@ from pathlib import Path
 
 sys.path.insert(0, '.')
 
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools
-from backend.additional_tools import register_additional_tools
-from backend.web_tools import register_web_tools
-from backend.tool_selector import tool_selector
-from backend.execution_service import ExecutionService
-from backend.interaction_orchestrator import InteractionOrchestrator
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.web_tools import register_web_tools
+from Back_End.tool_selector import tool_selector
+from Back_End.execution_service import ExecutionService
+from Back_End.interaction_orchestrator import InteractionOrchestrator
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -641,3 +641,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

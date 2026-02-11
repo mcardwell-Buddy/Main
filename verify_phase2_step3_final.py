@@ -13,8 +13,8 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
 def main():
-    from backend.interfaces.telegram_interface import TelegramInterface
-    from backend.buddy_core import handle_user_message
+    from Back_End.interfaces.telegram_interface import TelegramInterface
+    from Back_End.buddy_core import handle_user_message
     
     print("\n" + "=" * 80)
     print(" " * 20 + "PHASE 2 · STEP 3 VERIFICATION REPORT")
@@ -118,3 +118,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

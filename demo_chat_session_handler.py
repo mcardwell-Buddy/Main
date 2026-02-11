@@ -14,7 +14,7 @@ CONSTRAINTS VALIDATED:
 - No logic changes (uses existing orchestrator)
 """
 
-from backend.chat_session_handler import (
+from Back_End.chat_session_handler import (
     ChatSessionHandler, ChatSessionManager,
     handle_chat_message, get_session_stats, get_all_stats
 )
@@ -193,7 +193,7 @@ def demo_constraints():
     
     print("\n✓ CONSTRAINT 3: NO LOGIC CHANGES")
     # Handler just routes - doesn't change agent behavior
-    from backend.interaction_orchestrator import orchestrate_message
+    from Back_End.interaction_orchestrator import orchestrate_message
     direct = orchestrate_message("Get data from site.com", "constraint_demo", "user")
     assert response.envelope.response_type == direct.response_type
     print("  ChatSessionHandler correctly delegates to orchestrator")
@@ -234,3 +234,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

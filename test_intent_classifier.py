@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.conversation.intent_classifier import IntentClassifier
+from Back_End.conversation.intent_classifier import IntentClassifier
 
 classifier = IntentClassifier()
 
@@ -35,3 +35,4 @@ for msg in test_messages:
 print("=" * 70)
 print("Classification test complete.")
 print("=" * 70)
+

@@ -122,7 +122,7 @@ def test_ambiguity_integration():
     print("="*70 + "\n")
     
     try:
-        from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+        from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
         
         # Check whiteboard for first ambiguous mission
         if ambiguity_signals:
@@ -149,3 +149,4 @@ def test_ambiguity_integration():
 
 if __name__ == "__main__":
     test_ambiguity_integration()
+

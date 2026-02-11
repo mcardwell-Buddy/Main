@@ -13,8 +13,8 @@ for line in env_path.read_text().splitlines():
     k, v = line.split('=', 1)
     os.environ.setdefault(k.strip(), v.strip())
 
-from backend.mployer_scraper import MployerScraper
-from backend.page_inspector import inspect_page_elements, print_inspection_report
+from Back_End.mployer_scraper import MployerScraper
+from Back_End.page_inspector import inspect_page_elements, print_inspection_report
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
@@ -192,3 +192,4 @@ while True:
         print("Invalid command. Please try again.")
 
 print("\nSession ended.")
+

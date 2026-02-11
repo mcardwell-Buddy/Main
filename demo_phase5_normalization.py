@@ -7,7 +7,7 @@ discovered during the diagnostic investigation.
 Run this to see normalization in action (requires LLM configured).
 """
 
-from backend.semantic_normalizer import maybe_normalize
+from Back_End.semantic_normalizer import maybe_normalize
 
 
 def demo_navigation_phrasing():
@@ -126,7 +126,7 @@ def demo_safety_invariants():
     print("DEMO 6: Safety Invariants (PRESERVED)")
     print("=" * 70)
     
-    from backend.mission_manager import get_all_missions
+    from Back_End.mission_manager import get_all_missions
     
     initial_count = len(get_all_missions())
     
@@ -194,3 +194,4 @@ if __name__ == "__main__":
         print()
         print("This is expected if LLM is not configured.")
         print("The system works without LLM (graceful fallback to original text).")
+

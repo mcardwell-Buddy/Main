@@ -1,5 +1,5 @@
-from backend.iterative_executor import IterativeExecutor
-from backend.iterative_decomposer import iterative_decomposer
+from Back_End.iterative_executor import IterativeExecutor
+from Back_End.iterative_decomposer import iterative_decomposer
 
 executor = IterativeExecutor('10 + 5')
 analysis = executor._execute_simple(iterative_decomposer.analyze_goal_complexity('10 + 5'))
@@ -14,3 +14,4 @@ if analysis['execution_log']:
     print('First entry keys:', list(first.keys()) if isinstance(first, dict) else type(first))
     if isinstance(first, dict) and 'observation' in first:
         print('  Observation keys:', list(first['observation'].keys()))
+

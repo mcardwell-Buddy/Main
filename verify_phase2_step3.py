@@ -15,7 +15,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 def verify_classifier():
     """Verify intent classifier is working."""
-    from backend.conversation.intent_classifier import IntentClassifier
+    from Back_End.conversation.intent_classifier import IntentClassifier
     
     classifier = IntentClassifier()
     test_cases = [
@@ -39,8 +39,8 @@ def verify_classifier():
 
 def verify_telegram_interface():
     """Verify telegram interface forwards to Buddy Core."""
-    from backend.interfaces.telegram_interface import TelegramInterface
-    from backend.buddy_core import handle_user_message
+    from Back_End.interfaces.telegram_interface import TelegramInterface
+    from Back_End.buddy_core import handle_user_message
     
     telegram = TelegramInterface()
     
@@ -79,7 +79,7 @@ def verify_jsonl_has_intent():
 
 def verify_safety():
     """Verify core entry point is reachable without side effects."""
-    from backend.buddy_core import handle_user_message
+    from Back_End.buddy_core import handle_user_message
 
     response = handle_user_message(source="telegram", text="test")
     return response.startswith("Buddy heard you via Telegram")
@@ -123,7 +123,7 @@ def main():
     # Check 5: No Breaking Changes
     print("\n[5/5] Verifying Backwards Compatibility...")
     try:
-        from backend.interfaces.telegram_interface import TelegramInterface
+        from Back_End.interfaces.telegram_interface import TelegramInterface
         telegram = TelegramInterface()
         # Verify old interface still works
         ok = hasattr(telegram, 'send_message') and hasattr(telegram, 'handle_update')
@@ -151,3 +151,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

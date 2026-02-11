@@ -10,14 +10,14 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.interaction_orchestrator import (
+from Back_End.interaction_orchestrator import (
     DeterministicIntentClassifier, 
     IntentType,
     RoutingDecision,
     InteractionOrchestrator
 )
-from backend.action_readiness_engine import ActionReadinessEngine, ReadinessDecision
-from backend.llm_client import llm_client
+from Back_End.action_readiness_engine import ActionReadinessEngine, ReadinessDecision
+from Back_End.llm_client import llm_client
 
 # Test messages that should work
 TEST_CASES = [
@@ -294,3 +294,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -3,7 +3,7 @@ Single focused test for Phase 2 Step 2 verification
 """
 import json
 import logging
-from backend.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -64,3 +64,4 @@ with open(signals_file, "r", encoding="utf-8") as f:
 print("\n" + "=" * 80)
 print("[OK] Phase 2 Step 2 validation complete")
 print("=" * 80)
+

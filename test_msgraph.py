@@ -12,7 +12,7 @@ for line in env_path.read_text().splitlines():
     os.environ.setdefault(k.strip(), v.strip())
 
 # Test Microsoft Graph
-from backend.msgraph_email import MSGraphEmailClient
+from Back_End.msgraph_email import MSGraphEmailClient
 
 print('Testing Microsoft Graph API connection...')
 print(f'Client ID: {os.getenv("MSGRAPH_CLIENT_ID")}')
@@ -37,3 +37,4 @@ if token:
 else:
     print('✗ Failed to authenticate')
     print('Check your credentials in .env file')
+

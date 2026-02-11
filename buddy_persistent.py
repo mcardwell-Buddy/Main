@@ -17,7 +17,7 @@ from datetime import datetime
 load_dotenv(Path(__file__).parent / '.env')
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 from selenium.webdriver.common.by import By
 
 username = os.getenv("MPLOYER_USERNAME")
@@ -249,3 +249,4 @@ finally:
     print("Closing browser...")
     scraper.driver.quit()
     print("[OK] Browser closed. Goodbye!")
+

@@ -23,3 +23,4 @@ print("User ID set:", bool(os.getenv("BUDDY_TELEGRAM_ALLOWED_USER_ID")))
 
 if os.getenv("BUDDY_TELEGRAM_BOT_TOKEN"):
     print("Token prefix:", os.getenv("BUDDY_TELEGRAM_BOT_TOKEN")[:20])
+

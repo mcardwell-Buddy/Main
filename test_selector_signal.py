@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 """Test selector signal persistence"""
 
-from backend.phase25_orchestrator import Phase25Orchestrator
+from Back_End.phase25_orchestrator import Phase25Orchestrator
 from datetime import datetime, timezone
 
 # Create orchestrator
@@ -37,3 +37,4 @@ orch.log_learning_signal(
 print("✓ Parameter signal written")
 
 print("\n✓ Both signal formats work!")
+

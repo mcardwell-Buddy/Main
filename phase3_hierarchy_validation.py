@@ -5,11 +5,11 @@ Tests structural layers with no execution behavior changes.
 
 import json
 from pathlib import Path
-from backend.mission_control.goal_registry import GoalRegistry
-from backend.mission_control.program_registry import ProgramRegistry
-from backend.mission_control.conversation_session import ConversationSessionManager
-from backend.mission_control.mission_contract import MissionContract
-from backend.whiteboard import mission_whiteboard
+from Back_End.mission_control.goal_registry import GoalRegistry
+from Back_End.mission_control.program_registry import ProgramRegistry
+from Back_End.mission_control.conversation_session import ConversationSessionManager
+from Back_End.mission_control.mission_contract import MissionContract
+from Back_End.whiteboard import mission_whiteboard
 
 
 def cleanup_test_files():
@@ -510,3 +510,4 @@ def main():
 if __name__ == "__main__":
     success = main()
     exit(0 if success else 1)
+

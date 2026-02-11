@@ -8,7 +8,7 @@ import json
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
 
 
 def main():
@@ -92,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

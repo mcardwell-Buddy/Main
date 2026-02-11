@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.interfaces.telegram_interface import TelegramInterface
+from Back_End.interfaces.telegram_interface import TelegramInterface
 
 # Create a test interface instance
 telegram = TelegramInterface()
@@ -68,3 +68,4 @@ if events_file.exists():
 print("-" * 70)
 print("Test complete. Intent field now in JSONL.")
 print("=" * 70)
+

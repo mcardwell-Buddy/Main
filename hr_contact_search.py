@@ -19,9 +19,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Import after path setup
-from backend.mployer_scraper import MployerScraper
-from backend.hr_contact_manager import HRContactManager, find_hr_contacts, PresetSearches
-from backend.hr_search_params import SeniorityLevel, ContactDataType
+from Back_End.mployer_scraper import MployerScraper
+from Back_End.hr_contact_manager import HRContactManager, find_hr_contacts, PresetSearches
+from Back_End.hr_search_params import SeniorityLevel, ContactDataType
 
 
 class HRContactSearchCLI:
@@ -376,3 +376,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -3,7 +3,7 @@ Phase 3 Step 2 Validation: Opportunity Normalizer
 Tests deterministic opportunity creation from collected items.
 """
 
-from backend.mission_control.opportunity_normalizer import OpportunityNormalizer
+from Back_End.mission_control.opportunity_normalizer import OpportunityNormalizer
 
 
 def test_directory_style_items():
@@ -341,3 +341,4 @@ def main():
 if __name__ == "__main__":
     success = main()
     exit(0 if success else 1)
+

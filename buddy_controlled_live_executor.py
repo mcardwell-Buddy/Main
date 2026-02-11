@@ -324,3 +324,4 @@ class ControlledLiveExecutor:
             "dry_run_executed": sum(1 for o in self.outcomes if not o.is_live and o.status == "completed"),
             "safety_decisions": len(self.safety_gate.decisions)
         }
+

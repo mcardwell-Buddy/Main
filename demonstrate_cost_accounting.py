@@ -3,7 +3,7 @@ Visual Demonstration: Mission Cost Accounting
 Shows cost tracking for different mission scenarios
 """
 
-from backend.mission.mission_cost_accountant import MissionCostReport
+from Back_End.mission.mission_cost_accountant import MissionCostReport
 import json
 
 
@@ -217,3 +217,4 @@ def demonstrate_cost_accounting():
 
 if __name__ == "__main__":
     demonstrate_cost_accounting()
+

@@ -168,3 +168,4 @@ class GoalManager:
             )
 
         return expanded
+

@@ -6,9 +6,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.task_breakdown_and_proposal import TaskBreakdownEngine
-from backend.proposal_presenter import ProposalPresenter
-from backend.cost_estimator import ServiceTier
+from Back_End.task_breakdown_and_proposal import TaskBreakdownEngine
+from Back_End.proposal_presenter import ProposalPresenter
+from Back_End.cost_estimator import ServiceTier
 
 # Initialize
 engine = TaskBreakdownEngine(serpapi_tier=ServiceTier.FREE)
@@ -91,3 +91,4 @@ print(json.dumps(proposal_dict, indent=2, default=str)[:2000] + "\n... (JSON con
 print("\n" + "="*80)
 print("Sample proposal demo complete. Not starting mission execution.")
 print("="*80 + "\n")
+

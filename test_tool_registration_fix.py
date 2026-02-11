@@ -1,6 +1,6 @@
 """Smoke test to verify web tools are now registered"""
 
-from backend.agent import *
+from Back_End.agent import *
 
 print("=" * 60)
 print("TOOL REGISTRATION VERIFICATION")
@@ -47,3 +47,4 @@ print(f"  Success: {'error' not in result or 'dry' in str(result).lower()}")
 print("\n" + "=" * 60)
 print("VERIFICATION COMPLETE")
 print("=" * 60)
+

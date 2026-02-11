@@ -16,7 +16,7 @@ from typing import List
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.forecast_view_model import (
+from Back_End.learning.forecast_view_model import (
     ForecastView,
     ForecastViewRenderer,
     generate_whiteboard_section
@@ -247,3 +247,4 @@ def validate_forecast_views():
 if __name__ == "__main__":
     exit_code = validate_forecast_views()
     sys.exit(exit_code)
+

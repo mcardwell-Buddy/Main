@@ -360,3 +360,4 @@ def test_monitor_health_status_threshold(temp_dirs):
     anomalies = monitor.detect_anomalies(1, metrics)
     health = monitor.generate_system_health(1, metrics, anomalies)
     assert health.health_status == "EXCELLENT"
+

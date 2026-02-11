@@ -7,9 +7,9 @@ Verifies that tool performance is tracked separately by domain.
 import sys
 sys.path.insert(0, '.')
 
-from backend.agent import Agent, AgentState
-from backend.tool_performance import tracker
-from backend.memory import memory
+from Back_End.agent import Agent, AgentState
+from Back_End.tool_performance import tracker
+from Back_End.memory import memory
 
 def test_domain_inference():
     """Test that domains are correctly inferred from goals"""
@@ -136,3 +136,4 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("✓ All domain capsule tests completed!")
     print("=" * 60)
+

@@ -217,3 +217,4 @@ class Phase22Monitor:
             recommendation=recommendation,
             wave=wave,
         )
+

@@ -15,3 +15,4 @@ for p in patterns:
     result = m.group(0) if m else "NO MATCH"
     print(f"Pattern: {p}")
     print(f"Result: {result}\n")
+

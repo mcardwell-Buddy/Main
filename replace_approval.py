@@ -33,8 +33,8 @@ new_function = """    def _handle_approval_bridge(self, message: str, session_id
             session_context_obj.clear_pending_mission()
             return text_response("There's nothing to approve yet.")
 
-        from backend.mission_approval_service import approve_mission
-        from backend.execution_service import execute_mission
+        from Back_End.mission_approval_service import approve_mission
+        from Back_End.execution_service import execute_mission
 
         # Approve the mission
         approval_result = approve_mission(mission_id)
@@ -74,3 +74,4 @@ with open(r'c:\Users\micha\Buddy\backend\interaction_orchestrator.py', 'w', enco
     f.write(content)
 
 print('Replaced approval handler successfully')
+

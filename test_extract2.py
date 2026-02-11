@@ -1,4 +1,4 @@
-from backend.agent import Agent as AtomicAgent
+from Back_End.agent import Agent as AtomicAgent
 
 agent = AtomicAgent('20 * 3', preferred_tool='calculate')
 steps = []
@@ -24,3 +24,4 @@ for step in reversed(steps):
     if obs and 'result' in obs:
         print(f'Found result: {obs["result"]}')
         break
+

@@ -12,8 +12,8 @@ load_dotenv()
 # Add backend to path
 sys.path.insert(0, os.path.dirname(__file__))
 
-from backend.conversation.session_store import get_conversation_store
-from backend.config import Config
+from Back_End.conversation.session_store import get_conversation_store
+from Back_End.config import Config
 
 print("=" * 80)
 print("FIREBASE SYNC TEST")
@@ -108,3 +108,4 @@ else:
 print("\n" + "=" * 80)
 print("TEST COMPLETE")
 print("=" * 80)
+

@@ -10,7 +10,7 @@ Validates:
 """
 
 import json
-from backend.cost_estimator import CostEstimator, ServiceTier, ModelType
+from Back_End.cost_estimator import CostEstimator, ServiceTier, ModelType
 
 def test_serpapi_free_tier():
     """Test SerpAPI free tier cost calculation."""
@@ -207,3 +207,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

@@ -36,7 +36,7 @@ from typing import Dict, List, Any
 sys.path.insert(0, str(Path(__file__).parent))
 
 # Import web tools module
-from backend.web_tools import (
+from Back_End.web_tools import (
     web_browser_start,
     web_browser_stop,
     web_navigate,
@@ -399,3 +399,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

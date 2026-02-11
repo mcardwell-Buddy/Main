@@ -133,3 +133,4 @@ def verify_phase1_step4():
 if __name__ == "__main__":
     success = verify_phase1_step4()
     exit(0 if success else 1)
+

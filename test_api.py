@@ -21,3 +21,4 @@ r = requests.post(f"{base_url}/chat", params={"goal": "calculate 15 + 27"})
 result = r.json()
 print(f"Agent took {len(result['steps'])} steps")
 print(f"Final state: {result['final']}")
+

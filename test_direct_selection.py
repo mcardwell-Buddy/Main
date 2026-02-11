@@ -3,9 +3,9 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Import and register tools FIRST
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools, register_code_awareness_tools
-from backend.additional_tools import register_additional_tools
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools, register_code_awareness_tools
+from Back_End.additional_tools import register_additional_tools
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -13,8 +13,8 @@ register_code_awareness_tools(tool_registry)
 
 print(f"Registered tools: {list(tool_registry.tools.keys())}\n")
 
-from backend.tool_selector import tool_selector
-from backend.tool_performance import tracker
+from Back_End.tool_selector import tool_selector
+from Back_End.tool_performance import tracker
 
 goal = "What is the current time?"
 
@@ -40,3 +40,4 @@ print(f"\nselect_tool result:")
 print(f"  Tool: {tool_name}")
 print(f"  Input: {tool_input}")
 print(f"  Confidence: {confidence:.2f}")
+

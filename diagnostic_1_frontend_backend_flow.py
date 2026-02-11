@@ -139,3 +139,4 @@ Fix 3: Keep backend session creation on init (already done)
    - Fallback for legacy clients
    - Ensures session exists even if frontend doesn't call create API
 """)
+

@@ -1,0 +1,572 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+
+/* Login Section - Split Screen */
+.auth-section {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 0;
+}
+
+.login-left {
+    flex: 1;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.buddy-image-large {
+    width: 400px;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
+}
+
+.login-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background: white;
+}
+
+/* Animation removed for performance - SVG loads instantly */
+
+.auth-section h1 {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 30px;
+    text-shadow: none;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.login-form {
+    background: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #eee;
+}
+
+.signin-info {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: 15px;
+}
+
+/* FirebaseUI Customization */
+.firebaseui-container {
+    max-width: 100%;
+}
+
+.firebaseui-card {
+    box-shadow: none;
+}
+
+/* Dashboard */
+.dashboard {
+    background: #f5f5f5;
+    min-height: 100vh;
+}
+
+.navbar {
+    background: white;
+    padding: 20px 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+}
+
+.nav-buddy-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-email-display {
+    color: #666;
+    font-size: 14px;
+}
+
+.options-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: opacity 0.3s;
+}
+
+.options-btn:hover {
+    opacity: 0.7;
+}
+
+.logout-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.logout-btn:hover {
+    background: #764ba2;
+}
+
+/* Chat Interface */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 80px);
+    padding: 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.messages-area {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 40px 20px;
+    color: #666;
+}
+
+.welcome-message h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+#message-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    resize: vertical;
+    min-height: 50px;
+    max-height: 150px;
+}
+
+#message-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.send-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.3s;
+    height: 50px;
+}
+
+.send-btn:hover {
+    background: #764ba2;
+}
+
+.send-btn:active {
+    transform: scale(0.98);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #999;
+    padding: 0;
+}
+
+.close-btn:hover {
+    color: #333;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.option-item {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    text-align: left;
+    font-size: 14px;
+}
+
+.option-item:hover {
+    background: #f5f5f5;
+    border-color: #667eea;
+}
+
+.option-icon {
+    font-size: 20px;
+}
+
+.option-text {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Chat Messages */
+.message {
+    margin: 10px 0;
+    display: flex;
+    animation: slideIn 0.3s ease;
+}
+
+.message p {
+    margin: 0;
+    padding: 10px 15px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    max-width: 70%;
+}
+
+.message-user {
+    justify-content: flex-end;
+}
+
+.message-user p {
+    background: #667eea;
+    color: white;
+}
+
+.message-buddy {
+    justify-content: flex-start;
+}
+
+.message-buddy p {
+    background: #e8e8e8;
+    color: #333;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-content {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    margin-bottom: 40px;
+}
+
+.welcome-section h2 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.welcome-section p {
+    color: #666;
+    font-size: 16px;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #e0e0e0;
+    color: #666;
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: #d0d0d0;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Email Status */
+.email-status {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 13px;
+    text-align: center;
+    min-height: 20px;
+}
+
+.email-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.email-status.error {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.email-status.loading {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .auth-section {
+        flex-direction: column;
+    }
+
+    .login-left {
+        min-height: 40vh;
+        padding: 20px;
+    }
+
+    .buddy-image-large {
+        width: 250px;
+        height: auto;
+    }
+
+    .login-right {
+        min-height: 60vh;
+        padding: 30px 20px;
+    }
+
+    .auth-section h1 {
+        font-size: 36px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+    }
+
+    .login-form {
+        padding: 30px 20px;
+        max-width: 100%;
+    }
+
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-user {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .dashboard-content {
+        padding: 20px;
+    }
+
+    .welcome-section h2 {
+        font-size: 24px;
+    }
+}
+/* Hide Knowledge button (outdated) */
+.knowledge-bar-button {
+    display: none !important;
+}
+
+/* Logout button styling */
+#logout-button-overlay {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+}
+
+#logout-btn {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    transition: all 0.2s ease;
+}
+
+#logout-btn:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.4);
+}
+
+#logout-btn:active {
+    transform: translateY(0);
+}

@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 def main():
     print("\n" + "="*70)
@@ -177,3 +177,4 @@ if __name__ == "__main__":
         print("\n" + "="*70)
         print("⚠️  ISSUES DETECTED - REVIEW ERRORS ABOVE")
         print("="*70)
+

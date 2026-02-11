@@ -1,5 +1,5 @@
-from backend.tool_selector import tool_selector
-from backend.tool_registry import tool_registry
+from Back_End.tool_selector import tool_selector
+from Back_End.tool_registry import tool_registry
 
 goal = "search for best practices"
 
@@ -33,3 +33,4 @@ print(f"\n4. Final Selection:")
 print(f"   Tool: {tool_name}")
 print(f"   Input: {tool_input}")
 print(f"   Confidence: {confidence:.2f}")
+

@@ -11,8 +11,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from backend.mployer_scraper import MployerScraper
-from backend.buddys_vision import BuddysVision, BuddysVisionTasks
+from Back_End.mployer_scraper import MployerScraper
+from Back_End.buddys_vision import BuddysVision, BuddysVisionTasks
 
 
 def main():
@@ -172,3 +172,4 @@ This is Buddy's vision system - his eyes to understand any website!
 
 if __name__ == "__main__":
     main()
+

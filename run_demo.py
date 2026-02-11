@@ -3,9 +3,9 @@
 import sys, json
 sys.path.insert(0, r'c:\Users\micha\Buddy')
 
-from backend.task_breakdown_and_proposal import TaskBreakdownEngine
-from backend.proposal_presenter import ProposalPresenter
-from backend.cost_estimator import ServiceTier
+from Back_End.task_breakdown_and_proposal import TaskBreakdownEngine
+from Back_End.proposal_presenter import ProposalPresenter
+from Back_End.cost_estimator import ServiceTier
 
 print('\n' + '='*80)
 print('  BUDDY UNIFIED PROPOSAL SYSTEM - SAMPLE')
@@ -94,3 +94,4 @@ if len(pd['task_breakdown']['steps']) > 5:
 print('\n' + '='*80)
 print('Sample complete. Proposal is ready but NOT executing.')
 print('='*80 + '\n')
+

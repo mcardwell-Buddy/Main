@@ -5,7 +5,7 @@ Phase 2 Whiteboard Validation: Read-only Mission Whiteboard
 import json
 from pathlib import Path
 
-from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
 
 
 def _latest_completed_mission_id() -> str:
@@ -58,3 +58,4 @@ def run_validation() -> None:
 
 if __name__ == "__main__":
     run_validation()
+

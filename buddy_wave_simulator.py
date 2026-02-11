@@ -300,3 +300,4 @@ class WaveSimulator:
     def get_summary(self) -> Dict[str, Any]:
         """Return wave summary."""
         return self.wave_summary
+

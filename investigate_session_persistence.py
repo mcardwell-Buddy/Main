@@ -5,8 +5,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.conversation.session_store import get_conversation_store
-from backend.config import Config
+from Back_End.conversation.session_store import get_conversation_store
+from Back_End.config import Config
 
 print("=" * 70)
 print("INVESTIGATION: SESSION PERSISTENCE AFTER DELETION")
@@ -98,3 +98,4 @@ SOLUTION: Restart backend server to reload from Firebase
 
 ALTERNATIVELY: Need to add cache invalidation logic
 """)
+

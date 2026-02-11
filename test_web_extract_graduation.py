@@ -7,10 +7,10 @@ from datetime import datetime, timezone
 sys.path.insert(0, '.')
 
 # Register all tools including web tools
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools
-from backend.additional_tools import register_additional_tools
-from backend.web_tools import register_web_tools
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.web_tools import register_web_tools
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -48,8 +48,8 @@ print(f"   Objective: Extract and fetch h1 heading data from the webpage")
 print()
 
 # STEP 2: Approve and execute
-from backend.mission_approval_service import approve_mission
-from backend.execution_service import ExecutionService
+from Back_End.mission_approval_service import approve_mission
+from Back_End.execution_service import ExecutionService
 
 print(f"🔄 STEP 2: Approval & Execution")
 approve_result = approve_mission(mission_id)
@@ -148,7 +148,7 @@ print()
 # STEP 5: Explainability test
 print(f"✅ STEP 5: Explainability Test (Follow-up)")
 
-from backend.artifact_reader import get_latest_artifact
+from Back_End.artifact_reader import get_latest_artifact
 
 follow_up_artifact = get_latest_artifact(mission_id=mission_id)
 if follow_up_artifact:
@@ -241,3 +241,4 @@ print("Sample Artifact:")
 print(json.dumps(last_artifact, indent=2))
 print()
 print("🎉 STATUS: ✅ GRADUATED")
+

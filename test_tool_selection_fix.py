@@ -4,7 +4,7 @@
 import sys
 sys.path.insert(0, '.')
 
-from backend.tool_selector import ToolSelector
+from Back_End.tool_selector import ToolSelector
 
 ts = ToolSelector()
 
@@ -33,3 +33,4 @@ for goal in test_goals:
     print(f"Selected: {tool_name} (confidence: {confidence:.2f})")
 
 print("\n" + "=" * 60)
+

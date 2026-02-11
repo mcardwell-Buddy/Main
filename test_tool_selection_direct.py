@@ -7,7 +7,7 @@ Tests that execution validates tools against intents and fails fast on mismatch.
 import json
 import time
 from pathlib import Path
-from backend.execution_service import ExecutionService, INTENT_TOOL_RULES
+from Back_End.execution_service import ExecutionService, INTENT_TOOL_RULES
 
 MISSIONS_FILE = Path("outputs/phase25/missions.jsonl")
 
@@ -270,3 +270,4 @@ def main():
 if __name__ == '__main__':
     success = main()
     exit(0 if success else 1)
+

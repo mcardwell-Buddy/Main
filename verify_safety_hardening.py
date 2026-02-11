@@ -3,7 +3,7 @@
 
 import json
 from pathlib import Path
-from backend.phase25_orchestrator import Phase25Orchestrator
+from Back_End.phase25_orchestrator import Phase25Orchestrator
 from datetime import datetime, timezone
 
 # Clean output file
@@ -93,3 +93,4 @@ print("  ✅ Phase25 signal unchanged (no selector tags)")
 print("\n" + "=" * 60)
 print("✅ ALL TESTS PASSED - SAFETY HARDENING VERIFIED")
 print("=" * 60)
+

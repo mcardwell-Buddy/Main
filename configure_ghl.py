@@ -34,3 +34,4 @@ if status.json().get("configured"):
     print('  - "Search my CRM for contacts at TechCorp"')
 else:
     print("\n❌ Configuration failed. Check your API token.")
+

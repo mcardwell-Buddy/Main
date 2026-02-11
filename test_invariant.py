@@ -140,3 +140,4 @@ if __name__ == '__main__':
         print("✗ INVARIANT TEST FAILED")
         print("=" * 70)
         exit(1)
+

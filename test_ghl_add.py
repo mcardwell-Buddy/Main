@@ -5,8 +5,8 @@ Test adding a contact to GoHighLevel
 import sys
 sys.path.insert(0, 'C:/Users/micha/Buddy')
 
-from backend.gohighlevel_client import initialize_ghl
-from backend.gohighlevel_tools import ghl_add_contact
+from Back_End.gohighlevel_client import initialize_ghl
+from Back_End.gohighlevel_tools import ghl_add_contact
 import json
 
 # Initialize GHL with your token and location
@@ -38,3 +38,4 @@ if result.get("status") == "success":
     print("Check your GoHighLevel CRM to see the new contact!")
 else:
     print(f"\n❌ FAILED: {result.get('message', 'Unknown error')}")
+

@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.forecast_promotion_gate import (
+from Back_End.learning.forecast_promotion_gate import (
     ForecastPromotionGate,
     PromotionEligibility,
     evaluate_and_emit_promotions
@@ -424,3 +424,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

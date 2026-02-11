@@ -21,7 +21,7 @@ logger = logging.getLogger(__name__)
 
 # Import WebNavigatorAgent
 try:
-    from backend.agents import WebNavigatorAgent
+    from Back_End.agents import WebNavigatorAgent
     logger.info("✓ WebNavigatorAgent imported successfully")
 except Exception as e:
     logger.error(f"Failed to import WebNavigatorAgent: {e}")
@@ -287,3 +287,4 @@ if __name__ == "__main__":
         logger.info("\n\nValidation run interrupted by user")
     except Exception as e:
         logger.error(f"Fatal error: {e}", exc_info=True)
+

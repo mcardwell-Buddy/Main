@@ -1,0 +1,20 @@
+BROWSER CAPACITY TEST REPORT
+======================================================================
+
+Date: 2026-02-11 07:54:15
+
+Maximum browsers tested: 40
+Peak RAM usage: 85.4%
+Average RAM per browser: ~141 MB
+
+Laptop Specs:
+  Total RAM: 19.7 GB
+  CPU Cores: 12
+
+Recommended Limits:
+  Conservative (60%): 85 browsers
+  Optimal (70%): 99 browsers
+  Comfortable (80%): 114 browsers
+  Maximum (85%): 121 browsers
+
+RECOMMENDATION: Set max_browsers = 99

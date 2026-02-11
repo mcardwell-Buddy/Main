@@ -25,7 +25,7 @@ try:
         code = f.read()
     ast.parse(code)
     # Check that BuddysArms is NOT imported
-    if 'from backend.buddys_arms import' in code:
+    if 'from Back_End.buddys_arms import' in code:
         print("  ✗ ERROR: buddys_vision.py still imports BuddysArms!")
         sys.exit(1)
     if 'self.arms = BuddysArms' in code:
@@ -102,3 +102,4 @@ print("  ✓ 1.2c Goal timeout 120s (verified)")
 print("  ✓ 1.3 Tool results display (verified)")
 print("  ✓ 1.4 Vision/Arms decoupling (verified)")
 print("\nReady to merge to main!")
+

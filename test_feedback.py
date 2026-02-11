@@ -6,8 +6,8 @@ Test human feedback injection and application.
 import sys
 sys.path.insert(0, '.')
 
-from backend.feedback_manager import feedback_manager
-from backend.memory import memory
+from Back_End.feedback_manager import feedback_manager
+from Back_End.memory import memory
 
 
 def _clear_memory_safe():
@@ -75,3 +75,4 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("✓ All feedback tests completed!")
     print("=" * 60)
+

@@ -23,3 +23,4 @@ with open('outputs/phase25/missions.jsonl') as f:
             print("Test mission record structure:")
             print(json.dumps(record, indent=2))
             break
+

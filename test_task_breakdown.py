@@ -10,8 +10,8 @@ Validates:
 """
 
 import json
-from backend.task_breakdown_and_proposal import TaskBreakdownEngine, StepType
-from backend.cost_estimator import ServiceTier
+from Back_End.task_breakdown_and_proposal import TaskBreakdownEngine, StepType
+from Back_End.cost_estimator import ServiceTier
 
 def test_simple_atomic_task():
     """Test breakdown of a simple atomic task."""
@@ -218,3 +218,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

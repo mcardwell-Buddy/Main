@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
+    <meta name="description" content="Buddy - Autonomous Agent Interface"/>
+    <title>Buddy</title>
+    <link href="/static/css/main.767ac7c9.css?v=20260209" rel="stylesheet">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-auth-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script>
+        // Initialize Firebase before React app loads
+        const firebaseConfig = {
+            apiKey: "AIzaSyCEXJGsr_4UBE6w5mbudfPHR1KNCDh5thk",
+            authDomain: "buddy-aeabf.firebaseapp.com",
+            projectId: "buddy-aeabf",
+            storageBucket: "buddy-aeabf.firebasestorage.app",
+            messagingSenderId: "501753640467",
+            appId: "1:501753640467:web:c2a3edbb3ee17fed5fb1e6",
+            measurementId: "G-67JSL6RPEG"
+        };
+        
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        // Check auth state - if not logged in, redirect to login
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                window.location.href = '/';
+            }
+        });
+    </script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    
+    <!-- React App Bundle -->
+    <script defer src="/static/js/main.be84d144.js?v=20260209"></script>
+</body>
+</html>

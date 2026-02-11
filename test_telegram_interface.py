@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import json
 
-from backend.interfaces.telegram_interface import TelegramInterface
+from Back_End.interfaces.telegram_interface import TelegramInterface
 
 
 class TestTelegramInterface(unittest.TestCase):
@@ -60,3 +60,4 @@ class TestTelegramInterface(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

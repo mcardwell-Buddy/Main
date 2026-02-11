@@ -8,8 +8,8 @@ import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-from backend.self_improvement_engine import self_improvement_engine
-from backend.agent_reasoning import agent_reasoning
+from Back_End.self_improvement_engine import self_improvement_engine
+from Back_End.agent_reasoning import agent_reasoning
 
 print("="*60)
 print("TESTING SELF-IMPROVEMENT ENGINE")
@@ -103,3 +103,4 @@ except:
 print(f"\n{'='*60}")
 print("✓ ALL TESTS COMPLETE")
 print(f"{'='*60}")
+

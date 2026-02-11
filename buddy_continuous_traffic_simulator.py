@@ -536,3 +536,4 @@ if __name__ == '__main__':
     
     simulator = BuddyTrafficSimulator(config=config)
     simulator.run(max_requests=args.max_requests)
+

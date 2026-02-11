@@ -16,9 +16,9 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.artifact_delivery_flow import DeliveryIntentParser, ArtifactDeliveryOrchestrator
-from backend.email_client import YahooEmailClient, YahooOAuthClient
-from backend.onedrive_client import OneDriveClient, OneDriveOAuthClient
+from Back_End.artifact_delivery_flow import DeliveryIntentParser, ArtifactDeliveryOrchestrator
+from Back_End.email_client import YahooEmailClient, YahooOAuthClient
+from Back_End.onedrive_client import OneDriveClient, OneDriveOAuthClient
 
 
 def test_intent_parser():
@@ -156,7 +156,7 @@ def test_email_client_initialization():
     print("="*50)
     
     try:
-        from backend.email_client import get_email_client, get_comprehension_engine
+        from Back_End.email_client import get_email_client, get_comprehension_engine
         
         email_client = get_email_client()
         print("✅ Email client initialized")
@@ -200,7 +200,7 @@ def test_onedrive_client_initialization():
     print("="*50)
     
     try:
-        from backend.onedrive_client import get_onedrive_client
+        from Back_End.onedrive_client import get_onedrive_client
         
         onedrive = get_onedrive_client()
         print("✅ OneDrive client initialized")
@@ -309,3 +309,4 @@ def run_all_tests():
 if __name__ == "__main__":
     success = run_all_tests()
     sys.exit(0 if success else 1)
+

@@ -1,4 +1,4 @@
-from backend.agent import Agent
+from Back_End.agent import Agent
 
 agent = Agent('10 + 5', preferred_tool='calculate')
 steps = []
@@ -16,3 +16,4 @@ for i in range(1):  # Just first step
 print(f'\nAgent state.done: {agent.state.done}')
 print(f'Agent state.steps: {agent.state.steps}')
 print(f'Total steps taken: {len(steps)}')
+

@@ -3,9 +3,9 @@ Phase 3 Step 1 E2E Integration Test: Goal Satisfaction Evaluator
 Tests goal evaluation integrated into mission completion workflow.
 """
 
-from backend.mission_control.mission_contract import MissionContract
-from backend.agents.web_navigator_agent import WebNavigatorAgent
-from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+from Back_End.mission_control.mission_contract import MissionContract
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
 import json
 from pathlib import Path
 
@@ -159,3 +159,4 @@ def run_e2e_test():
 if __name__ == "__main__":
     success = run_e2e_test()
     exit(0 if success else 1)
+

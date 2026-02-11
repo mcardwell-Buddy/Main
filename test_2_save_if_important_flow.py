@@ -9,9 +9,9 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.config import Config
-from backend.memory_manager import memory_manager
-from backend.memory import memory
+from Back_End.config import Config
+from Back_End.memory_manager import memory_manager
+from Back_End.memory import memory
 import json
 from datetime import datetime
 
@@ -92,3 +92,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

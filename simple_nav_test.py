@@ -5,7 +5,7 @@ import os, sys, time
 from pathlib import Path
 sys.path.insert(0, str(Path('.').absolute()))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 username = os.getenv('MPLOYER_USERNAME')
 password = os.getenv('MPLOYER_PASSWORD')
@@ -35,3 +35,4 @@ try:
         
 finally:
     scraper.driver.quit()
+

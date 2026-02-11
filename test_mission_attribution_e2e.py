@@ -3,8 +3,8 @@ End-to-End test for Phase 2 Step 6: Mission Attribution
 Creates a new mission and verifies signals are scoped with mission_id.
 """
 
-from backend.mission_control.mission_contract import MissionContract
-from backend.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.mission_control.mission_contract import MissionContract
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
 import json
 from pathlib import Path
 
@@ -115,7 +115,7 @@ def run_test():
         # Test whiteboard
         print(f"\n🔍 Testing Whiteboard with new mission:")
         try:
-            from backend.whiteboard.mission_whiteboard import get_mission_whiteboard
+            from Back_End.whiteboard.mission_whiteboard import get_mission_whiteboard
             
             whiteboard = get_mission_whiteboard(mission_id)
             print(f"  ✅ Whiteboard for mission {mission_id[:8]}...")
@@ -150,3 +150,4 @@ def run_test():
 
 if __name__ == "__main__":
     run_test()
+

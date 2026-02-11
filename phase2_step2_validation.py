@@ -14,7 +14,7 @@ Expected behavior:
 import json
 import logging
 from pathlib import Path
-from backend.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
 
 # Configure logging
 logging.basicConfig(
@@ -191,3 +191,4 @@ def analyze_learning_signals():
 
 if __name__ == "__main__":
     run_validation()
+

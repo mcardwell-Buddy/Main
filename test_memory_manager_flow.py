@@ -9,9 +9,9 @@ from dotenv import load_dotenv
 load_dotenv()
 sys.path.insert(0, os.path.dirname(__file__))
 
-from backend.memory_manager import memory_manager
-from backend.memory import memory
-from backend.config import Config
+from Back_End.memory_manager import memory_manager
+from Back_End.memory import memory
+from Back_End.config import Config
 
 print("=" * 80)
 print("MEMORY MANAGER → FIREBASE FLOW TEST")
@@ -131,7 +131,7 @@ except Exception as e:
 print(f"\n6. VERIFYING DATA IN FIREBASE:")
 if hasattr(memory, '_db') and memory._db:
     try:
-        from backend.conversation.session_store import get_conversation_store
+        from Back_End.conversation.session_store import get_conversation_store
         store = get_conversation_store()
         
         # Try to access the agent_memory collection
@@ -168,3 +168,4 @@ else:
 print("\n" + "=" * 80)
 print("TEST COMPLETE")
 print("=" * 80)
+

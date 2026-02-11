@@ -9,3 +9,4 @@ with open('outputs/phase25/missions.jsonl') as f:
             print(f"Event: {record.get('event_type')}, Status: {record.get('status')}")
             print(json.dumps(record, indent=2))
             print()
+

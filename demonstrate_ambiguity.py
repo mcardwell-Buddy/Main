@@ -3,7 +3,7 @@ VISUAL DEMONSTRATION: Ambiguity Evaluator in Action
 ===================================================
 """
 
-from backend.mission_control.ambiguity_evaluator import AmbiguityEvaluator
+from Back_End.mission_control.ambiguity_evaluator import AmbiguityEvaluator
 import json
 
 
@@ -177,3 +177,4 @@ def demonstrate_ambiguity_detection():
 
 if __name__ == "__main__":
     demonstrate_ambiguity_detection()
+

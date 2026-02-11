@@ -189,7 +189,7 @@ python test_negative_knowledge_realworld.py
 python test_whiteboard_negative_knowledge.py
 
 # Use in code
-from backend.learning.negative_knowledge_registry import (
+from Back_End.learning.negative_knowledge_registry import (
     NegativeKnowledgeRegistry
 )
 
@@ -261,3 +261,4 @@ blocking execution or using LLMs.
 ║                    🎉 IMPLEMENTATION COMPLETE 🎉                     ║
 ╚══════════════════════════════════════════════════════════════════════╝
 """)
+

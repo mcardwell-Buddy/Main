@@ -39,8 +39,8 @@ print(f"   Expression: {mission_record['tool_input']}")
 print()
 
 # Approve and execute
-from backend.mission_approval_service import approve_mission
-from backend.execution_service import ExecutionService
+from Back_End.mission_approval_service import approve_mission
+from Back_End.execution_service import ExecutionService
 
 approve_result = approve_mission(mission_id)
 execution_service = ExecutionService()
@@ -83,7 +83,7 @@ else:
 
 # STEP 5: Explainability - test direct artifact retrieval
 print(f"✅ STEP 5: Explainability Test (Follow-up)")
-from backend.artifact_reader import get_latest_artifact
+from Back_End.artifact_reader import get_latest_artifact
 
 follow_up_artifact = get_latest_artifact(mission_id=mission_id)
 if follow_up_artifact:
@@ -179,3 +179,4 @@ print("🎉 CALCULATE TOOL STATUS: ✅ GRADUATED")
 print()
 print("Sample Artifact:")
 print(json.dumps(last_artifact, indent=2))
+

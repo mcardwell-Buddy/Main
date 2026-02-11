@@ -31,8 +31,8 @@ from pathlib import Path
 from typing import Dict, Any, List, Optional
 import random
 
-from backend.agent import Agent
-from backend.tool_registry import tool_registry
+from Back_End.agent import Agent
+from Back_End.tool_registry import tool_registry
 from backend import web_tools
 
 from buddy_context_manager import get_session_manager
@@ -1228,3 +1228,4 @@ if __name__ == "__main__":
     harness = EndToEndSimulationHarness(seed=42)
     harness.run()
     print(f"\nSimulation complete. Outputs saved to: {OUTPUT_DIR}")
+

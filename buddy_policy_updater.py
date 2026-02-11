@@ -65,3 +65,4 @@ class PolicyUpdater:
                 "failed_rate": failed_rate
             }
         }
+

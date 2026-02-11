@@ -15,8 +15,8 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.buddys_vision import BuddysVision, BuddysVisionTasks
-from backend.mployer_scraper import MployerScraper
+from Back_End.buddys_vision import BuddysVision, BuddysVisionTasks
+from Back_End.mployer_scraper import MployerScraper
 
 
 def print_section(title):
@@ -188,3 +188,4 @@ if __name__ == "__main__":
     print("\n" + "="*60)
     print("  Test Complete!")
     print("="*60 + "\n")
+

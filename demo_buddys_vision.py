@@ -13,7 +13,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
-from backend.buddys_vision import BuddysVision
+from Back_End.buddys_vision import BuddysVision
 
 
 def print_section(title):
@@ -71,3 +71,4 @@ def demo_buddys_vision():
 
 if __name__ == "__main__":
     demo_buddys_vision()
+

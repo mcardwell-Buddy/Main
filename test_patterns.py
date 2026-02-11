@@ -35,3 +35,4 @@ for goal, expected in test_goals:
     print(f"   Expected: {expected}, Got: {result}")
     print(f"   LQ match: {lq_match}, SK match: {sk_match}")
     print()
+

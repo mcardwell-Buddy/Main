@@ -16,7 +16,7 @@ from typing import List, Dict
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.whiteboard_phase4_panels import (
+from Back_End.learning.whiteboard_phase4_panels import (
     Phase4WhiteboardPanels,
     render_phase4_whiteboard
 )
@@ -296,3 +296,4 @@ def validate_whiteboard_panels():
 if __name__ == "__main__":
     exit_code = validate_whiteboard_panels()
     sys.exit(exit_code)
+

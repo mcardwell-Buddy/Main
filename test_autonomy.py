@@ -6,8 +6,8 @@ Test autonomy manager structures and guardrails.
 import sys
 sys.path.insert(0, '.')
 
-from backend.autonomy_manager import AutonomyManager
-from backend.memory import memory
+from Back_End.autonomy_manager import AutonomyManager
+from Back_End.memory import memory
 
 
 def _clear_memory_safe():
@@ -57,3 +57,4 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("✓ All autonomy tests completed!")
     print("=" * 60)
+

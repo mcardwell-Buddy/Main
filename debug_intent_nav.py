@@ -1,6 +1,6 @@
 """Debug test to see navigation flow"""
 import logging
-from backend.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
 
 # Enable debug logging
 logging.basicConfig(
@@ -34,3 +34,4 @@ if hasattr(agent, 'driver') and agent.driver:
     agent.driver.quit()
 
 print("\n[DONE] Test complete")
+

@@ -9,7 +9,7 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.interaction_orchestrator import _shared_orchestrator
+from Back_End.interaction_orchestrator import _shared_orchestrator
 
 def test_extract_mission_flow():
     """Test extract intent flow to find where error occurs"""
@@ -84,3 +84,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

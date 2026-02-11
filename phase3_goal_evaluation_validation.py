@@ -3,7 +3,7 @@ Phase 3 Step 1 Validation: Goal Satisfaction Evaluation
 Tests deterministic goal evaluation for satisfied and unsatisfied objectives.
 """
 
-from backend.mission_control.goal_satisfaction_evaluator import GoalSatisfactionEvaluator
+from Back_End.mission_control.goal_satisfaction_evaluator import GoalSatisfactionEvaluator
 
 
 def test_quantitative_objective_satisfied():
@@ -251,3 +251,4 @@ def main():
 if __name__ == "__main__":
     success = main()
     exit(0 if success else 1)
+

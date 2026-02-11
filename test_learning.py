@@ -1,6 +1,6 @@
 """Test learning instruction recognition"""
-from backend.goal_decomposer import goal_decomposer
-from backend.tool_selector import tool_selector
+from Back_End.goal_decomposer import goal_decomposer
+from Back_End.tool_selector import tool_selector
 
 print("="*60)
 print("TESTING LEARNING INSTRUCTION RECOGNITION")
@@ -55,3 +55,4 @@ print("="*60)
 print("Introspection: 'what do you know' -> learning_query (check memory)")
 print("Learning: 'learn about' -> store_knowledge (research + save)")
 print("Research: 'what is' -> web_search (just research)")
+

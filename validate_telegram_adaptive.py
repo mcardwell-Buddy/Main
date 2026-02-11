@@ -26,7 +26,7 @@ if env_path.exists():
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
-from backend.interfaces.telegram_interface import TelegramInterface
+from Back_End.interfaces.telegram_interface import TelegramInterface
 
 SHUTDOWN = False
 
@@ -115,3 +115,4 @@ logger.info("=" * 70)
 logger.info("Telegram validation stopped.")
 logger.info("Total messages processed: %d", message_count)
 logger.info("=" * 70)
+

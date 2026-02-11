@@ -6,12 +6,12 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 # Import and register tools FIRST
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools, register_code_awareness_tools
-from backend.additional_tools import register_additional_tools
-from backend.extended_tools import register_extended_tools
-from backend.web_scraper import register_scraping_tools
-from backend.web_tools import register_web_tools
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools, register_code_awareness_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.extended_tools import register_extended_tools
+from Back_End.web_scraper import register_scraping_tools
+from Back_End.web_tools import register_web_tools
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -20,7 +20,7 @@ register_extended_tools(tool_registry)
 register_scraping_tools(tool_registry)
 register_web_tools(tool_registry)
 
-from backend.tool_selector import tool_selector
+from Back_End.tool_selector import tool_selector
 
 print("=" * 80)
 print("TEST: Tool Selection for Extraction vs Calculate")
@@ -73,3 +73,4 @@ for query, expected_behavior in test_cases:
 print("=" * 80)
 print("TEST COMPLETE")
 print("=" * 80)
+

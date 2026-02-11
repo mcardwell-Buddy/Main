@@ -1,0 +1,36 @@
+# Buddy Local Agent Configuration
+# Phase 5 Testing Configuration
+
+# Agent Settings
+agent:
+  max_browsers: 50
+  timeout: 30
+  max_retries: 3
+
+# Task Settings
+tasks:
+  default_timeout: 30
+  default_priority: "normal"
+  max_queue_size: 1000
+
+# Scheduling Settings
+scheduling:
+  poll_interval: 5
+  max_concurrent_tasks: 10
+
+# Browser Settings
+browser:
+  headless: true
+  disable_notifications: true
+  disable_images: false
+
+# Resource Thresholds
+resources:
+  cpu_threshold: 80
+  memory_threshold: 85
+  disk_threshold: 90
+
+# Database
+database:
+  type: sqlite
+  path: "./buddy_local_agent.db"

@@ -187,3 +187,4 @@ class Phase22FeedbackLoop:
                 if signal.target_phase == target_phase:
                     handle.write(json.dumps(signal.__dict__) + "\n")
         return str(output_path)
+

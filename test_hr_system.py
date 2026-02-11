@@ -14,10 +14,10 @@ def test_imports():
     """Test that all modules import correctly"""
     print("\n1️⃣  Testing imports...")
     try:
-        from backend.hr_contact_extractor import HRContactExtractor, ContactInfo
+        from Back_End.hr_contact_extractor import HRContactExtractor, ContactInfo
         print("   ✓ hr_contact_extractor")
         
-        from backend.hr_search_params import (
+        from Back_End.hr_search_params import (
             HRContactSearchBuilder, 
             HRContactSearchParams,
             PresetSearches,
@@ -26,7 +26,7 @@ def test_imports():
         )
         print("   ✓ hr_search_params")
         
-        from backend.hr_contact_manager import HRContactManager, find_hr_contacts
+        from Back_End.hr_contact_manager import HRContactManager, find_hr_contacts
         print("   ✓ hr_contact_manager")
         
         return True
@@ -39,7 +39,7 @@ def test_contact_info():
     """Test ContactInfo data structure"""
     print("\n2️⃣  Testing ContactInfo...")
     try:
-        from backend.hr_contact_extractor import ContactInfo
+        from Back_End.hr_contact_extractor import ContactInfo
         
         contact = ContactInfo(
             first_name="John",
@@ -74,7 +74,7 @@ def test_hr_role_detection():
     """Test HR role detection"""
     print("\n3️⃣  Testing HR role detection...")
     try:
-        from backend.hr_contact_extractor import HRContactExtractor
+        from Back_End.hr_contact_extractor import HRContactExtractor
         
         extractor = HRContactExtractor()
         
@@ -109,7 +109,7 @@ def test_extractor():
     """Test contact extraction"""
     print("\n4️⃣  Testing contact extraction...")
     try:
-        from backend.hr_contact_extractor import HRContactExtractor
+        from Back_End.hr_contact_extractor import HRContactExtractor
         
         extractor = HRContactExtractor()
         
@@ -142,7 +142,7 @@ def test_search_builder():
     """Test search parameter builder"""
     print("\n5️⃣  Testing search builder...")
     try:
-        from backend.hr_search_params import HRContactSearchBuilder, ContactDataType
+        from Back_End.hr_search_params import HRContactSearchBuilder, ContactDataType
         
         params = (HRContactSearchBuilder()
             .executive_and_above()
@@ -170,7 +170,7 @@ def test_preset_searches():
     """Test preset searches"""
     print("\n6️⃣  Testing preset searches...")
     try:
-        from backend.hr_search_params import PresetSearches
+        from Back_End.hr_search_params import PresetSearches
         
         presets = [
             ("CHRO with contact", PresetSearches.chro_contacts_with_contact_data()),
@@ -193,7 +193,7 @@ def test_deduplication():
     """Test deduplication"""
     print("\n7️⃣  Testing deduplication...")
     try:
-        from backend.hr_contact_extractor import HRContactExtractor, ContactInfo
+        from Back_End.hr_contact_extractor import HRContactExtractor, ContactInfo
         
         extractor = HRContactExtractor()
         
@@ -239,7 +239,7 @@ def test_completeness_scoring():
     """Test data completeness scoring"""
     print("\n8️⃣  Testing completeness scoring...")
     try:
-        from backend.hr_contact_extractor import ContactInfo
+        from Back_End.hr_contact_extractor import ContactInfo
         
         # Incomplete contact
         incomplete = ContactInfo(
@@ -280,7 +280,7 @@ def test_manager():
     """Test HR Contact Manager"""
     print("\n9️⃣  Testing HR Contact Manager...")
     try:
-        from backend.hr_contact_manager import HRContactManager
+        from Back_End.hr_contact_manager import HRContactManager
         
         manager = HRContactManager()
         
@@ -326,8 +326,8 @@ def test_exports():
     """Test export functionality"""
     print("\n🔟 Testing exports...")
     try:
-        from backend.hr_contact_extractor import ContactInfo
-        from backend.hr_contact_manager import HRContactManager
+        from Back_End.hr_contact_extractor import ContactInfo
+        from Back_End.hr_contact_manager import HRContactManager
         
         manager = HRContactManager()
         
@@ -417,7 +417,7 @@ def main():
         print("\nQuick start:")
         print("  1. Interactive:  python hr_contact_search.py")
         print("  2. Examples:     python hr_contact_examples.py")
-        print("  3. In code:      from backend.hr_contact_manager import find_hr_contacts")
+        print("  3. In code:      from Back_End.hr_contact_manager import find_hr_contacts")
         return 0
     else:
         print(f"\n⚠️  {total - passed} test(s) failed. Review errors above.")
@@ -426,3 +426,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

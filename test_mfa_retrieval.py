@@ -11,7 +11,7 @@ for line in env_path.read_text().splitlines():
     k, v = line.split('=', 1)
     os.environ.setdefault(k.strip(), v.strip())
 
-from backend.msgraph_email import get_mfa_code_from_msgraph
+from Back_End.msgraph_email import get_mfa_code_from_msgraph
 
 print('Testing MFA code retrieval from Microsoft Graph...\n')
 
@@ -21,3 +21,4 @@ if code:
     print(f"✓ Successfully retrieved MFA code: {code}")
 else:
     print("✗ Could not find MFA code in recent emails")
+

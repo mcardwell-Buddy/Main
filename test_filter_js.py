@@ -13,7 +13,7 @@ load_dotenv(Path(__file__).parent / '.env')
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -59,3 +59,4 @@ try:
 finally:
     print("\nClosing browser...")
     scraper.driver.quit()
+

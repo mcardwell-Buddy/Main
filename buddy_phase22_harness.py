@@ -403,3 +403,4 @@ class Phase22Harness:
         summary_path = self.phase22_output_dir / "phase22_summary.json"
         with open(summary_path, "w", encoding="utf-8") as handle:
             json.dump(result.__dict__, handle, indent=2)
+

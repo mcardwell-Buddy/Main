@@ -19,8 +19,8 @@ from pathlib import Path
 # Add workspace to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mission_control.chat_intake_coordinator import ChatIntakeCoordinator
-from backend.whiteboard.mission_whiteboard import get_proposed_missions
+from Back_End.mission_control.chat_intake_coordinator import ChatIntakeCoordinator
+from Back_End.whiteboard.mission_whiteboard import get_proposed_missions
 
 
 def demo_chat_intake():
@@ -153,3 +153,4 @@ def demo_chat_intake():
 
 if __name__ == '__main__':
     demo_chat_intake()
+

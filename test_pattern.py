@@ -1,4 +1,4 @@
-from backend.iterative_decomposer import iterative_decomposer
+from Back_End.iterative_decomposer import iterative_decomposer
 import re
 
 goal = '10 + 5'
@@ -18,3 +18,4 @@ print('Simple pattern matches:', bool(simple_matches))
 result = iterative_decomposer.analyze_goal_complexity(goal)
 print('Complexity:', result['complexity'])
 print('Category:', result['category'])
+

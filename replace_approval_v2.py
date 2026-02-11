@@ -31,8 +31,8 @@ new_function_lines = [
     "            session_context_obj.clear_pending_mission()\n",
     "            return text_response(\"There's nothing to approve yet.\")\n",
     "\n",
-    "        from backend.mission_approval_service import approve_mission\n",
-    "        from backend.execution_service import execute_mission\n",
+    "        from Back_End.mission_approval_service import approve_mission\n",
+    "        from Back_End.execution_service import execute_mission\n",
     "\n",
     "        # Approve the mission\n",
     "        approval_result = approve_mission(mission_id)\n",
@@ -73,3 +73,4 @@ with open(r'c:\Users\micha\Buddy\backend\interaction_orchestrator.py', 'w', enco
 
 print(f'Replaced {len(lines[592:628])} lines with {len(new_function_lines)} lines')
 print('Approval handler updated successfully')
+

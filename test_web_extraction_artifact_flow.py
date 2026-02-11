@@ -2,13 +2,13 @@
 Live test: web extraction → artifact → follow-up answer
 """
 
-from backend.interaction_orchestrator import orchestrate_message
-from backend.mission_approval_service import approve_mission
-from backend.execution_service import execute_mission
-from backend.artifact_reader import get_latest_artifact
+from Back_End.interaction_orchestrator import orchestrate_message
+from Back_End.mission_approval_service import approve_mission
+from Back_End.execution_service import execute_mission
+from Back_End.artifact_reader import get_latest_artifact
 import json
 from pathlib import Path
-from backend.tool_registry import tool_registry
+from Back_End.tool_registry import tool_registry
 from backend import tools, web_tools
 
 
@@ -95,3 +95,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+

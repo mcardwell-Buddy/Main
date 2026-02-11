@@ -6,9 +6,9 @@ Validates that opportunities are created, signals emitted, and whiteboard update
 import json
 import os
 from pathlib import Path
-from backend.mission_control.opportunity_normalizer import OpportunityNormalizer
-from backend.mission_control.goal_satisfaction_evaluator import GoalSatisfactionEvaluator
-from backend.whiteboard import mission_whiteboard
+from Back_End.mission_control.opportunity_normalizer import OpportunityNormalizer
+from Back_End.mission_control.goal_satisfaction_evaluator import GoalSatisfactionEvaluator
+from Back_End.whiteboard import mission_whiteboard
 
 
 def setup_test_environment():
@@ -206,3 +206,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         exit(1)
+

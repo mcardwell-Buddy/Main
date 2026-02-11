@@ -11,7 +11,7 @@ for line in env_path.read_text().splitlines():
     k, v = line.split('=', 1)
     os.environ.setdefault(k.strip(), v.strip())
 
-from backend.msgraph_email import MSGraphEmailClient
+from Back_End.msgraph_email import MSGraphEmailClient
 
 print('Checking recent emails to find MFA sender...\n')
 
@@ -61,3 +61,4 @@ if token:
         print(f"Error: {response.status_code} - {response.text}")
 else:
     print("Failed to authenticate")
+

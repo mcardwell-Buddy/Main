@@ -10,7 +10,7 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.confidence_timeline_builder import (
+from Back_End.learning.confidence_timeline_builder import (
     ConfidenceTimelineBuilder,
     render_confidence_timelines
 )
@@ -319,3 +319,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+

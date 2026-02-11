@@ -5,7 +5,7 @@ import os, sys, time
 from pathlib import Path
 sys.path.insert(0, str(Path('.').absolute()))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 from selenium.webdriver.common.by import By
 
 username = os.getenv('MPLOYER_USERNAME')
@@ -97,3 +97,4 @@ finally:
         scraper.driver.quit()
     except:
         pass
+

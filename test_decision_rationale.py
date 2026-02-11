@@ -3,7 +3,7 @@ Deterministic Decision Narratives - Validation Tests
 Tests decision rationale emission and signal structure.
 """
 
-from backend.explainability.decision_rationale import DecisionRationaleEmitter, DecisionRationale
+from Back_End.explainability.decision_rationale import DecisionRationaleEmitter, DecisionRationale
 import json
 
 
@@ -375,3 +375,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

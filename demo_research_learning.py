@@ -11,8 +11,8 @@ Shows:
 
 import json
 from pathlib import Path
-from backend.research_intelligence_engine import research_intelligence_engine
-from backend.research_feedback_loop import research_feedback_loop
+from Back_End.research_intelligence_engine import research_intelligence_engine
+from Back_End.research_feedback_loop import research_feedback_loop
 
 
 def demo_research_with_learning():
@@ -147,3 +147,4 @@ learning infrastructure, enabling adaptive improvement over time.
 
 if __name__ == "__main__":
     demo_research_with_learning()
+

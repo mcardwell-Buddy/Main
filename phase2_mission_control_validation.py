@@ -9,8 +9,8 @@ import json
 from pathlib import Path
 from datetime import datetime, timezone
 
-from backend.agents.web_navigator_agent import WebNavigatorAgent
-from backend.mission_control.mission_contract import MissionContract
+from Back_End.agents.web_navigator_agent import WebNavigatorAgent
+from Back_End.mission_control.mission_contract import MissionContract
 
 
 def load_latest_mission_status(mission_id: str) -> dict:
@@ -100,3 +100,4 @@ def run_validation():
 
 if __name__ == "__main__":
     run_validation()
+

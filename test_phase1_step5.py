@@ -14,7 +14,7 @@ from pathlib import Path
 os.chdir(r'C:\Users\micha\Buddy')
 sys.path.insert(0, r'C:\Users\micha\Buddy')
 
-from backend.agents import WebNavigatorAgent
+from Back_End.agents import WebNavigatorAgent
 
 print("=" * 70)
 print("PHASE 1 STEP 5: ADAPTIVE SELECTOR SELECTION TEST")
@@ -137,3 +137,4 @@ print("  ✓ Safety tags applied to aggregate signals")
 print("\nNo behavior changes - only selector ordering optimized.")
 
 print("\n" + "=" * 70)
+

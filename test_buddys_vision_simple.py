@@ -13,7 +13,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
-from backend.buddys_vision import BuddysVision
+from Back_End.buddys_vision import BuddysVision
 
 
 def print_section(title):
@@ -191,3 +191,4 @@ if __name__ == "__main__":
     print("\n" + "=" * 70)
     print("  Test Complete!")
     print("=" * 70 + "\n")
+

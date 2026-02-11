@@ -12,7 +12,7 @@ for line in env_path.read_text().splitlines():
     os.environ.setdefault(k.strip(), v.strip())
 
 # Test Mployer login
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 import logging
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s:%(name)s:%(message)s')
@@ -130,3 +130,4 @@ else:
 
 if scraper.driver:
     scraper.driver.quit()
+

@@ -2,7 +2,7 @@
 import sys
 sys.path.insert(0, 'C:\\Users\\micha\\Buddy')
 
-from backend.learning_tools import store_knowledge
+from Back_End.learning_tools import store_knowledge
 
 print("="*70)
 print("TESTING DEEP LEARNING: store_knowledge()")
@@ -33,3 +33,4 @@ if 'summary' in result:
 print("\n" + "="*70)
 print(f"Message: {result.get('message', 'N/A')}")
 print("="*70)
+

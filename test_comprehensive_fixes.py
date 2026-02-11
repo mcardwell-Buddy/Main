@@ -34,7 +34,7 @@ def test_message_persistence():
     print(f"   Message ID: {data.get('chat_message_id')}")
     
     # Load sessions and check if messages are saved
-    print(f"\n2. Loading sessions from backend...")
+    print(f"\n2. Loading sessions from Back_End...")
     resp_sessions = requests.get(f"{BASE_URL}/conversation/sessions")
     sessions = resp_sessions.json().get('sessions', [])
     
@@ -64,7 +64,7 @@ def test_selector_generation():
     print("TEST 2: LLM-BASED SELECTOR GENERATION")
     print("="*60)
     
-    from backend.tool_selector import tool_selector
+    from Back_End.tool_selector import tool_selector
     
     test_cases = [
         ("Extract 'services' from https://www.cardwellassociates.com", "services"),
@@ -103,3 +103,4 @@ if __name__ == "__main__":
     print(f"Message Persistence: {'✅ PASS' if persistence_ok else '❌ FAIL'}")
     print(f"Selector Generation: {'✅ PASS' if selector_ok else '❌ FAIL'}")
     print("="*80)
+

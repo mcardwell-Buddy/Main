@@ -22,7 +22,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-from backend.agents import WebNavigatorAgent
+from Back_End.agents import WebNavigatorAgent
 
 # Test sites with goals
 TEST_SCENARIOS = [
@@ -221,3 +221,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

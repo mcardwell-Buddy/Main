@@ -124,3 +124,4 @@ class SafetyGate:
     def reset(self):
         """Reset decisions for new wave."""
         self.decisions = []
+

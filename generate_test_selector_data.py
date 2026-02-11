@@ -89,3 +89,4 @@ print(f"✓ Generated {len(test_signals)} test signals")
 print(f"  - {sum(1 for s in test_signals if s.get('signal_layer') == 'selector')} selector signals")
 print(f"  - {sum(1 for s in test_signals if 'signal_id' in s)} Phase25 meta signals")
 print(f"\nWritten to: {output_file}")
+

@@ -1,7 +1,7 @@
 import sys
 import uuid
 sys.path.insert(0, '.')
-from backend.interaction_orchestrator import orchestrate_message
+from Back_End.interaction_orchestrator import orchestrate_message
 
 # Trigger a calculation request - try with a more complex expression
 session_id = f"session_{uuid.uuid4().hex[:8]}"
@@ -27,3 +27,4 @@ for test_msg in test_cases:
         print(f'  INTENT: {mission.get("intent")}')
         print(f'  TOOL_SELECTED: {mission.get("tool_selected")}')
         break
+

@@ -1,11 +1,11 @@
 import sys
 sys.path.insert(0, '.')
 
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools
-from backend.additional_tools import register_additional_tools
-from backend.web_tools import register_web_tools
-from backend.interaction_orchestrator import orchestrate_message
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.web_tools import register_web_tools
+from Back_End.interaction_orchestrator import orchestrate_message
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -36,3 +36,4 @@ print(resp4.summary)
 print("\nSTEP 5: Follow-up")
 resp5 = orchestrate_message("What did you find?", session_id=session_id, context={"mission_id": mission_id_extract})
 print(resp5.summary)
+

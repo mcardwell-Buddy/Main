@@ -10,7 +10,7 @@ Invariant: Given a classified intent, execution MUST use an allowed tool — or 
 import json
 import time
 from pathlib import Path
-from backend.execution_service import ExecutionService
+from Back_End.execution_service import ExecutionService
 
 # Test data for various intent categories
 TEST_MISSIONS = {
@@ -271,3 +271,4 @@ if __name__ == '__main__':
     else:
         print("\n❌ TOOL SELECTION HARDENING INCOMPLETE")
         print("   Some tests failed - review logs above")
+

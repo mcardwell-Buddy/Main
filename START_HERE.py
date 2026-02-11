@@ -42,7 +42,7 @@
 
 ┌─ PYTHON CODE (Most Common) ───────────────────────────────────────────────┐
 │                                                                            │
-│  from backend.hr_contact_manager import find_hr_contacts                  │
+│  from Back_End.hr_contact_manager import find_hr_contacts                  │
 │                                                                            │
 │  contacts = find_hr_contacts(                                             │
 │      employer_data=employers,                                             │
@@ -113,7 +113,7 @@ Read in this order:
 Task 1: Find CHRO with Email/Phone
 ──────────────────────────────────
 
-  from backend.hr_contact_manager import find_hr_contacts
+  from Back_End.hr_contact_manager import find_hr_contacts
 
   contacts = find_hr_contacts(
       employer_data=employers,
@@ -126,7 +126,7 @@ Task 1: Find CHRO with Email/Phone
 Task 2: Find Directors in Mid-Market Companies
 ──────────────────────────────────────────────
 
-  from backend.hr_contact_manager import HRContactManager, PresetSearches
+  from Back_End.hr_contact_manager import HRContactManager, PresetSearches
 
   manager = HRContactManager()
   results = manager.search_from_employer_data(
@@ -184,8 +184,8 @@ Task 6: Generate Analysis Report
 Task 7: Full Mployer Workflow
 ──────────────────────────────
 
-  from backend.mployer_scraper import MployerScraper
-  from backend.hr_contact_manager import HRContactManager, PresetSearches
+  from Back_End.mployer_scraper import MployerScraper
+  from Back_End.hr_contact_manager import HRContactManager, PresetSearches
 
   # Search Mployer
   scraper = MployerScraper(username, password, headless=False)
@@ -232,7 +232,7 @@ Task 7: Full Mployer Workflow
 🔍 ADVANCED SEARCH EXAMPLE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  from backend.hr_search_params import HRContactSearchBuilder, ContactDataType
+  from Back_End.hr_search_params import HRContactSearchBuilder, ContactDataType
 
   params = (HRContactSearchBuilder()
       .executive_and_above()                    # VP or C-suite
@@ -319,7 +319,7 @@ Expected output:
    $ python hr_contact_examples.py
 
 4. Use in Code:
-   from backend.hr_contact_manager import find_hr_contacts
+   from Back_End.hr_contact_manager import find_hr_contacts
 
 
 📖 LEARN MORE
@@ -342,3 +342,4 @@ For detailed information, see:
 
 if __name__ == "__main__":
     print(__doc__)
+

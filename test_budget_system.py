@@ -17,11 +17,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import json
 from datetime import datetime, timezone
 from pathlib import Path
-from backend.budget_tracker import BudgetTracker, CreditBudget, DollarBudget, get_budget_tracker
-from backend.budget_enforcer import BudgetEnforcer, get_budget_enforcer
-from backend.cost_tracker import CostTracker, get_cost_tracker
-from backend.cost_estimator import ServiceTier, MissionCost, ServiceCost, ModelType
-from backend.task_breakdown_and_proposal import TaskBreakdown
+from Back_End.budget_tracker import BudgetTracker, CreditBudget, DollarBudget, get_budget_tracker
+from Back_End.budget_enforcer import BudgetEnforcer, get_budget_enforcer
+from Back_End.cost_tracker import CostTracker, get_cost_tracker
+from Back_End.cost_estimator import ServiceTier, MissionCost, ServiceCost, ModelType
+from Back_End.task_breakdown_and_proposal import TaskBreakdown
 
 
 def setup_test_environment():
@@ -362,3 +362,4 @@ def run_all_tests():
 if __name__ == '__main__':
     success = run_all_tests()
     sys.exit(0 if success else 1)
+

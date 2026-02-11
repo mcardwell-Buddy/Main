@@ -10,7 +10,7 @@ Tests that semantic normalization:
 """
 
 import pytest
-from backend.semantic_normalizer import (
+from Back_End.semantic_normalizer import (
     maybe_normalize,
     _attempt_normalization,
     NormalizationResult,
@@ -179,7 +179,7 @@ def test_normalize_whitespace_only():
 
 def test_safety_normalization_does_not_create_missions():
     """Test: Normalization does NOT create missions"""
-    from backend.mission_manager import get_all_missions
+    from Back_End.mission_manager import get_all_missions
     
     initial_missions = len(get_all_missions())
     
@@ -196,7 +196,7 @@ def test_safety_normalization_does_not_create_missions():
 
 def test_safety_normalization_does_not_execute_tools():
     """Test: Normalization does NOT execute tools"""
-    from backend.tool_registry import tool_registry
+    from Back_End.tool_registry import tool_registry
     
     # Track tool calls (if registry supports it)
     # For now, just ensure no side effects occur
@@ -336,8 +336,8 @@ def test_integration_normalization_with_context():
 
 def test_integration_end_to_end_normalization_in_orchestrator():
     """Test: Normalization integrates correctly with orchestrator"""
-    from backend.interaction_orchestrator import InteractionOrchestrator
-    from backend.session_context import SessionContextManager
+    from Back_End.interaction_orchestrator import InteractionOrchestrator
+    from Back_End.session_context import SessionContextManager
     
     orchestrator = InteractionOrchestrator(session_context_manager=SessionContextManager())
     
@@ -386,8 +386,8 @@ def test_safety_incomplete_missions_still_incomplete_after_normalization():
 
 def test_safety_approval_required_after_normalization():
     """Test: Normalization does NOT bypass approval"""
-    from backend.interaction_orchestrator import InteractionOrchestrator
-    from backend.session_context import SessionContextManager
+    from Back_End.interaction_orchestrator import InteractionOrchestrator
+    from Back_End.session_context import SessionContextManager
     
     orchestrator = InteractionOrchestrator(session_context_manager=SessionContextManager())
     session_id = "test_approval_phase5"
@@ -404,7 +404,7 @@ def test_safety_approval_required_after_normalization():
     assert response is not None
     
     # Verify approval is still required (mission created but not executed)
-    from backend.mission_manager import get_all_missions
+    from Back_End.mission_manager import get_all_missions
     missions = get_all_missions()
     
     if missions:
@@ -415,9 +415,9 @@ def test_safety_approval_required_after_normalization():
 
 def test_safety_tool_execution_still_requires_approval():
     """Test: Normalized text does NOT trigger immediate execution"""
-    from backend.interaction_orchestrator import InteractionOrchestrator
-    from backend.session_context import SessionContextManager
-    from backend.tool_registry import tool_registry
+    from Back_End.interaction_orchestrator import InteractionOrchestrator
+    from Back_End.session_context import SessionContextManager
+    from Back_End.tool_registry import tool_registry
     
     orchestrator = InteractionOrchestrator(session_context_manager=SessionContextManager())
     session_id = "test_exec_phase5"
@@ -455,3 +455,4 @@ if __name__ == "__main__":
     
     # Run with pytest
     pytest.main([__file__, "-v", "--tb=short"])
+

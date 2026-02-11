@@ -3,7 +3,7 @@ Ambiguity Evaluator Validation Tests
 Tests deterministic ambiguity detection rules.
 """
 
-from backend.mission_control.ambiguity_evaluator import AmbiguityEvaluator
+from Back_End.mission_control.ambiguity_evaluator import AmbiguityEvaluator
 
 
 def test_clear_outcome_high_confidence():
@@ -392,3 +392,4 @@ def main():
 if __name__ == "__main__":
     success = main()
     exit(0 if success else 1)
+

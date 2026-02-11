@@ -95,3 +95,4 @@ if checks_passed:
     print("Sessions deleted from Firebase will stay deleted")
 else:
     print("⚠️  Some checks need attention - review above")
+

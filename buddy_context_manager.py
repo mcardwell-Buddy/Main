@@ -502,3 +502,4 @@ def get_session_manager() -> SessionManager:
     """Get the global session manager"""
     return _session_manager
 
+

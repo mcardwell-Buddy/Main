@@ -1,7 +1,7 @@
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools, register_code_awareness_tools
-from backend.additional_tools import register_additional_tools
-from backend.tool_performance import tracker
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools, register_code_awareness_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.tool_performance import tracker
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -11,7 +11,7 @@ goal = 'What is 100-10?'
 domain = '_global'
 
 # Check pattern scores
-from backend.tool_selector import tool_selector
+from Back_End.tool_selector import tool_selector
 pattern_scores = tool_selector.analyze_goal(goal)
 print(f"Pattern scores: {pattern_scores}")
 
@@ -31,3 +31,4 @@ for tool_name in tool_registry.tools.keys():
 print(f"Final scores: {final_scores}")
 print(f"Max score: {max(final_scores.values())}")
 print(f"Threshold: 0.15")
+

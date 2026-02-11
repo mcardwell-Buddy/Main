@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 sys.path.insert(0, '.')
 
 # Register all tools
-from backend.tool_registry import tool_registry
-from backend.tools import register_foundational_tools
-from backend.additional_tools import register_additional_tools
-from backend.web_tools import register_web_tools
+from Back_End.tool_registry import tool_registry
+from Back_End.tools import register_foundational_tools
+from Back_End.additional_tools import register_additional_tools
+from Back_End.web_tools import register_web_tools
 
 register_foundational_tools(tool_registry)
 register_additional_tools(tool_registry)
@@ -57,7 +57,7 @@ print(f"   Objective: Extract and fetch h1 heading text from the webpage")
 print()
 
 # Verify tool selection will use web_extract
-from backend.tool_selector import tool_selector
+from Back_End.tool_selector import tool_selector
 selected_tool, prepared_input, confidence = tool_selector.select_tool(mission_record['objective_description'])
 print(f"✅ Tool selection verified:")
 print(f"   Selected tool: {selected_tool}")
@@ -77,8 +77,8 @@ print("STEP 2: APPROVAL & EXECUTION")
 print("=" * 80)
 print()
 
-from backend.mission_approval_service import approve_mission
-from backend.execution_service import ExecutionService
+from Back_End.mission_approval_service import approve_mission
+from Back_End.execution_service import ExecutionService
 
 approve_result = approve_mission(mission_id)
 print(f"✅ Mission approved: {approve_result.get('success')}")
@@ -207,7 +207,7 @@ print("STEP 5: EXPLAINABILITY TEST (FOLLOW-UP)")
 print("=" * 80)
 print()
 
-from backend.artifact_reader import get_latest_artifact
+from Back_End.artifact_reader import get_latest_artifact
 
 follow_up_artifact = get_latest_artifact(mission_id=mission_id)
 if follow_up_artifact:
@@ -334,3 +334,4 @@ else:
     print("=" * 80)
     print("⚠️  WEB_EXTRACT TOOL STATUS: AUDIT COMPLETE (See results above)")
     print("=" * 80)
+

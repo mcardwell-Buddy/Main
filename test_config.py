@@ -15,11 +15,12 @@ if env_path.exists():
                 key, value = line.split('=', 1)
                 os.environ[key] = value
 
-from backend.interfaces.telegram_interface import TelegramInterface
-from backend.interfaces.email_interface import EmailInterface
+from Back_End.interfaces.telegram_interface import TelegramInterface
+from Back_End.interfaces.email_interface import EmailInterface
 
 telegram = TelegramInterface()
 email = EmailInterface()
 
 print("Telegram config loaded:", bool(telegram.config.bot_token and telegram.config.allowed_user_id))
 print("Email config loaded:", bool(email.creds.address and email.creds.app_password))
+

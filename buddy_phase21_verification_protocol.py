@@ -451,3 +451,4 @@ if __name__ == "__main__":
         'metrics': verifier.metrics,
         'execution_time': results['execution_time']
     }, indent=2))
+

@@ -17,7 +17,7 @@ if env_path.exists():
 
 # Run validation
 import logging
-from backend.interfaces.email_interface import EmailInterface
+from Back_End.interfaces.email_interface import EmailInterface
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
@@ -32,3 +32,4 @@ try:
         logger.info("  %d) %s", idx, subject)
 except Exception as exc:
     logger.warning("Email validation failed: %s", exc)
+

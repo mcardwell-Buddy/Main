@@ -3,7 +3,7 @@ import tempfile
 from pathlib import Path
 import json
 
-from backend.interfaces.event_bridge import EventBridge
+from Back_End.interfaces.event_bridge import EventBridge
 
 
 class TestEventBridge(unittest.TestCase):
@@ -57,3 +57,4 @@ class TestEventBridge(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+

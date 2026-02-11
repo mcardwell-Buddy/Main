@@ -27,11 +27,11 @@ logging.basicConfig(
 )
 
 try:
-    from backend.interaction_orchestrator import (
+    from Back_End.interaction_orchestrator import (
         DeterministicIntentClassifier, IntentType,
         RoutingDecision, InteractionOrchestrator
     )
-    from backend.response_envelope import ResponseType
+    from Back_End.response_envelope import ResponseType
     
     print("\n" + "="*80)
     print("INTERACTION ORCHESTRATOR DEMO")
@@ -169,3 +169,4 @@ except Exception as e:
     print(f"\n❌ ERROR: {e}")
     import traceback
     traceback.print_exc()
+

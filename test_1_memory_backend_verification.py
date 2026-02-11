@@ -9,8 +9,8 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.config import Config
-from backend.memory import memory
+from Back_End.config import Config
+from Back_End.memory import memory
 
 def test_memory_backend():
     """Check what memory backend is instantiated"""
@@ -62,3 +62,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

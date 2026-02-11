@@ -18,11 +18,11 @@ Tests cover:
 
 import unittest
 from datetime import datetime
-from backend.interaction_orchestrator import (
+from Back_End.interaction_orchestrator import (
     DeterministicIntentClassifier, IntentType, IntentClassification,
     RoutingDecision, InteractionOrchestrator, orchestrate_message
 )
-from backend.response_envelope import ResponseType
+from Back_End.response_envelope import ResponseType
 
 
 class TestDeterministicIntentClassifier(unittest.TestCase):
@@ -508,3 +508,4 @@ class TestConvenienceFunction(unittest.TestCase):
 if __name__ == '__main__':
     # Run tests with verbose output
     unittest.main(verbosity=2)
+

@@ -8,9 +8,9 @@ import sys
 import os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from backend.config import Config
-from backend.memory import FirebaseMemory
-from backend.conversation.session_store import get_conversation_store
+from Back_End.config import Config
+from Back_End.memory import FirebaseMemory
+from Back_End.conversation.session_store import get_conversation_store
 import json
 
 def check_firebase_collections():
@@ -90,3 +90,4 @@ if __name__ == "__main__":
     else:
         print("\n❌ FINDING: Firebase is not accessible")
         sys.exit(1)
+

@@ -35,7 +35,7 @@ def inspect_mployer_filters():
         print("❌ Missing credentials")
         return None
     
-    from backend.mployer_scraper import MployerScraper
+    from Back_End.mployer_scraper import MployerScraper
     
     # Create scraper
     scraper = MployerScraper(username, password, headless=False)
@@ -303,3 +303,4 @@ def inspect_mployer_filters():
 
 if __name__ == "__main__":
     filter_map = inspect_mployer_filters()
+

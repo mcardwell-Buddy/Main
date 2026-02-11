@@ -11,9 +11,9 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.task_breakdown_and_proposal import TaskBreakdownEngine
-from backend.proposal_presenter import ProposalPresenter
-from backend.cost_estimator import ServiceTier
+from Back_End.task_breakdown_and_proposal import TaskBreakdownEngine
+from Back_End.proposal_presenter import ProposalPresenter
+from Back_End.cost_estimator import ServiceTier
 
 def print_section(title, char="="):
     """Print a formatted section header"""
@@ -230,3 +230,4 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         sys.exit(1)
+

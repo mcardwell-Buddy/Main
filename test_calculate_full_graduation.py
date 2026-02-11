@@ -32,8 +32,8 @@ with open(missions_file, "a", encoding="utf-8") as f:
     f.write(json.dumps(mission_record) + "\n")
 
 # Approve and execute
-from backend.mission_approval_service import approve_mission
-from backend.execution_service import ExecutionService
+from Back_End.mission_approval_service import approve_mission
+from Back_End.execution_service import ExecutionService
 
 approve_mission(mission_id)
 execution_service = ExecutionService()
@@ -92,7 +92,7 @@ print("=" * 60)
 print("STEP 5: EXPLAINABILITY TEST (Follow-up Question)")
 print("=" * 60)
 
-from backend.interaction_orchestrator import orchestrate_message
+from Back_End.interaction_orchestrator import orchestrate_message
 
 session_id = f"session_{uuid.uuid4().hex[:8]}"
 
@@ -130,3 +130,4 @@ print(f"STEP 4 ✅ Durability Check: Artifact survives restart, no duplicates")
 print(f"STEP 5 ✅ Explainability Test: Follow-up answered from artifact")
 print()
 print("STEP 6: Running invariant tests...")
+

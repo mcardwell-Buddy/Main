@@ -1,0 +1,82 @@
+{
+  "test_run": {
+    "start_time": "2026-02-10T17:11:17.448868",
+    "end_time": "2026-02-10T17:11:31.267430",
+    "duration_seconds": 13.818562,
+    "pass_rate": 58.333333333333336
+  },
+  "results": [
+    {
+      "test": "Core Chat - Message Processing",
+      "passed": true,
+      "details": "Received response with 147 chars",
+      "timestamp": "2026-02-10T22:11:21.899447+00:00"
+    },
+    {
+      "test": "Core Chat Integration",
+      "passed": false,
+      "details": "Session not persisted",
+      "timestamp": "2026-02-10T22:11:22.001047+00:00"
+    },
+    {
+      "test": "Tool Integration - web_scraping",
+      "passed": true,
+      "details": "Response length: 62 chars",
+      "timestamp": "2026-02-10T22:11:27.854009+00:00"
+    },
+    {
+      "test": "Tool Integration - search_tool",
+      "passed": true,
+      "details": "Response length: 88 chars",
+      "timestamp": "2026-02-10T22:11:31.259980+00:00"
+    },
+    {
+      "test": "Tool Integration - calculation_tool",
+      "passed": true,
+      "details": "Response length: 88 chars",
+      "timestamp": "2026-02-10T22:11:31.261979+00:00"
+    },
+    {
+      "test": "Mission System - Mission Spawning",
+      "passed": false,
+      "details": "Spawned 0 missions",
+      "timestamp": "2026-02-10T22:11:31.262979+00:00"
+    },
+    {
+      "test": "Mission System - Mission Structure",
+      "passed": false,
+      "details": "No missions generated to validate structure",
+      "timestamp": "2026-02-10T22:11:31.264431+00:00"
+    },
+    {
+      "test": "Artifact System - Generation",
+      "passed": false,
+      "details": "Generated 0 artifacts, response: 88 chars",
+      "timestamp": "2026-02-10T22:11:31.265431+00:00"
+    },
+    {
+      "test": "Observability - Trace ID Propagation",
+      "passed": true,
+      "details": "Trace ID: 2804ccbf-f464-45bc-ac5d-b693e0097246",
+      "timestamp": "2026-02-10T22:11:31.266429+00:00"
+    },
+    {
+      "test": "Observability - Infrastructure",
+      "passed": true,
+      "details": "Observability system available: True",
+      "timestamp": "2026-02-10T22:11:31.266429+00:00"
+    },
+    {
+      "test": "Backend - List Sessions",
+      "passed": true,
+      "details": "Retrieved 1 sessions",
+      "timestamp": "2026-02-10T22:11:31.266429+00:00"
+    },
+    {
+      "test": "Backend - Get Session",
+      "passed": false,
+      "details": "Session retrieval successful",
+      "timestamp": "2026-02-10T22:11:31.267430+00:00"
+    }
+  ]
+}

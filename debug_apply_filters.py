@@ -11,7 +11,7 @@ load_dotenv(Path(__file__).parent / '.env')
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 username = os.getenv("MPLOYER_USERNAME")
 password = os.getenv("MPLOYER_PASSWORD")
@@ -123,3 +123,4 @@ finally:
     print("\n[8] Closing...")
     scraper.driver.quit()
     print("[OK] Done")
+

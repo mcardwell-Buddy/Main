@@ -8,7 +8,7 @@ import tempfile
 from pathlib import Path
 from datetime import datetime, timezone
 
-from backend.mission.mission_cost_accountant import MissionCostAccountant, MissionCostReport
+from Back_End.mission.mission_cost_accountant import MissionCostAccountant, MissionCostReport
 
 
 def test_cost_computation():
@@ -394,3 +394,4 @@ def run_all_tests():
 
 if __name__ == "__main__":
     run_all_tests()
+

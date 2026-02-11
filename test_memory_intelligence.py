@@ -1,4 +1,4 @@
-from backend.memory_manager import memory_manager
+from Back_End.memory_manager import memory_manager
 
 # Test importance calculation
 print("=== Testing Importance Calculation ===\n")
@@ -59,3 +59,4 @@ print("- Only saves to Firebase if importance >= 0.6 (configurable)")
 print("- Always saves: failures, high effectiveness, goal completions")
 print("- Skips: neutral reflections, low-value observations")
 print("- Enriches saved data with importance metadata and timestamps")
+

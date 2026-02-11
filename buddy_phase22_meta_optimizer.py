@@ -241,3 +241,4 @@ class Phase22MetaOptimizer:
 
         summary = ", ".join(issue_summary) if issue_summary else "metrics within target range"
         return f"Selected {strategy.value} because {summary}."
+

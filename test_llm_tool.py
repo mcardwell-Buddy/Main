@@ -1,6 +1,6 @@
 """Test LLM tool selection"""
-from backend.llm_client import llm_client
-from backend.tool_registry import tool_registry
+from Back_End.llm_client import llm_client
+from Back_End.tool_registry import tool_registry
 
 print(f"LLM Enabled: {llm_client.enabled}")
 print()
@@ -34,3 +34,4 @@ if llm_client.enabled:
         print()
 else:
     print("LLM not enabled - skipping test")
+

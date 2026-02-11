@@ -13,7 +13,7 @@ load_dotenv(Path(__file__).parent / '.env')
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.mployer_scraper import MployerScraper
+from Back_End.mployer_scraper import MployerScraper
 
 # Set up logging to file
 log_file = Path(__file__).parent / 'test_verbose.log'
@@ -66,3 +66,4 @@ finally:
     logger.info("[3] Done")
 
 print(f"\n=== LOG SAVED TO {log_file} ===\n")
+

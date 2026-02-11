@@ -7,7 +7,7 @@ Run:
 import sys
 sys.path.insert(0, r"c:\Users\micha\Buddy")
 
-from backend.response_engine import (
+from Back_End.response_engine import (
     ResponseBuilder,
     ResponseType,
     ApprovalManager,
@@ -68,3 +68,4 @@ def run():
 
 if __name__ == "__main__":
     run()
+

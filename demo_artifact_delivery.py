@@ -13,7 +13,7 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.artifact_delivery_flow import DeliveryIntentParser, ArtifactDeliveryOrchestrator
+from Back_End.artifact_delivery_flow import DeliveryIntentParser, ArtifactDeliveryOrchestrator
 
 
 def demo_natural_language_parsing():
@@ -152,7 +152,7 @@ def demo_email_comprehension():
     print("📧 DEMO: Email Comprehension")
     print("="*70)
     
-    from backend.email_client import get_comprehension_engine
+    from Back_End.email_client import get_comprehension_engine
     
     engine = get_comprehension_engine()
     
@@ -260,3 +260,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -14,7 +14,7 @@ from pathlib import Path
 # Add backend to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from backend.learning.temporal_signal_aggregator import aggregate_temporal_signals, LEARNING_SIGNALS_FILE
+from Back_End.learning.temporal_signal_aggregator import aggregate_temporal_signals, LEARNING_SIGNALS_FILE
 
 
 def count_temporal_signals(signals_file: Path) -> int:
@@ -144,3 +144,4 @@ def validate_temporal_aggregation():
 if __name__ == "__main__":
     exit_code = validate_temporal_aggregation()
     sys.exit(exit_code)
+
