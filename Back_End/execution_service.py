@@ -818,6 +818,193 @@ URL:"""
             self._write_execution_record(result_record)
             logger.info(f"[EXECUTION] Execution record written to Firebase")
 
+            # STEP 7.5: Create UniversalArtifact wrapper (Phase 2, non-blocking)
+            # Creates artifact only if ARTIFACT_SYSTEM_ENABLED=true (feature-flagged)
+            # Does not affect execution flow - failures are logged but don't fail mission
+            execution_time_ms = (datetime.now(timezone.utc) - execution_start_time).total_seconds() * 1000 if 'execution_start_time' in locals() else 0.0
+            try:
+                from Back_End.universal_artifact_creator import get_artifact_creator
+                creator = get_artifact_creator()
+                universal_artifact = creator.create_execution_result_artifact(
+                    mission_id=mission_id,
+                    tool_used=tool_name,
+                    execution_result=execution_result,
+                    objective_description=objective_description,
+                    success=execution_success,
+                    execution_time_ms=execution_time_ms,
+                    cost_usd=estimated_cost if 'estimated_cost' in locals() else 0.0,
+                )
+                if universal_artifact:
+                    logger.info(
+                        f"[EXECUTION] UniversalArtifact {universal_artifact.artifact_id} "
+                        f"created for mission {mission_id}"
+                    )
+            except Exception as artifact_error:
+                # Non-blocking: failures don't affect execution
+                logger.debug(f"[EXECUTION] UniversalArtifact creation skipped: {artifact_error}")
+
+            # STEP 7.6: Process learning signals (Phase 2b, non-blocking)
+            # Extracts facts and insights from execution signals
+            # Updates artifact confidence based on learning insights
+            # Does not affect execution flow - failures are logged but don't fail mission
+            try:
+                from Back_End.learning_signal_processor import get_learning_signal_processor
+                processor = get_learning_signal_processor()
+                learning_result = processor.process_signals(limit=100)
+                if learning_result and learning_result.get('signals_processed', 0) > 0:
+                    logger.info(
+                        f"[EXECUTION] Learning processor: {learning_result['signals_processed']} signals, "
+                        f"{learning_result['facts_extracted']} facts, "
+                        f"{learning_result['insights_generated']} insights"
+                    )
+                    
+                    # STEP 7.7: Update artifact confidence from learning insights
+                    # Apply recommendations/warnings to improve future tool selection
+                    if universal_artifact and learning_result.get('insights'):
+                        try:
+                            for insight in learning_result['insights']:
+                                # Check if this tool was mentioned in the insight
+                                if insight.insight_type == 'recommendation' and tool_name in insight.description:
+                                    # High-performing tool: increase confidence
+                                    processor.update_artifact_confidence(
+                                        universal_artifact.artifact_id,
+                                        new_confidence=min(0.99, insight.confidence)
+                                    )
+                                    logger.debug(
+                                        f"[EXECUTION] Updated artifact confidence based on insight: "
+                                        f"{insight.title}"
+                                    )
+                                elif insight.insight_type == 'warning' and tool_name in insight.description:
+                                    # Low-performing tool: decrease confidence
+                                    processor.update_artifact_confidence(
+                                        universal_artifact.artifact_id,
+                                        new_confidence=max(0.01, insight.confidence)
+                                    )
+                                    logger.debug(
+                                        f"[EXECUTION] Updated artifact confidence based on warning: "
+                                        f"{insight.title}"
+                                    )
+                        except Exception as update_error:
+                            # Non-blocking: don't fail if artifact update fails
+                            logger.debug(f"[EXECUTION] Artifact confidence update skipped: {update_error}")
+            except Exception as learning_error:
+                # Non-blocking: failures don't affect execution
+                logger.debug(f"[EXECUTION] Learning signal processing skipped: {learning_error}")
+
+            # STEP 7.8: Optional artifact graph enrichment (Phase 3, non-blocking)
+            # If artifact graph is enabled, enrich learning insights with relationship context
+            # Does not affect execution - purely optional enhancement
+            try:
+                from Back_End.config import Config
+                if Config.ARTIFACT_GRAPH_ENABLED:
+                    from Back_End.artifact_graph_engine import get_artifact_graph_engine
+                    
+                    graph_engine = get_artifact_graph_engine()
+                    graph_loaded = graph_engine.load_from_artifacts_file()
+                    
+                    if graph_loaded and universal_artifact:
+                        # Query related artifacts to contextualize the learning insight
+                        related = graph_engine.get_related(universal_artifact.artifact_id)
+                        if related:
+                            logger.debug(
+                                f"[EXECUTION] Artifact graph: found {len(related)} related artifacts "
+                                f"for {universal_artifact.artifact_id}"
+                            )
+                            # Store relationship context in execution metadata for potential future use
+                            # (e.g., for artifact recommendation systems)
+                            graph_context = {
+                                'related_count': len(related),
+                                'relationship_types': list(set(r.relationship_type for r in related))
+                            }
+                            logger.debug(f"[EXECUTION] Artifact graph context: {graph_context}")
+            except Exception as graph_error:
+                # Non-blocking: failures don't affect execution
+                logger.debug(f"[EXECUTION] Artifact graph enrichment skipped: {graph_error}")
+
+            # STEP 7.9: Optional schema versioning (Phase 4a, non-blocking)
+            # If schema versioning is enabled, validate artifact against current schema
+            # Does not affect execution - purely optional validation
+            try:
+                from Back_End.config import Config
+                if Config.SCHEMA_VERSIONING_ENABLED and universal_artifact:
+                    from Back_End.artifact_schema_versioning import get_schema_registry
+                    
+                    registry = get_schema_registry()
+                    # Validate artifact against latest schema (4.0)
+                    is_valid, errors = registry.validate_artifact(universal_artifact, "4.0")
+                    
+                    if is_valid:
+                        logger.debug(f"[EXECUTION] Schema validation passed for {universal_artifact.artifact_id}")
+                    else:
+                        logger.warning(
+                            f"[EXECUTION] Schema validation warnings for {universal_artifact.artifact_id}: "
+                            f"{', '.join(errors[:3])}"
+                        )
+            except Exception as schema_error:
+                # Non-blocking: failures don't affect execution
+                logger.debug(f"[EXECUTION] Schema versioning skipped: {schema_error}")
+
+            # STEP 7.10: Optional cost reconciliation (Phase 4b, non-blocking)
+            # If cost reconciliation is enabled, record cost tracking information
+            # Does not affect execution - purely optional cost tracking
+            try:
+                from Back_End.config import Config
+                if Config.COST_RECONCILIATION_ENABLED:
+                    from Back_End.artifact_cost_reconciliation import (
+                        get_cost_reconciliation_engine,
+                        CostEstimate,
+                        CostActual
+                    )
+                    
+                    cost_engine = get_cost_reconciliation_engine()
+                    
+                    # Record cost estimate if available from cost_tracker
+                    try:
+                        from Back_End.cost_tracker import get_cost_tracker
+                        ct = get_cost_tracker()
+                        estimated = ct.get_estimated_cost() if hasattr(ct, 'get_estimated_cost') else 0.0
+                        actual = ct.get_actual_cost() if hasattr(ct, 'get_actual_cost') else 0.0
+                        
+                        if universal_artifact and estimated > 0:
+                            estimate = CostEstimate(
+                                artifact_id=universal_artifact.artifact_id,
+                                artifact_type=universal_artifact.artifact_type,
+                                created_at=universal_artifact.created_at,
+                                provider="openai",  # Default provider
+                                model=tool_name,  # Use tool name as model identifier
+                                tokens_estimated=0,  # Unknown at estimate time
+                                cost_usd=estimated
+                            )
+                            cost_engine.record_estimate(estimate)
+                        
+                        if universal_artifact and actual > 0:
+                            actual_record = CostActual(
+                                artifact_id=universal_artifact.artifact_id,
+                                created_at=datetime.now(timezone.utc).isoformat(),
+                                provider="openai",  # Default provider
+                                model=tool_name,
+                                input_tokens=0,  # Unknown actual tokens
+                                output_tokens=0,
+                                total_tokens=0,
+                                input_cost_usd=0.0,
+                                output_cost_usd=0.0,
+                                cost_usd=actual
+                            )
+                            cost_engine.record_actual(actual_record)
+                            
+                            # Attempt reconciliation
+                            reconciliation = cost_engine.reconcile(universal_artifact.artifact_id)
+                            if reconciliation:
+                                logger.debug(
+                                    f"[EXECUTION] Cost reconciliation: {reconciliation.status} "
+                                    f"(variance: ${reconciliation.variance_usd:.4f})"
+                                )
+                    except Exception as cost_detail_error:
+                        logger.debug(f"[EXECUTION] Could not record cost details: {cost_detail_error}")
+            except Exception as cost_error:
+                # Non-blocking: failures don't affect execution
+                logger.debug(f"[EXECUTION] Cost reconciliation skipped: {cost_error}")
+
             # STEP 8: Generate human-readable summary
             result_summary = self._generate_result_summary(tool_name, execution_result)
             
