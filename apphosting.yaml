@@ -11,3 +11,15 @@ env:
     value: "8080"
     availability:
       - RUNTIME
+  - variable: FIREBASE_ENABLED
+    value: "true"
+    availability:
+      - RUNTIME
+  - variable: FIREBASE_CREDENTIALS_PATH
+    value: "./Back_End/firebase-adminsdk.json"
+    availability:
+      - RUNTIME
+  - variable: GOOGLE_CLOUD_PROJECT_ID
+    value: "buddy-aeabf"
+    availability:
+      - RUNTIME

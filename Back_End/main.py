@@ -7,12 +7,29 @@ import json
 import time
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any
+from dataclasses import asdict
 import requests
 import uuid
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+
+# GAP-C3: Set up sanitized logging BEFORE any other logging
+try:
+    from Back_End.log_sanitizer import setup_sanitized_logging
+    setup_sanitized_logging(
+        level=logging.INFO,
+        enable_email_redaction=False,  # Keep emails visible for debugging (can enable in prod)
+        enable_phone_redaction=False   # Keep phones visible for debugging
+    )
+except Exception as e:
+    # Fallback to regular logging if sanitizer fails
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(levelname)s:%(name)s:%(message)s'
+    )
+    logging.warning(f"⚠️  Log sanitizer not available, using standard logging: {e}")
 
 # ============================================================================
 # IMPORT WITH FALLBACK PATTERNS
@@ -41,7 +58,16 @@ try:
     from Back_End import gohighlevel_tools
     from Back_End.screenshot_capture import capture_screenshot_as_base64, capture_page_state, capture_clickable_elements, capture_full_context
     from Back_End.buddy_core import handle_user_message, list_conversation_sessions, get_conversation_session, update_conversation_session, delete_conversation_session
+    # GAP-C2: Tenant Isolation Security
+    from Back_End.tenant_isolation import tenant_isolation_middleware, require_tenant_access, get_current_tenant
     from Back_End.conversation.session_store import get_conversation_store
+    # GAP-H2: API Rate Limiting
+    from Back_End.api_rate_limiter import rate_limit, RateLimitTier, get_rate_limit_info
+    # GAP-H3: Audit Logging
+    from Back_End.audit_logger import audit_log, query_audit_logs, AuditAction, AuditSeverity
+    # Phase 18 Security imports
+    from Back_End.buddy_log_sanitizer import sanitize_log_data
+    from Back_End.buddy_security_config import get_allowed_origins, SECURITY_HEADERS, is_public_endpoint
 except (ImportError, ModuleNotFoundError) as e:
     logging.debug(f"Fallback import mode (Back_End not in path): {e}")
     # Fallback: import from current directory (works when deployed directly)
@@ -120,27 +146,55 @@ except (ImportError, ModuleNotFoundError):
 try:
     from Back_End.websocket_streaming import router as websocket_router
     from Back_End.streaming_events_integration import StreamingEventsIntegration
-except (ImportError, ModuleNotFoundError):
-    from websocket_streaming import router as websocket_router
-    from streaming_events_integration import StreamingEventsIntegration
+    from Back_End.routes.ws_execution import router as ws_execution_router
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"WebSocket streaming modules unavailable: {e}")
+    websocket_router = None
+    StreamingEventsIntegration = None
+    ws_execution_router = None
 
 # PHASE 8: Phase25 Autonomous Multi-Agent Integration
 try:
     from Back_End.phase25_mission_bridge import get_phase25_bridge
-except (ImportError, ModuleNotFoundError):
-    from phase25_mission_bridge import get_phase25_bridge
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"Phase25 bridge unavailable: {e}")
+    get_phase25_bridge = None
 
 # PHASE 9: Cloud Task Scheduler
 try:
     from Back_End.cloud_task_scheduler import get_cloud_scheduler
-except (ImportError, ModuleNotFoundError):
-    from cloud_task_scheduler import get_cloud_scheduler
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"Cloud task scheduler unavailable: {e}")
+    get_cloud_scheduler = None
 
 # PHASE 10: Mission Recipe System
 try:
     from Back_End.mission_recipe_system import get_recipe_system
-except (ImportError, ModuleNotFoundError):
-    from mission_recipe_system import get_recipe_system
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"Mission recipe system unavailable: {e}")
+    get_recipe_system = None
+
+# PHASE 19: Customer Onboarding & Signup
+try:
+    from Back_End.buddy_signup_service import SignupService
+    import stripe
+    # Initialize Stripe with API key from environment
+    stripe.api_key = os.getenv("STRIPE_SECRET_KEY") or os.getenv("STRIPE_API_KEY")
+    _SIGNUP_SERVICE_AVAILABLE = True
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"Phase 19 signup service unavailable: {e}")
+    SignupService = None
+    stripe = None
+    _SIGNUP_SERVICE_AVAILABLE = False
+
+# PHASE 18B: Embedded Billing Dashboard
+try:
+    from Back_End.buddy_billing_dashboard import BillingDashboardService
+    _BILLING_DASHBOARD_AVAILABLE = True
+except (ImportError, ModuleNotFoundError) as e:
+    logging.warning(f"Phase 18B billing dashboard service unavailable: {e}")
+    BillingDashboardService = None
+    _BILLING_DASHBOARD_AVAILABLE = False
 
 # Register all tools on startup
 try:
@@ -159,18 +213,99 @@ extended_tools.register_extended_tools(tool_registry)
 gohighlevel_tools.register_gohighlevel_tools(tool_registry)
 
 try:
-    from Back_End import mployer_tools
-    mployer_tools.register_mployer_tools(tool_registry)
-except Exception as e:
-    logging.warning(f"Mployer tools unavailable: {e}")
-
-try:
     from Back_End import web_tools
     web_tools.register_web_tools(tool_registry)  # PHASE 5: Vision & Arms Integration
 except Exception as e:
     logging.warning(f"Web tools unavailable: {e}")
 
+try:
+    from Back_End import google_search_free  # Auto-registers on import
+    logging.info("✅ Free Google search tool loaded (cost-saving alternative to SERPAPI)")
+except Exception as e:
+    logging.warning(f"Free Google search unavailable: {e}")
+
+# Load Phase 2-3 frameworks (auto-register tools)
+try:
+    from Back_End import multi_agent_orchestrator
+    logging.info("✅ Multi-agent orchestration loaded (buddy_multiply tool)")
+except Exception as e:
+    logging.warning(f"Multi-agent orchestration unavailable: {e}")
+
+try:
+    from Back_End import batch_processor
+    logging.info("✅ Batch processing loaded (batch_process tool)")
+except Exception as e:
+    logging.warning(f"Batch processing unavailable: {e}")
+
+try:
+    from Back_End import workflow_orchestrator
+    logging.info("✅ Workflow orchestration loaded (execute_pipeline tool)")
+except Exception as e:
+    logging.warning(f"Workflow orchestration unavailable: {e}")
+
+try:
+    from Back_End import alert_manager
+    logging.info("✅ Alert manager loaded (create_threshold_alert tool)")
+except Exception as e:
+    logging.warning(f"Alert manager unavailable: {e}")
+
+# Load 32 Free API Integrations
+try:
+    from Back_End import weather_api_tools
+    logging.info("✅ Weather APIs loaded (3 providers: OpenWeatherMap, WeatherAPI.com, NWS)")
+except Exception as e:
+    logging.warning(f"Weather APIs unavailable: {e}")
+
+try:
+    from Back_End import financial_api_tools
+    logging.info("✅ Financial APIs loaded (4 providers: Alpha Vantage, FMP, CoinGecko, ExchangeRate)")
+except Exception as e:
+    logging.warning(f"Financial APIs unavailable: {e}")
+
+try:
+    from Back_End import knowledge_api_tools
+    logging.info("✅ Knowledge APIs loaded (4 providers: Wikipedia, Wikidata, Open Library, PubMed)")
+except Exception as e:
+    logging.warning(f"Knowledge APIs unavailable: {e}")
+
+try:
+    from Back_End import news_api_tools
+    logging.info("✅ News APIs loaded (3 providers: NewsAPI, GNews, NY Times)")
+except Exception as e:
+    logging.warning(f"News APIs unavailable: {e}")
+
+try:
+    from Back_End import maps_api_tools
+    logging.info("✅ Maps APIs loaded (5 tools: geocode, reverse_geocode, find_places, directions, search)")
+except Exception as e:
+    logging.warning(f"Maps APIs unavailable: {e}")
+
+try:
+    from Back_End import government_data_tools
+    logging.info("✅ Government Data APIs loaded (4 providers: Data.gov, Census, World Bank, FRED)")
+except Exception as e:
+    logging.warning(f"Government Data APIs unavailable: {e}")
+
+try:
+    from Back_End import utility_api_tools
+    logging.info("✅ Utility APIs loaded (9 tools: Stack Overflow, barcode, food, flight, country, IP, user, timezone)")
+except Exception as e:
+    logging.warning(f"Utility APIs unavailable: {e}")
+
 app = FastAPI(title="Buddy API", version="1.0.0")
+
+# ============================================================================
+# EARLY ROUTER REGISTRATION (Before middleware)
+# Intelligence API must be registered immediately after app creation
+# ============================================================================
+logging.info("[PHASE4] Registering Intelligence API Router (early registration)...")
+try:
+    from Back_End.routes.intelligence_api import router as intelligence_router
+    logging.info(f"[PHASE4] Imported intelligence_router successfully")
+    app.include_router(intelligence_router)
+    logging.info("✅[PHASE4] Intelligence API registered with /api/intelligence/*, /api/intelligence/insights, /api/intelligence/predict, /api/intelligence/analyze-failure")
+except Exception as e:
+    logging.warning(f"[PHASE4] Intelligence API early registration failed: {e}", exc_info=True)
 
 # ============================================================================
 # BOOT-TIME HEALTH CHECKS
@@ -261,12 +396,22 @@ FIREBASE_AUTH_ALLOWLIST = {
     "/system/health",
     "/system/test-flow",
     "/favicon.ico",
+    # Phase 19: Customer onboarding endpoints (public access)
+    "/api/auth/signup",
+    "/api/stripe/webhook",
+    "/api/billing/publishable-key",
 }
 
 FIREBASE_AUTH_ALLOWLIST_PREFIXES = [
     "/api/whiteboard",
     "/api/recipes",
-    "/api/missions"
+    "/api/missions",
+    "/api/intelligence",  # Allow anonymous access to predictions and insights
+    "/api/security",  # Allow anonymous access to security monitoring (Phase 13)
+    "/api/voice",  # Allow anonymous access to AI phone system (Phase 9)
+    "/api/twilio",  # Allow anonymous Twilio webhooks
+    "/conversation",  # Allow anonymous access to conversation sessions
+    "/chat/integrated"  # Allow anonymous chat access
 ]
 
 
@@ -397,6 +542,19 @@ async def firebase_auth_middleware(request: Request, call_next):
         return JSONResponse(status_code=403, content={"error": "Forbidden"})
 
     request.state.user = decoded
+    
+    # Phase 19: Add tenant_id lookup for authenticated users
+    if _SIGNUP_SERVICE_AVAILABLE:
+        try:
+            signup_service = SignupService()
+            tenant_id = signup_service.get_tenant_by_firebase_uid(decoded.get("uid"))
+            request.state.tenant_id = tenant_id
+        except Exception as e:
+            logging.warning(f"Failed to lookup tenant_id for user {decoded.get('uid')}: {e}")
+            request.state.tenant_id = None
+    else:
+        request.state.tenant_id = None
+    
     return await call_next(request)
 
 
@@ -410,7 +568,8 @@ async def api_usage_middleware(request: Request, call_next):
     if isinstance(user, dict):
         user_id = user.get("uid") or user.get("user_id") or user.get("email")
 
-    log_api_usage({
+    # Phase 18: Sanitize log data before writing
+    log_data = sanitize_log_data({
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "method": request.method,
         "path": request.url.path,
@@ -418,19 +577,91 @@ async def api_usage_middleware(request: Request, call_next):
         "duration_ms": round(duration_ms, 2),
         "user_id": user_id,
     })
+    log_api_usage(log_data)
     return response
+
+
+@app.middleware("http")
+async def security_headers_middleware(request: Request, call_next):
+    """Phase 18: Add security headers to all responses"""
+    response = await call_next(request)
+    for header, value in SECURITY_HEADERS.items():
+        response.headers[header] = value
+    return response
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=get_allowed_origins(),  # Phase 18: Restricted to specific domains
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allow_headers=["Authorization", "Content-Type", "Accept", "X-Requested-With"],
+    expose_headers=["Content-Length", "Content-Type"],
+    max_age=3600,  # Cache preflight requests for 1 hour
 )
+
+# GAP-C2: Tenant Isolation Middleware
+# Enforces multi-tenant data isolation across all API endpoints
+app.middleware("http")(tenant_isolation_middleware)
+logging.info("✅ Tenant Isolation middleware enabled (GAP-C2)")
 
 # PHASE 6: Include WebSocket Streaming Router
 # Enables real-time progress updates via ws://localhost:8000/ws/stream/{mission_id}
-app.include_router(websocket_router)
+if websocket_router:
+    app.include_router(websocket_router)
+
+# PHASE 3: Include WebSocket Execution Router
+# Enables real-time execution streaming via ws://localhost:8000/ws/missions/{mission_id}
+if ws_execution_router:
+    app.include_router(ws_execution_router)
+
+# Include Integration Manager Router
+# Provides REST API for managing all 42+ integrations
+try:
+    from Back_End.integration_manager import router as integration_router
+    app.include_router(integration_router)
+    logging.info("✅ Integration Manager API loaded")
+except Exception as e:
+    logging.warning(f"Integration Manager API unavailable: {e}")
+
+# Include GHL Voice Webhooks Router
+# Handles inbound calls from GoHighLevel (410.403.3017)
+try:
+    from Back_End.ghl_webhooks import ghl_webhooks_router
+    app.include_router(ghl_webhooks_router)
+    logging.info("✅ GHL Voice Webhooks API loaded")
+except Exception as e:
+    logging.warning(f"GHL Voice Webhooks API unavailable: {e}")
+
+# Include Twilio Voice Webhooks Router
+# Handles inbound/outbound calls via Twilio with GHL sync
+try:
+    from Back_End.twilio_webhooks import twilio_router
+    app.include_router(twilio_router)
+    logging.info("✅ Twilio Voice Webhooks API loaded")
+except Exception as e:
+    logging.warning(f"Twilio Voice Webhooks API unavailable: {e}")
+
+# Include AI Voice System Router (Phase 9)
+# Complete AI phone agent with intent classification, sentiment, outbound calling
+try:
+    from Back_End.voice_api import voice_router
+    app.include_router(voice_router)
+    logging.info("✅ AI Voice System API loaded (inbound/outbound calling, intent classification)")
+except Exception as e:
+    logging.warning(f"AI Voice System API unavailable: {e}")
+
+# Include Security Testing API Router (Phase 13)
+# Self-defense system monitoring and vulnerability scanning
+try:
+    from Back_End.routes.security_api import router as security_router
+    app.include_router(security_router)
+    logging.info("✅ Security Testing API loaded")
+except Exception as e:
+    logging.warning(f"Security Testing API unavailable: {e}")
+
+# PHASE 4: Intelligence API Router already registered early (before middleware)
+# See line ~300 for early registration
 
 # Auto-initialize GHL client from environment if available
 try:
@@ -604,6 +835,14 @@ class GHLConfigRequest(BaseModel):
     location_id: Optional[str] = None
 
 
+# PHASE 19: Customer Onboarding Models
+class SignupRequest(BaseModel):
+    email: str
+    password: str
+    name: str
+    phone: Optional[str] = None
+    plan: str  # "STARTER" or "PROFESSIONAL"
+    trial_days: Optional[int] = 14
 
 
 class SelfImproveRequest(BaseModel):
@@ -658,6 +897,14 @@ async def startup_executor():
         logging.info("[MAIN] Mission executor started")
     except Exception as e:
         logging.error(f"[MAIN] Error starting executor: {e}", exc_info=True)
+    
+    # PHASE 4: Start Intelligence Scheduler (Daily hypothesis refresh at 2am UTC)
+    try:
+        from Back_End.intelligence_scheduler import start_intelligence_scheduler
+        _intelligence_task = start_intelligence_scheduler()
+        logging.info("[MAIN] ✅ Intelligence scheduler started (runs daily at 2am UTC)")
+    except Exception as e:
+        logging.warning(f"[MAIN] Intelligence scheduler unavailable: {e}")
 
 @app.on_event("shutdown")
 async def shutdown_executor():
@@ -683,6 +930,30 @@ async def root():
 @app.get("/health")
 async def health_check():
     return {"status": "ok"}
+
+
+# GAP-H2: Rate Limit Info Endpoint
+@app.get("/api/rate-limit/{tier}")
+async def rate_limit_status(http_request: Request, tier: str):
+    """
+    Get current rate limit status for a tier.
+    
+    Example: GET /api/rate-limit/mission
+    Returns: remaining requests, reset times
+    """
+    try:
+        tier_enum = RateLimitTier(tier)
+        info = await get_rate_limit_info(http_request, tier_enum)
+        return JSONResponse(content=info)
+    except ValueError:
+        valid_tiers = [t.value for t in RateLimitTier]
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": "Invalid tier",
+                "valid_tiers": valid_tiers
+            }
+        )
 
 
 @app.get("/boot/health")
@@ -845,6 +1116,1118 @@ async def ghl_status():
     })
 
 # ============================================================================
+# PHASE 19: CUSTOMER ONBOARDING & SIGNUP ENDPOINTS
+# ============================================================================
+
+@app.post("/api/auth/signup")
+@rate_limit(tier=RateLimitTier.AUTH)  # GAP-H2: 5 req/min, 20 req/hour
+async def customer_signup(http_request: Request, request: SignupRequest):
+    """
+    Customer signup endpoint - Creates Firebase user, tenant, and Stripe checkout session.
+    
+    Flow:
+    1. Validate email, password, plan
+    2. Create Firebase user (authentication)
+    3. Create tenant in tenant database (status=PENDING)
+    4. Create Stripe customer and checkout session
+    5. Return checkout_url for payment redirect
+    6. After payment, webhook activates tenant (status=ACTIVE)
+    
+    Returns:
+    {
+        "success": true,
+        "checkout_url": "https://checkout.stripe.com/...",
+        "tenant_id": "...",
+        "firebase_uid": "...",
+        "message": "Account created. Complete payment to activate."
+    }
+    """
+    if not _SIGNUP_SERVICE_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Signup service unavailable", "detail": "SignupService not initialized"}
+        )
+    
+    try:
+        signup_service = SignupService()
+        
+        # Validate inputs
+        email_valid, email_msg = signup_service.validate_email(request.email)
+        if not email_valid:
+            return JSONResponse(status_code=400, content={"error": "Invalid email", "detail": email_msg})
+        
+        password_valid, password_msg = signup_service.validate_password(request.password)
+        if not password_valid:
+            return JSONResponse(status_code=400, content={"error": "Invalid password", "detail": password_msg})
+        
+        plan_valid, plan_msg = signup_service.validate_plan(request.plan)
+        if not plan_valid:
+            return JSONResponse(status_code=400, content={"error": "Invalid plan", "detail": plan_msg})
+        
+        # Create customer account (Firebase + Tenant + Stripe)
+        result = signup_service.create_customer_account(
+            email=request.email,
+            password=request.password,
+            name=request.name,
+            phone=request.phone,
+            plan=request.plan,
+            trial_days=request.trial_days
+        )
+        
+        return JSONResponse(content={
+            "success": True,
+            "checkout_url": result["checkout_url"],
+            "tenant_id": result["tenant_id"],
+            "firebase_uid": result["firebase_uid"],
+            "message": "Account created successfully. Complete payment to activate your subscription."
+        })
+        
+    except Exception as e:
+        logging.error(f"Signup failed: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Signup failed", "detail": str(e)}
+        )
+
+
+@app.post("/api/stripe/webhook")
+@rate_limit(tier=RateLimitTier.WEBHOOK)  # GAP-H2: 100 req/min, 10k req/hour
+async def stripe_webhook(request: Request):
+    """
+    Stripe webhook handler - Processes payment events and activates tenants.
+    
+    Events handled:
+    - checkout.session.completed: Activate tenant after successful payment
+    - invoice.payment_failed: Suspend tenant for failed payment
+    - customer.subscription.updated: Update tenant subscription status
+    - customer.subscription.deleted: Deactivate tenant
+    
+    Verifies Stripe webhook signature for security.
+    """
+    if not _SIGNUP_SERVICE_AVAILABLE or not stripe:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Webhook service unavailable"}
+        )
+    
+    webhook_secret = os.getenv("STRIPE_WEBHOOK_SECRET")
+    if not webhook_secret:
+        logging.error("STRIPE_WEBHOOK_SECRET not configured")
+        return JSONResponse(status_code=500, content={"error": "Webhook not configured"})
+    
+    try:
+        # Get raw body and signature
+        payload = await request.body()
+        sig_header = request.headers.get("stripe-signature")
+        
+        # Verify webhook signature
+        try:
+            event = stripe.Webhook.construct_event(
+                payload, sig_header, webhook_secret
+            )
+        except ValueError as e:
+            logging.error(f"Invalid webhook payload: {e}")
+            return JSONResponse(status_code=400, content={"error": "Invalid payload"})
+        except stripe.error.SignatureVerificationError as e:
+            logging.error(f"Invalid webhook signature: {e}")
+            return JSONResponse(status_code=400, content={"error": "Invalid signature"})
+        
+        # Handle event
+        event_type = event["type"]
+        event_data = event["data"]["object"]
+        
+        signup_service = SignupService()
+        
+        if event_type == "checkout.session.completed":
+            # Payment successful - activate tenant
+            session = event_data
+            customer_id = session.get("customer")
+            
+            if customer_id:
+                success = signup_service.activate_tenant_after_payment(customer_id)
+                if success:
+                    logging.info(f"Tenant activated for Stripe customer: {customer_id}")
+                else:
+                    logging.error(f"Failed to activate tenant for customer: {customer_id}")
+        
+        elif event_type == "invoice.payment_failed":
+            # Payment failed - could suspend tenant
+            invoice = event_data
+            customer_id = invoice.get("customer")
+            logging.warning(f"Payment failed for customer: {customer_id}")
+            # TODO: Implement tenant suspension logic
+        
+        elif event_type == "customer.subscription.updated":
+            # Subscription changed - could update tenant plan
+            subscription = event_data
+            customer_id = subscription.get("customer")
+            status = subscription.get("status")
+            logging.info(f"Subscription updated for customer {customer_id}: {status}")
+            # TODO: Implement plan update logic
+        
+        elif event_type == "customer.subscription.deleted":
+            # Subscription canceled - could deactivate tenant
+            subscription = event_data
+            customer_id = subscription.get("customer")
+            logging.warning(f"Subscription canceled for customer: {customer_id}")
+            # TODO: Implement tenant deactivation logic
+        
+        return JSONResponse(content={"received": True, "event_type": event_type})
+        
+    except Exception as e:
+        logging.error(f"Webhook processing failed: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Webhook processing failed", "detail": str(e)}
+        )
+
+# ============================================================================
+# PHASE 18B: EMBEDDED BILLING DASHBOARD ENDPOINTS
+# ============================================================================
+
+@app.get("/api/billing/subscription")
+async def get_billing_subscription(request: Request):
+    """
+    Get current subscription details for authenticated customer.
+    
+    Returns:
+    {
+        'subscription_id': str,
+        'status': 'active'|'trialing'|'past_due'|'canceled',
+        'plan': 'STARTER'|'PROFESSIONAL',
+        'current_period_start': datetime,
+        'current_period_end': datetime,
+        'cancel_at_period_end': bool,
+        'default_payment_method': {...}
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        # Get tenant_id from auth middleware
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        # Get tenant's Stripe customer ID
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        # Fetch subscription details
+        billing_service = BillingDashboardService()
+        details = billing_service.get_subscription_details(tenant.stripe_customer_id)
+        
+        return JSONResponse(content=details)
+        
+    except Exception as e:
+        logging.error(f"Failed to get subscription details: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to fetch subscription", "detail": str(e)}
+        )
+
+
+@app.get("/api/billing/invoices")
+async def get_billing_invoices(request: Request, limit: int = 10):
+    """
+    Get paginated list of customer invoices.
+    
+    Query params:
+    - limit: Maximum number of invoices (default: 10)
+    
+    Returns: List of invoices with PDF download links
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        invoices = billing_service.get_invoices(tenant.stripe_customer_id, limit=limit)
+        
+        return JSONResponse(content={"invoices": invoices})
+        
+    except Exception as e:
+        logging.error(f"Failed to get invoices: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to fetch invoices", "detail": str(e)}
+        )
+
+
+@app.get("/api/billing/usage")
+async def get_billing_usage(request: Request):
+    """
+    Get current billing period usage summary.
+    
+    Returns:
+    {
+        'period_start': datetime,
+        'period_end': datetime,
+        'usage_items': [{description, quantity, unit, included_in_plan, overage}],
+        'upcoming_invoice_total': int
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        usage = billing_service.get_usage_summary(tenant.stripe_customer_id)
+        
+        return JSONResponse(content=usage)
+        
+    except Exception as e:
+        logging.error(f"Failed to get usage summary: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to fetch usage", "detail": str(e)}
+        )
+
+
+@app.post("/api/billing/payment-method/setup")
+async def setup_payment_method(request: Request):
+    """
+    Create a SetupIntent for updating payment method.
+    
+    Returns:
+    {
+        'client_secret': str,  # Pass to Stripe.js confirmSetup()
+        'setup_intent_id': str
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        setup_intent = billing_service.create_payment_method_setup_intent(tenant.stripe_customer_id)
+        
+        return JSONResponse(content=setup_intent)
+        
+    except Exception as e:
+        logging.error(f"Failed to create SetupIntent: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to setup payment method", "detail": str(e)}
+        )
+
+
+class PlanChangeRequest(BaseModel):
+    new_plan: str  # "STARTER" or "PROFESSIONAL"
+
+
+@app.post("/api/billing/subscription/preview-change")
+async def preview_plan_change(request: Request, body: PlanChangeRequest):
+    """
+    Preview proration for plan change.
+    
+    Request body:
+    {
+        "new_plan": "PROFESSIONAL"
+    }
+    
+    Returns:
+    {
+        'immediate_charge': int,  # in cents (positive = charge, negative = credit)
+        'next_invoice_total': int,
+        'proration_date': datetime
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        # Validate plan
+        if body.new_plan.upper() not in ['STARTER', 'PROFESSIONAL']:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Invalid plan. Must be STARTER or PROFESSIONAL"}
+            )
+        
+        # Get price ID from environment
+        if body.new_plan.upper() == 'STARTER':
+            new_price_id = os.getenv('STRIPE_STARTER_PRICE_ID')
+        else:
+            new_price_id = os.getenv('STRIPE_PROFESSIONAL_PRICE_ID')
+        
+        if not new_price_id:
+            return JSONResponse(
+                status_code=500,
+                content={"error": f"Price ID not configured for {body.new_plan}"}
+            )
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        preview = billing_service.preview_plan_change(
+            tenant.stripe_customer_id,
+            new_price_id
+        )
+        
+        return JSONResponse(content=preview)
+        
+    except Exception as e:
+        logging.error(f"Failed to preview plan change: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to preview plan change", "detail": str(e)}
+        )
+
+
+@app.post("/api/billing/subscription/change-plan")
+async def change_subscription_plan(request: Request, body: PlanChangeRequest):
+    """
+    Change subscription plan with proration.
+    
+    Request body:
+    {
+        "new_plan": "PROFESSIONAL"
+    }
+    
+    Returns:
+    {
+        'success': True,
+        'subscription_id': str,
+        'new_plan': 'PROFESSIONAL',
+        'effective_date': datetime
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        # Validate plan
+        if body.new_plan.upper() not in ['STARTER', 'PROFESSIONAL']:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Invalid plan. Must be STARTER or PROFESSIONAL"}
+            )
+        
+        # Get price ID from environment
+        if body.new_plan.upper() == 'STARTER':
+            new_price_id = os.getenv('STRIPE_STARTER_PRICE_ID')
+        else:
+            new_price_id = os.getenv('STRIPE_PROFESSIONAL_PRICE_ID')
+        
+        if not new_price_id:
+            return JSONResponse(
+                status_code=500,
+                content={"error": f"Price ID not configured for {body.new_plan}"}
+            )
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        result = billing_service.change_subscription_plan(
+            tenant.stripe_customer_id,
+            new_price_id
+        )
+        
+        return JSONResponse(content=result)
+        
+    except Exception as e:
+        logging.error(f"Failed to change subscription plan: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to change plan", "detail": str(e)}
+        )
+
+
+class CancelSubscriptionRequest(BaseModel):
+    immediately: bool = False
+
+
+@app.post("/api/billing/subscription/cancel")
+async def cancel_subscription(request: Request, body: CancelSubscriptionRequest):
+    """
+    Cancel subscription (immediately or at period end).
+    
+    Request body:
+    {
+        "immediately": false  # true = cancel now, false = cancel at period end
+    }
+    
+    Returns:
+    {
+        'success': True,
+        'subscription_id': str,
+        'canceled_at': datetime,
+        'ends_at': datetime
+    }
+    """
+    if not _BILLING_DASHBOARD_AVAILABLE:
+        return JSONResponse(
+            status_code=503,
+            content={"error": "Billing dashboard service unavailable"}
+        )
+    
+    try:
+        tenant_id = getattr(request.state, 'tenant_id', None)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_tenant_manager import TenantManager
+        tenant_manager = TenantManager()
+        tenant = tenant_manager.get_tenant(tenant_id)
+        
+        if not tenant or not tenant.stripe_customer_id:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "No billing account found"}
+            )
+        
+        billing_service = BillingDashboardService()
+        result = billing_service.cancel_subscription(
+            tenant.stripe_customer_id,
+            immediately=body.immediately
+        )
+        
+        return JSONResponse(content=result)
+        
+    except Exception as e:
+        logging.error(f"Failed to cancel subscription: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Failed to cancel subscription", "detail": str(e)}
+        )
+
+
+@app.get("/api/billing/publishable-key")
+async def get_stripe_publishable_key():
+    """
+    Get Stripe publishable key for client-side Stripe.js initialization.
+    Public endpoint (no auth required).
+    """
+    publishable_key = os.getenv('STRIPE_PUBLISHABLE_KEY')
+    if not publishable_key:
+        return JSONResponse(
+            status_code=500,
+            content={"error": "Stripe publishable key not configured"}
+        )
+    
+    return JSONResponse(content={"publishable_key": publishable_key})
+
+
+# ============================================================================
+# PHASE 24: PAYMENT VAULT ENDPOINTS (Autonomous API Acquisition)
+# ============================================================================
+
+class StorePaymentMethodRequest(BaseModel):
+    card_number: str
+    expiry_month: str
+    expiry_year: str
+    cvc: str
+    name_on_card: str
+    billing_address: Dict[str, str]
+    spending_limits: Optional[Dict[str, float]] = None
+    label: str = 'primary'
+
+
+@app.post("/api/payment/store")
+async def store_payment_method(request: Request, body: StorePaymentMethodRequest):
+    """
+    Store user's payment method for autonomous API purchases.
+    
+    Request body:
+    {
+        "card_number": "4111111111111111",
+        "expiry_month": "12",
+        "expiry_year": "2028",
+        "cvc": "123",
+        "name_on_card": "John Doe",
+        "billing_address": {
+            "line1": "123 Main St",
+            "city": "New York",
+            "state": "NY",
+            "zip": "10001",
+            "country": "US"
+        },
+        "spending_limits": {
+            "single": 100.0,
+            "daily": 200.0,
+            "monthly": 1000.0
+        },
+        "label": "primary"
+    }
+    
+    Returns:
+    {
+        'success': true,
+        'message': 'Payment method stored securely'
+    }
+    """
+    try:
+        # Get user ID from authentication (use tenant_id for now)
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_payment_vault import get_payment_vault
+        vault = get_payment_vault()
+        
+        success = vault.store_payment_method(
+            user_id=user_id,
+            card_number=body.card_number,
+            expiry_month=body.expiry_month,
+            expiry_year=body.expiry_year,
+            cvc=body.cvc,
+            name_on_card=body.name_on_card,
+            billing_address=body.billing_address,
+            label=body.label,
+            spending_limits=body.spending_limits
+        )
+        
+        if success:
+            return JSONResponse(content={
+                "success": True, 
+                "message": "Payment method stored securely"
+            })
+        else:
+            return JSONResponse(
+                status_code=500, 
+                content={"error": "Failed to store payment method"}
+            )
+    
+    except Exception as e:
+        logging.error(f"Error storing payment method: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500, 
+            content={"error": str(e)}
+        )
+
+
+@app.get("/api/payment/info")
+async def get_payment_info(request: Request):
+    """
+    Get payment method info (safe details only - no full card number).
+    
+    Returns:
+    {
+        'has_payment_method': true,
+        'methods': [{
+            'label': 'primary',
+            'card_type': 'visa',
+            'last_4_digits': '1111',
+            'spending_limits': {'single': 100.0, 'daily': 200.0, 'monthly': 1000.0},
+            'is_default': true
+        }],
+        'spent_today': 40.00,
+        'spent_this_month': 150.00
+    }
+    """
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_payment_vault import get_payment_vault
+        vault = get_payment_vault()
+        
+        methods = vault.list_payment_methods(user_id)
+        
+        if not methods:
+            return JSONResponse(content={"has_payment_method": False})
+        
+        # Return safe details only (no full card numbers)
+        return JSONResponse(content={
+            "has_payment_method": True,
+            "methods": methods,
+            "spent_today": vault.get_spending_today(user_id),
+            "spent_this_month": vault.get_spending_this_month(user_id)
+        })
+    
+    except Exception as e:
+        logging.error(f"Error getting payment info: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500, 
+            content={"error": str(e)}
+        )
+
+
+@app.get("/api/payment/spending")
+async def get_spending_history(request: Request, days: int = 30):
+    """
+    Get autonomous API spending history.
+    
+    Query params:
+    - days: Number of days to look back (default: 30)
+    
+    Returns:
+    {
+        'spending': [{
+            'provider': 'OpenWeatherMap',
+            'amount': 40.00,
+            'description': 'Startup tier subscription',
+            'status': 'completed',
+            'timestamp': '2026-02-13T10:30:00Z'
+        }],
+        'total_spent': 150.00
+    }
+    """
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_payment_vault import get_payment_vault
+        vault = get_payment_vault()
+        
+        entries = vault.get_spending_history(user_id, days=days)
+        
+        spending_list = [entry.to_dict() for entry in entries]
+        total = sum(e['amount'] for e in spending_list if e['status'] == 'completed')
+        
+        return JSONResponse(content={
+            "spending": spending_list,
+            "total_spent": total
+        })
+    
+    except Exception as e:
+        logging.error(f"Error getting spending history: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500, 
+            content={"error": str(e)}
+        )
+
+
+@app.delete("/api/payment/method/{label}")
+async def delete_payment_method(request: Request, label: str):
+    """
+    Delete a payment method.
+    
+    Path params:
+    - label: Payment method label (e.g., 'primary', 'backup')
+    
+    Returns:
+    {
+        'success': true,
+        'message': 'Payment method deleted'
+    }
+    """
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        from Back_End.buddy_payment_vault import get_payment_vault
+        vault = get_payment_vault()
+        
+        deleted = vault.delete_payment_method(user_id, label)
+        
+        if deleted:
+            return JSONResponse(content={
+                "success": True,
+                "message": "Payment method deleted"
+            })
+        else:
+            return JSONResponse(
+                status_code=404,
+                content={"error": "Payment method not found"}
+            )
+    
+    except Exception as e:
+        logging.error(f"Error deleting payment method: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
+
+
+# ============================================================================
+# PHASE 24: API ACQUISITION APPROVAL SYSTEM
+# ============================================================================
+
+class ApprovalPreferencesRequest(BaseModel):
+    automation_mode: Optional[str] = None
+    auto_approve_free_apis: Optional[bool] = None
+    auto_approve_under_amount: Optional[float] = None
+    api_budget_monthly: Optional[float] = None
+    default_payment_method: Optional[str] = None
+
+
+class ApprovalRequestPayload(BaseModel):
+    provider: str
+    estimated_cost: float = 0.0
+    free_tier: bool = True
+    reason: Optional[str] = None
+    metadata: Optional[Dict[str, Any]] = None
+
+
+class ApprovalDecisionPayload(BaseModel):
+    request_id: str
+    approved: bool
+    decision_notes: Optional[str] = None
+
+
+@app.get("/api/approval/preferences")
+async def get_approval_preferences(request: Request):
+    """Get approval preferences for autonomous API acquisition."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_acquisition_approval import get_approval_store
+        store = get_approval_store()
+        prefs = store.get_preferences(user_id)
+
+        return JSONResponse(content={"success": True, "preferences": prefs})
+
+    except Exception as e:
+        logging.error(f"Error getting approval preferences: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.post("/api/approval/preferences")
+async def update_approval_preferences(request: Request, body: ApprovalPreferencesRequest):
+    """Update approval preferences for autonomous API acquisition."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_acquisition_approval import get_approval_store
+        store = get_approval_store()
+        updates = body.dict(exclude_none=True)
+        prefs = store.update_preferences(user_id, updates)
+
+        return JSONResponse(content={"success": True, "preferences": prefs})
+
+    except Exception as e:
+        logging.error(f"Error updating approval preferences: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.get("/api/approval/pending")
+async def get_pending_approvals(request: Request):
+    """Get pending approval requests for the current user."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_acquisition_approval import get_approval_store
+        store = get_approval_store()
+        pending = store.list_pending(user_id)
+
+        return JSONResponse(content={"success": True, "requests": pending})
+
+    except Exception as e:
+        logging.error(f"Error fetching pending approvals: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.post("/api/approval/request")
+async def create_approval_request(request: Request, body: ApprovalRequestPayload):
+    """Create a new approval request for API acquisition."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_acquisition_approval import get_approval_store
+        store = get_approval_store()
+        req = store.create_request(
+            user_id=user_id,
+            provider=body.provider,
+            estimated_cost=body.estimated_cost,
+            free_tier=body.free_tier,
+            reason=body.reason,
+            metadata=body.metadata
+        )
+
+        return JSONResponse(content={"success": True, "request": req})
+
+    except Exception as e:
+        logging.error(f"Error creating approval request: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.post("/api/approval/decision")
+async def decide_approval_request(request: Request, body: ApprovalDecisionPayload):
+    """Approve or deny a pending API acquisition request."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_acquisition_approval import get_approval_store
+        store = get_approval_store()
+        result = store.decide_request(
+            user_id=user_id,
+            request_id=body.request_id,
+            approved=body.approved,
+            decision_notes=body.decision_notes
+        )
+
+        status_code = 200 if result.get("success") else 404
+        return JSONResponse(status_code=status_code, content=result)
+
+    except Exception as e:
+        logging.error(f"Error deciding approval request: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.get("/api/usage/monitor")
+async def get_usage_monitor(request: Request, days: int = 30):
+    """Get API usage summary and alerts for autonomous API spending."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.api_usage_monitor import get_usage_summary
+        summary = get_usage_summary(user_id, days=days)
+        return JSONResponse(content=summary)
+
+    except Exception as e:
+        logging.error(f"Error getting usage monitor: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+# ============================================================================
+# GAP-H3: AUDIT LOG QUERY ENDPOINTS
+# ============================================================================
+
+@app.get("/api/audit/logs")
+@rate_limit(tier=RateLimitTier.READ)  # GAP-H2: 300 req/min
+async def get_audit_logs_endpoint(
+    http_request: Request,
+    user_id: Optional[str] = None,
+    action: Optional[str] = None,
+    resource_type: Optional[str] = None,
+    resource_id: Optional[str] = None,
+    limit: int = 100
+):
+    """
+    Query audit logs for current tenant.
+    
+    Query params:
+    - user_id: Filter by user
+    - action: Filter by action (e.g., "mission.create")
+    - resource_type: Filter by resource type
+    - resource_id: Filter by specific resource
+    - limit: Max results (default 100, max 1000)
+    """
+    try:
+        tenant_id = get_current_tenant(http_request)
+        if not tenant_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+        
+        # Validate limit
+        limit = min(limit, 1000)  # Cap at 1000
+        
+        # Convert action string to AuditAction enum if provided
+        action_enum = None
+        if action:
+            try:
+                action_enum = AuditAction(action)
+            except ValueError:
+                pass
+        
+        # Query audit logs
+        logs = query_audit_logs(
+            tenant_id=tenant_id,
+            user_id=user_id,
+            action=action_enum,
+            resource_type=resource_type,
+            resource_id=resource_id,
+            limit=limit
+        )
+        
+        return JSONResponse(content={
+            "logs": logs,
+            "count": len(logs),
+            "tenant_id": tenant_id
+        })
+    
+    except Exception as e:
+        logging.error(f"Error querying audit logs: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.get("/api/audit/actions")
+async def get_audit_actions_list():
+    """Get list of all available audit actions for filtering."""
+    actions = []
+    for action in AuditAction:
+        category = action.value.split(".")[0]
+        actions.append({
+            "value": action.value,
+            "category": category
+        })
+    
+    return JSONResponse(content={"actions": actions})
+
+
+# ============================================================================
+# PHASE 24: ACQUISITION COORDINATOR ENDPOINTS
+# ============================================================================
+
+class AcquisitionRequestPayload(BaseModel):
+    integration_id: str
+    estimated_cost: float = 0.0
+    free_tier: bool = True
+    reason: Optional[str] = None
+    metadata: Optional[Dict[str, Any]] = None
+
+
+class AcquisitionExecutePayload(BaseModel):
+    integration_id: str
+    user_email: str
+    user_password: str
+    request_id: Optional[str] = None
+    payment_method_label: str = "primary"
+    approve_paid: bool = False
+
+
+@app.post("/api/acquisition/request")
+async def request_api_acquisition(request: Request, body: AcquisitionRequestPayload):
+    """Create approval request for autonomous API acquisition."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.buddy_acquisition_coordinator import get_acquisition_coordinator
+        coordinator = get_acquisition_coordinator()
+        req = coordinator.create_request(
+            user_id=user_id,
+            integration_id=body.integration_id,
+            estimated_cost=body.estimated_cost,
+            free_tier=body.free_tier,
+            reason=body.reason,
+            metadata=body.metadata
+        )
+
+        return JSONResponse(content={"success": True, "request": req})
+
+    except Exception as e:
+        logging.error(f"Error creating acquisition request: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+@app.post("/api/acquisition/execute")
+async def execute_api_acquisition(request: Request, body: AcquisitionExecutePayload):
+    """Execute autonomous API acquisition after approval."""
+    try:
+        user_id = getattr(request.state, 'tenant_id', None)
+        if not user_id:
+            return JSONResponse(status_code=401, content={"error": "Not authenticated"})
+
+        from Back_End.buddy_acquisition_coordinator import get_acquisition_coordinator
+        coordinator = get_acquisition_coordinator()
+        result = await coordinator.execute_acquisition(
+            user_id=user_id,
+            integration_id=body.integration_id,
+            user_email=body.user_email,
+            user_password=body.user_password,
+            payment_method_label=body.payment_method_label,
+            approve_paid=body.approve_paid,
+            request_id=body.request_id
+        )
+
+        status_code = 200 if result.get("success") else 400
+        return JSONResponse(status_code=status_code, content=result)
+
+    except Exception as e:
+        logging.error(f"Error executing acquisition: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"error": str(e)})
+
+
+# ============================================================================
 # PHASE 25: AUTONOMOUS MULTI-AGENT SYSTEM ENDPOINTS
 # ============================================================================
 
@@ -940,7 +2323,8 @@ class TaskRequest(BaseModel):
     parameters: Optional[dict] = None
 
 @app.post("/tasks/create")
-async def create_task(request: TaskRequest):
+@rate_limit(tier=RateLimitTier.MISSION)  # GAP-H2: 30 req/min, 200 req/hour
+async def create_task(http_request: Request, request: TaskRequest):
     """Create a new task for a goal"""
     try:
         task_id = orchestrator.create_task(
@@ -1471,7 +2855,14 @@ async def get_conversation_session_api(session_id: str):
     """Get a full conversation session by ID."""
     session = get_conversation_session(session_id)
     if not session:
-        return JSONResponse(status_code=404, content={"error": "Session not found"})
+        # Create-on-read to prevent UI 404s after deploys or cache misses.
+        store = get_conversation_store()
+        created = store.get_or_create(
+            session_id=session_id,
+            source="chat_ui",
+            external_user_id=None,
+        )
+        return JSONResponse(content=created.to_dict())
     return JSONResponse(content=session)
 
 
@@ -1587,7 +2978,13 @@ async def chat_integrated(request: ConversationMessageRequest):
         from Back_End.conversation.session_store import get_conversation_store
         try:
             store = get_conversation_store()
-            # Save user message
+            # IMPORTANT: Ensure session exists in Firebase BEFORE appending messages
+            store.get_or_create(
+                session_id=session_id,
+                source=request.source or 'chat_ui',
+                external_user_id=user_id if user_id != "anonymous" else None
+            )
+            # Now save user message
             store.append_message(session_id, 'user', request.text, 'chat_ui')
             # Save assistant response
             store.append_message(session_id, 'assistant', chat_response.envelope.summary, 'chat_ui')
@@ -1596,6 +2993,20 @@ async def chat_integrated(request: ConversationMessageRequest):
             logging.error(f"[MESSAGE_PERSISTENCE_ERROR] Failed to save messages: {e}")
             # Continue anyway - don't block response
         
+        envelope_dict = chat_response.envelope.to_dict()
+        envelope_payload = {
+            "response_type": envelope_dict.get("response_type"),
+            "summary": envelope_dict.get("summary"),
+            "missions_spawned": envelope_dict.get("missions_spawned", []),
+            "signals_emitted": len(envelope_dict.get("signals_emitted", [])),
+            "artifacts": envelope_dict.get("artifacts", []),
+            "live_stream_id": envelope_dict.get("live_stream_id"),
+            "ui_hints": envelope_dict.get("ui_hints"),
+            "metadata": envelope_dict.get("metadata"),
+            "reality_assessment": envelope_dict.get("reality_assessment"),
+            "timestamp": envelope_dict.get("timestamp"),
+        }
+
         # Return ResponseEnvelope as JSON
         return JSONResponse(
             content={
@@ -1603,26 +3014,7 @@ async def chat_integrated(request: ConversationMessageRequest):
                 "trace_id": trace_id,  # Echo trace_id for client-side correlation
                 "chat_message_id": chat_response.message_id,
                 "session_id": chat_response.session_id,
-                "envelope": {
-                    "response_type": chat_response.envelope.response_type.value,
-                    "summary": chat_response.envelope.summary,
-                    "missions_spawned": [
-                        {
-                            "mission_id": m.mission_id,
-                            "status": m.status,
-                            "objective_type": m.objective_type,
-                            "objective_description": m.objective_description
-                        } for m in chat_response.envelope.missions_spawned
-                    ],
-                    "signals_emitted": len(chat_response.envelope.signals_emitted),
-                    "artifacts": [
-                        {
-                            "artifact_type": a.artifact_type.value if hasattr(a.artifact_type, 'value') else a.artifact_type,
-                            "title": a.title,
-                        } for a in chat_response.envelope.artifacts
-                    ],
-                    "live_stream_id": chat_response.envelope.live_stream_id
-                }
+                "envelope": envelope_payload
             }
         )
     except Exception as e:
@@ -1770,20 +3162,26 @@ async def execute_mission_api(mission_id: str):
         
         # Check if execution succeeded
         if result.get('success'):
+            response_content = {
+                "status": "success",
+                "mission_id": mission_id,
+                "execution_status": result.get('status'),
+                "tool_used": result.get('tool_used'),
+                "tool_confidence": result.get('tool_confidence'),
+                "result_summary": result.get('result_summary', 'Execution completed'),
+                "artifact_reference": result.get('artifact_reference'),
+                "artifact_message": result.get('artifact_message'),
+                "result": result.get('execution_result'),
+                "message": f"Mission executed successfully using {result.get('tool_used')}"
+            }
+            
+            # Include quality score if available
+            if result.get('quality_score'):
+                response_content['quality'] = result.get('quality_score')
+            
             return JSONResponse(
                 status_code=200,
-                content={
-                    "status": "success",
-                    "mission_id": mission_id,
-                    "execution_status": result.get('status'),
-                    "tool_used": result.get('tool_used'),
-                    "tool_confidence": result.get('tool_confidence'),
-                    "result_summary": result.get('result_summary', 'Execution completed'),
-                    "artifact_reference": result.get('artifact_reference'),
-                    "artifact_message": result.get('artifact_message'),
-                    "result": result.get('execution_result'),
-                    "message": f"Mission executed successfully using {result.get('tool_used')}"
-                }
+                content=response_content
             )
         else:
             # Check if it's an approval issue
@@ -2190,6 +3588,115 @@ async def get_mission_survey(mission_id: str):
         return JSONResponse(status_code=500, content={"status": "error", "message": str(e)})
 
 
+@app.post("/api/missions/{mission_id}/survey")
+async def submit_mission_survey(mission_id: str, request_body: dict):
+    """
+    Submit mission completion survey with tool choice feedback.
+    
+    Body:
+    {
+        "result_quality_score": 1-5,
+        "execution_speed_score": 1-5,
+        "tool_appropriateness_score": 1-5,
+        "overall_satisfaction_score": 1-5,
+        "would_use_again": bool,
+        "recommended_tool": "str",  # What was recommended
+        "chosen_tool": "str",        # What user selected
+        "tool_choice_reason": "fastest|cheapest|reliable|quality|other",
+        "improvements": "str",
+        "additional_notes": "str"
+    }
+    """
+    try:
+        from Back_End.survey_collector import get_survey_collector
+        from Back_End.mission_store import get_mission_store
+        
+        logging.info(f"[API] POST /api/missions/{mission_id}/survey")
+        
+        mission_store = get_mission_store()
+        mission = mission_store.find_mission(mission_id)
+        if not mission:
+            return JSONResponse(
+                status_code=404, 
+                content={"status": "error", "message": f"Mission {mission_id} not found"}
+            )
+        
+        # Extract survey data with defaults
+        result_quality = request_body.get("result_quality_score", 3)
+        execution_speed = request_body.get("execution_speed_score", 3)
+        tool_appropriateness = request_body.get("tool_appropriateness_score", 3)
+        overall_satisfaction = request_body.get("overall_satisfaction_score", 3)
+        would_use_again = request_body.get("would_use_again", True)
+        improvements = request_body.get("improvements")
+        notes = request_body.get("additional_notes")
+        
+        # Extract tool choice feedback
+        recommended_tool = request_body.get("recommended_tool")
+        chosen_tool = request_body.get("chosen_tool")
+        tool_choice_reason = request_body.get("tool_choice_reason")
+        
+        # Validate scores
+        for score in [result_quality, execution_speed, tool_appropriateness, overall_satisfaction]:
+            if not (1 <= int(score) <= 5):
+                return JSONResponse(
+                    status_code=400,
+                    content={"status": "error", "message": f"Invalid score: {score} (must be 1-5)"}
+                )
+        
+        # Submit survey
+        collector = get_survey_collector()
+        success = collector.submit_survey_response(
+            mission_id=mission_id,
+            result_quality=int(result_quality),
+            execution_speed=int(execution_speed),
+            tool_appropriateness=int(tool_appropriateness),
+            overall_satisfaction=int(overall_satisfaction),
+            would_use_again=bool(would_use_again),
+            improvements=improvements,
+            notes=notes,
+            recommended_tool=recommended_tool,
+            chosen_tool=chosen_tool,
+            tool_choice_reason=tool_choice_reason
+        )
+        
+        if success:
+            # Log tool choice learning signal if choice differs from recommendation
+            if recommended_tool and chosen_tool and recommended_tool != chosen_tool:
+                logging.info(
+                    f"[LEARNING] User overrode tool selection: "
+                    f"recommended={recommended_tool}, chosen={chosen_tool}, reason={tool_choice_reason}"
+                )
+                
+                # Store in memory for learning
+                memory_manager.store_observation({
+                    'type': 'tool_choice_override',
+                    'mission_id': mission_id,
+                    'recommended_tool': recommended_tool,
+                    'chosen_tool': chosen_tool,
+                    'reason': tool_choice_reason,
+                    'timestamp': datetime.now(timezone.utc).isoformat()
+                })
+            
+            return JSONResponse(
+                status_code=200, 
+                content={
+                    "status": "success", 
+                    "mission_id": mission_id, 
+                    "message": "Survey submitted successfully",
+                    "tool_choice_captured": bool(chosen_tool)
+                }
+            )
+        else:
+            return JSONResponse(
+                status_code=500,
+                content={"status": "error", "message": "Failed to submit survey"}
+            )
+    except Exception as e:
+        logging.error(f"Error submitting survey: {e}", exc_info=True)
+        return JSONResponse(status_code=500, content={"status": "error", "message": str(e)})
+
+
+
 @app.get("/api/surveys/summary")
 async def get_surveys_summary():
     """Get aggregate survey statistics across all missions."""
@@ -2205,6 +3712,77 @@ async def get_surveys_summary():
     except Exception as e:
         logging.error(f"Error retrieving survey summary: {e}", exc_info=True)
         return JSONResponse(status_code=500, content={"status": "error", "message": str(e)})
+
+
+@app.get("/api/tools/choice/audit")
+async def get_tool_choice_audit(domain: str = "_global"):
+    """Get audit data on tool selection recommendations vs user choices.
+    
+    Returns comprehensive statistics on:
+    - Tool pair frequency (when X was recommended, how often was Y chosen?)
+    - Override reasons (user preference patterns)
+    - Adoption rates (how often was recommended tool actually used?)
+    
+    Response:
+    {
+        "total_overrides": int,
+        "tool_pairs": {
+            "recommended_tool": {
+                "chosen_tool": count,
+                ...
+            },
+            ...
+        },
+        "override_reasons": {
+            "fastest": count,
+            "cheapest": count,
+            "reliable": count,
+            ...
+        },
+        "adoption_rates": {
+            "tool_name": {
+                "recommended_count": int,
+                "adopted_count": int,
+                "adoption_rate": 0.75
+            },
+            ...
+        },
+        "most_common_pairs": [
+            {
+                "recommended_tool": "web_search",
+                "chosen_tool": "web_navigate",
+                "count": 5,
+                "percentage": 25.0
+            },
+            ...
+        ],
+        "domain": "_global"
+    }
+    
+    Can be used to:
+    - Audit when users reject recommendations and why
+    - Identify cost/speed preference patterns
+    - Improve recommendation algorithm
+    - Generate learning signals for tool_selector
+    """
+    try:
+        logging.info(f"[API] GET /api/tools/choice/audit?domain={domain}")
+        
+        audit_data = memory_manager.get_tool_choice_audit(domain=domain)
+        
+        return JSONResponse(
+            status_code=200, 
+            content={
+                "status": "success",
+                "audit": audit_data
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving tool choice audit: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500, 
+            content={"status": "error", "message": str(e)}
+        )
 
 
 @app.get("/api/tools/{tool_name}/roi/{mission_type}")
@@ -2481,7 +4059,298 @@ async def list_mission_goals_api():
         )
 
 
+# ============================================================================
+# PHASE 5C: ARTIFACT RETRIEVAL API ENDPOINTS
+# ============================================================================
+
+@app.get("/api/artifacts/{artifact_id}")
+async def get_artifact_by_id(artifact_id: str):
+    """
+    Retrieve a single artifact by ID.
+    
+    Searches all mission results for an artifact with matching ID.
+    
+    Args:
+        artifact_id: UUID of the artifact
+        
+    Returns:
+        {
+            "success": True,
+            "artifact": {
+                "artifact_id": "...",
+                "type": "table|document|code",
+                "title": "...",
+                "content": {...},
+                "metadata": {...}
+            }
+        }
+    """
+    try:
+        from Back_End.mission_store import get_mission_store
+        
+        store = get_mission_store()
+        
+        # Search for artifact across all missions
+        artifact_data = store.get_artifact_by_id(artifact_id)
+        
+        if not artifact_data:
+            return JSONResponse(
+                status_code=404,
+                content={"success": False, "error": f"Artifact {artifact_id} not found"}
+            )
+        
+        return JSONResponse(
+            content={"success": True, "artifact": artifact_data}
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving artifact {artifact_id}: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.get("/api/missions/{mission_id}/artifacts")
+async def get_mission_artifacts(mission_id: str):
+    """
+    Get all artifacts for a specific mission.
+    
+    Returns all ResponseEnvelope artifacts created during mission execution.
+    
+    Args:
+        mission_id: UUID of the mission
+        
+    Returns:
+        {
+            "success": True,
+            "mission_id": "...",
+            "artifacts": [
+                {
+                    "artifact_id": "...",
+                    "type": "table",
+                    "title": "...",
+                    "content": {...},
+                    "metadata": {...}
+                },
+                ...
+            ]
+        }
+    """
+    try:
+        from Back_End.mission_store import get_mission_store
+        
+        store = get_mission_store()
+        
+        # Get mission
+        mission = store.get_mission(mission_id)
+        if not mission:
+            return JSONResponse(
+                status_code=404,
+                content={"success": False, "error": f"Mission {mission_id} not found"}
+            )
+        
+        # Load artifacts for mission
+        artifacts = store.get_mission_artifacts(mission_id)
+        
+        return JSONResponse(
+            content={
+                "success": True,
+                "mission_id": mission_id,
+                "artifacts": artifacts or [],
+                "count": len(artifacts or [])
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving artifacts for mission {mission_id}: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.get("/api/missions/{mission_id}/result")
+async def get_mission_execution_result(mission_id: str):
+    """
+    Get complete execution result with artifacts and governance metadata.
+    
+    Returns full ResponseEnvelope that includes:
+    - summary: Text summary of execution
+    - artifacts: All artifacts produced (table, document, code)
+    - governance: Decision details (AUTO_APPROVE, REQUIRE_APPROVAL, REJECT)
+    - execution_time_seconds: How long execution took
+    - execution_timestamp: When execution completed
+    
+    Args:
+        mission_id: UUID of the mission
+        
+    Returns:
+        {
+            "success": True,
+            "mission_id": "...",
+            "status": "success|error",
+            "execution_result": {
+                "summary": "Found 3 results",
+                "response_type": "text"
+            },
+            "artifacts": [
+                {
+                    "artifact_id": "...",
+                    "type": "table",
+                    "title": "...",
+                    "content": {...},
+                    "metadata": {...}
+                },
+                ...
+            ],
+            "governance": {
+                "decision": "AUTO_APPROVE",
+                "confidence": 0.92,
+                "checks": {
+                    "budget_check": True,
+                    "risk_check": True,
+                    ...
+                }
+            },
+            "execution_time_seconds": 1.5,
+            "execution_timestamp": "2024-01-01T..."
+        }
+    """
+    try:
+        from Back_End.mission_store import get_mission_store
+        
+        store = get_mission_store()
+        
+        # Get mission from store
+        mission = store.get_mission(mission_id)
+        if not mission:
+            return JSONResponse(
+                status_code=404,
+                content={"success": False, "error": f"Mission {mission_id} not found"}
+            )
+        
+        # Get execution result with artifacts
+        result = store.get_mission_execution_result(mission_id)
+        
+        if not result:
+            return JSONResponse(
+                content={
+                    "success": True,
+                    "mission_id": mission_id,
+                    "status": "pending",
+                    "message": "Mission execution in progress or not yet started"
+                }
+            )
+        
+        return JSONResponse(
+            content={
+                "success": True,
+                "mission_id": mission_id,
+                **result  # Unpack result to include all fields
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving execution result for mission {mission_id}: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
+@app.post("/api/missions/{mission_id}/feedback")
+async def post_mission_feedback(mission_id: str, request: Request):
+    """
+    Store user feedback on mission execution and governance decision.
+    
+    Feedback types:
+    - governance_decision: User's assessment of the governance decision
+    - execution_quality: Quality of the execution result
+    - artifact_quality: Quality of produced artifacts
+    
+    Ratings:
+    - helpful: Feedback was helpful/correct
+    - partially_helpful: Partially helpful
+    - unhelpful: Feedback was not helpful
+    
+    Confidence levels:
+    - very_confident: Very confident in assessment
+    - somewhat_confident: Somewhat confident
+    - uncertain: Uncertain about assessment
+    
+    Args:
+        mission_id: UUID of the mission
+        
+    Request body:
+        {
+            "governance_decision_id": "dec_xyz",
+            "feedback_type": "governance_decision",
+            "rating": "helpful",
+            "confidence": "very_confident",
+            "comment": "Decision was correct",
+            "tags": ["accurate", "fast"],
+            "was_correct": true
+        }
+        
+    Returns:
+        {
+            "success": True,
+            "feedback_id": "...",
+            "mission_id": "...",
+            "stored_at": "2024-01-01T...",
+            "stats": {
+                "total_feedback": 5,
+                "accuracy": 0.8,
+                "avg_confidence": 0.9
+            }
+        }
+    """
+    try:
+        from Back_End.feedback_manager import feedback_manager
+        from uuid import uuid4
+        
+        body = await request.json()
+        
+        governance_decision_id = body.get("governance_decision_id", str(uuid4()))
+        feedback_type = body.get("feedback_type", "governance_decision")
+        rating = body.get("rating", "helpful")
+        confidence = body.get("confidence", "somewhat_confident")
+        tags = body.get("tags", [])
+        comment = body.get("comment", "")
+        was_correct = body.get("was_correct", True)
+        
+        # Submit feedback and get stored record
+        feedback_record = feedback_manager.submit_governance_feedback(
+            mission_id=mission_id,
+            governance_decision_id=governance_decision_id,
+            feedback_type=feedback_type,
+            rating=rating,
+            confidence=confidence,
+            tags=tags,
+            comment=comment,
+            was_correct=was_correct,
+        )
+        
+        # Get accuracy stats for this decision
+        stats = feedback_manager.get_decision_accuracy_stats(governance_decision_id)
+        
+        return JSONResponse(
+            content={
+                "success": True,
+                "feedback_id": governance_decision_id,
+                "mission_id": mission_id,
+                "stored_at": feedback_record.get("timestamp"),
+                "stats": stats
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error storing feedback for mission {mission_id}: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "error": str(e)}
+        )
+
+
 @app.get("/api/budget/status")
+
 async def get_budget_status():
     """
     Get current budget status for all services.
@@ -4394,14 +6263,21 @@ async def instantiate_recipe(recipe_id: str, parameters: dict = None):
             # Extract step data from unified proposal
             steps_data = []
             for step in unified_proposal.task_breakdown.steps:
+                step_name = getattr(step, 'step_name', None) or getattr(step, 'name', None) or step.description
+                selected_tool = None
+                if getattr(step, 'tools_used', None):
+                    selected_tool = step.tools_used[0]
+                estimated_cost_usd = None
+                if getattr(step, 'estimated_cost', None):
+                    estimated_cost_usd = getattr(step.estimated_cost, 'total_usd', None)
                 step_dict = {
-                    'step_name': step.step_name,
-                    'selected_tool': step.selected_tool,
-                    'tool_confidence': step.tool_confidence,
-                    'estimated_duration_seconds': step.estimated_duration_seconds,
-                    'estimated_cost_usd': step.estimated_cost_usd,
+                    'step_name': step_name,
+                    'selected_tool': selected_tool,
+                    'tool_confidence': getattr(step, 'confidence', None),
+                    'estimated_duration_seconds': getattr(step, 'estimated_buddy_time', None),
+                    'estimated_cost_usd': estimated_cost_usd,
                     'description': step.description,
-                    'dependencies': step.dependencies,
+                    'dependencies': getattr(step, 'dependencies', None) or [],
                 }
                 steps_data.append(step_dict)
             
@@ -4414,8 +6290,11 @@ async def instantiate_recipe(recipe_id: str, parameters: dict = None):
                 metadata={
                     'plan_data': {
                         'steps': steps_data,
-                        'total_estimated_cost': unified_proposal.total_cost_estimate_usd,
-                        'total_estimated_duration': unified_proposal.total_duration_estimate_seconds,
+                        'total_estimated_cost': getattr(unified_proposal, 'total_cost_usd', 0.0),
+                        'total_estimated_duration': int(
+                            (getattr(unified_proposal, 'estimated_buddy_time_seconds', 0) or 0)
+                            + (getattr(unified_proposal, 'estimated_human_time_minutes', 0) or 0) * 60
+                        ),
                         'mission_title': unified_proposal.mission_title,
                         'source': 'recipe_planner'
                     }
@@ -4427,15 +6306,18 @@ async def instantiate_recipe(recipe_id: str, parameters: dict = None):
             logging.info(
                 f"[RECIPE] Generated plan for mission {mission_id}: "
                 f"{len(steps_data)} steps, "
-                f"est_cost=${unified_proposal.total_cost_estimate_usd:.4f}, "
-                f"est_duration={unified_proposal.total_duration_estimate_seconds}s"
+                f"est_cost=${getattr(unified_proposal, 'total_cost_usd', 0.0):.4f}, "
+                f"est_duration={int((getattr(unified_proposal, 'estimated_buddy_time_seconds', 0) or 0) + (getattr(unified_proposal, 'estimated_human_time_minutes', 0) or 0) * 60)}s"
             )
             
             # Add plan to response
             mission['plan'] = {
                 'steps': steps_data,
-                'total_cost_estimate': unified_proposal.total_cost_estimate_usd,
-                'total_duration_estimate': unified_proposal.total_duration_estimate_seconds,
+                'total_cost_estimate': getattr(unified_proposal, 'total_cost_usd', 0.0),
+                'total_duration_estimate': int(
+                    (getattr(unified_proposal, 'estimated_buddy_time_seconds', 0) or 0)
+                    + (getattr(unified_proposal, 'estimated_human_time_minutes', 0) or 0) * 60
+                ),
                 'mission_title': unified_proposal.mission_title,
             }
             mission['message'] = (
@@ -4495,6 +6377,292 @@ async def search_recipes(query: str = ""):
         return JSONResponse(
             status_code=500,
             content={"success": False, "error": str(e)}
+        )
+
+
+# ============================================================================
+# TASK 8: FORECASTING EVALUATION ENDPOINTS
+# ============================================================================
+
+# Global evaluation harness instance
+_evaluation_harness = None
+
+def get_evaluation_harness():
+    """Get or initialize forecasting evaluation harness."""
+    global _evaluation_harness
+    if _evaluation_harness is None:
+        from Back_End.forecasting_evaluation import ForecastingEvaluationHarness
+        _evaluation_harness = ForecastingEvaluationHarness()
+    return _evaluation_harness
+
+
+@app.post("/api/forecasts/{forecast_id}/evaluate")
+async def evaluate_forecast(forecast_id: str, evaluation_data: Dict[str, Any]):
+    """
+    Record actual outcome for a forecast and evaluate accuracy.
+    
+    Expected request body:
+    {
+        "domain": "system_health",
+        "metric": "agent_availability",
+        "predicted_value": 85.0,
+        "actual_value": 87.0,
+        "confidence": 0.87
+    }
+    
+    Returns:
+        HTTP 201: {
+            "forecast_id": "...",
+            "absolute_error": 2.0,
+            "relative_error": 0.023,
+            "confidence_calibrated": true,
+            "health_score": 82.5,
+            "health_status": "good"
+        }
+    """
+    try:
+        from Back_End.forecasting_evaluation import ForecastEvaluation
+        
+        logging.info(f"[API] POST /api/forecasts/{forecast_id}/evaluate - Recording evaluation")
+        
+        harness = get_evaluation_harness()
+        
+        # Create evaluation record
+        evaluation = ForecastEvaluation(
+            forecast_id=forecast_id,
+            domain=evaluation_data.get("domain", "unknown"),
+            metric=evaluation_data.get("metric", "unknown"),
+            predicted_value=float(evaluation_data.get("predicted_value", 0)),
+            actual_value=float(evaluation_data.get("actual_value", 0)),
+            confidence=float(evaluation_data.get("confidence", 0.5))
+        )
+        
+        # Record it
+        harness.record_evaluation(evaluation)
+        
+        # Get current health
+        health_score, health_status = harness.get_heath_score()
+        
+        return JSONResponse(
+            status_code=201,
+            content={
+                "status": "success",
+                "forecast_id": forecast_id,
+                "absolute_error": round(evaluation.absolute_error, 4),
+                "relative_error": round(evaluation.relative_error, 4),
+                "error_percent": round(evaluation.error_percent, 2),
+                "confidence_calibrated": evaluation.confidence_calibrated,
+                "health_score": round(health_score, 1),
+                "health_status": health_status
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error evaluating forecast: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
+        )
+
+
+@app.get("/api/forecasts/evaluation/metrics")
+async def get_evaluation_metrics(domain: Optional[str] = None):
+    """
+    Get accuracy metrics for all forecasts or a specific domain.
+    
+    Query params:
+        ?domain=system_health  (optional)
+    
+    Returns:
+        HTTP 200: {
+            "health_score": 82.5,
+            "health_status": "good",
+            "total_evaluations": 150,
+            "domains_tracked": 4,
+            "domain_metrics": {
+                "system_health:agent_availability": {
+                    "domain": "system_health",
+                    "metric": "agent_availability",
+                    "n_evaluations": 45,
+                    "avg_absolute_error": 2.1,
+                    "confidence_calibration_ratio": 0.89,
+                    ...
+                },
+                ...
+            }
+        }
+    """
+    try:
+        logging.info(f"[API] GET /api/forecasts/evaluation/metrics - domain={domain}")
+        
+        harness = get_evaluation_harness()
+        health_score, health_status = harness.get_heath_score()
+        
+        # Filter metrics by domain if specified
+        domain_metrics = harness.domain_metrics
+        if domain:
+            domain_metrics = {k: v for k, v in domain_metrics.items() if v.domain == domain}
+        
+        return JSONResponse(
+            status_code=200,
+            content={
+                "status": "success",
+                "health_score": round(health_score, 1),
+                "health_status": health_status,
+                "total_evaluations": len(harness.evaluations),
+                "domains_tracked": len(set(e.domain for e in harness.evaluations)),
+                "domain_metrics": {k: v.to_dict() for k, v in domain_metrics.items()}
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving evaluation metrics: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
+        )
+
+
+@app.get("/api/forecasts/evaluation/drift")
+async def get_drift_warnings():
+    """
+    Get model drift warnings - alerts when accuracy degrades.
+    
+    Returns:
+        HTTP 200: {
+            "drift_warnings": [
+                {
+                    "domain": "system_health",
+                    "metric": "agent_availability",
+                    "severity": "medium",
+                    "message": "Forecast accuracy degraded 18.2%...",
+                    "previous_error_rate": 3.2,
+                    "current_error_rate": 3.8,
+                    "degradation_percent": 18.75,
+                    "recommendation": "Consider retraining for system_health:agent_availability",
+                    "detected_at": "2024-01-15T10:30:00+00:00"
+                },
+                ...
+            ],
+            "active_warnings": 2,
+            "critical_count": 0,
+            "recommendations": [...]
+        }
+    """
+    try:
+        logging.info(f"[API] GET /api/forecasts/evaluation/drift - Retrieving drift warnings")
+        
+        harness = get_evaluation_harness()
+        
+        critical = [w for w in harness.drift_warnings if w.severity == "high"]
+        
+        return JSONResponse(
+            status_code=200,
+            content={
+                "status": "success",
+                "drift_warnings": [asdict(w) for w in harness.drift_warnings[-20:]],  # Last 20
+                "active_warnings": len(harness.drift_warnings),
+                "critical_count": len(critical),
+                "recommendations": harness._generate_recommendations()
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving drift warnings: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
+        )
+
+
+@app.get("/api/forecasts/evaluation/health")
+async def get_system_health():
+    """
+    Get overall forecasting system health and monitoring report.
+    
+    Returns:
+        HTTP 200: {
+            "timestamp": "2024-01-15T10:30:00+00:00",
+            "overall_health": {
+                "score": 82.5,
+                "status": "good",
+                "interpretation": "System performing well..."
+            },
+            "evaluation_summary": {
+                "total_evaluations": 150,
+                "domains_tracked": 4,
+                "evaluation_period": "Last 30 days"
+            },
+            "monitoring_report": {
+                "domain_metrics": {...},
+                "drift_warnings": [...],
+                "recommendations": [...]
+            }
+        }
+    """
+    try:
+        logging.info(f"[API] GET /api/forecasts/evaluation/health - Retrieving system health")
+        
+        harness = get_evaluation_harness()
+        report = harness.generate_monitoring_report()
+        
+        return JSONResponse(
+            status_code=200,
+            content={
+                "status": "success",
+                "monitoring_report": report
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error retrieving system health: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
+        )
+
+
+@app.post("/api/forecasts/evaluation/retrain")
+async def suggest_retraining():
+    """
+    Get retraining suggestions for models showing drift or poor accuracy.
+    
+    Returns:
+        HTTP 200: {
+            "urgent": ["system_health:agent_availability"],
+            "recommended": ["research:completion_success"],
+            "optional": ["external_events:api_availability"],
+            "next_retrain_timestamp": "2024-01-20T10:30:00+00:00"
+        }
+    """
+    try:
+        logging.info(f"[API] POST /api/forecasts/evaluation/retrain - Getting retraining suggestions")
+        
+        harness = get_evaluation_harness()
+        retrain_suggestions = harness.suggest_retraining()
+        
+        # Calculate next retraining window (7 days if urgent, 14 days if recommended)
+        from datetime import datetime, timedelta, timezone
+        now = datetime.now(timezone.utc)
+        if retrain_suggestions['urgent']:
+            next_retrain = now + timedelta(days=1)  # ASAP
+        elif retrain_suggestions['recommended']:
+            next_retrain = now + timedelta(days=7)
+        else:
+            next_retrain = now + timedelta(days=14)
+        
+        return JSONResponse(
+            status_code=200,
+            content={
+                "status": "success",
+                "urgent": retrain_suggestions['urgent'],
+                "recommended": retrain_suggestions['recommended'],
+                "optional": retrain_suggestions['optional'],
+                "next_retrain_timestamp": next_retrain.isoformat(),
+                "total_models_to_retrain": sum(len(v) for k, v in retrain_suggestions.items())
+            }
+        )
+    except Exception as e:
+        logging.error(f"Error suggesting retraining: {e}", exc_info=True)
+        return JSONResponse(
+            status_code=500,
+            content={"status": "error", "message": str(e)}
         )
 
 # End of API routes
